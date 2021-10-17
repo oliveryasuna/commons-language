@@ -1,6 +1,6 @@
-# Commons Parent
+# Commons Language
  
-Parent for all Commons projects.
+Java language commons.
 
 ## License
 
