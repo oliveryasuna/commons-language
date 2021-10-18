@@ -30,7 +30,7 @@
     <parent>
         <groupId>com.oliveryasuna.commons</groupId>
         <artifactId>commons-parent</artifactId>
-        <version>1</version>
+        <version>1-SNAPSHOT</version>
     </parent>
 
     <artifactId>commons-language</artifactId>
