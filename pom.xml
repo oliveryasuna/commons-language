@@ -30,11 +30,11 @@
     <parent>
         <groupId>com.oliveryasuna.commons</groupId>
         <artifactId>commons-parent</artifactId>
-        <version>2</version>
+        <version>3</version>
     </parent>
 
     <artifactId>commons-language</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <modules/>
