@@ -34,7 +34,7 @@
     </parent>
 
     <artifactId>commons-language</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <modules/>
@@ -89,7 +89,10 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    <organization/>
+    <organization>
+        <name>Oliver Yasuna</name>
+        <url>https://oliveryasuna.github.io/</url>
+    </organization>
     <developers>
         <developer>
             <id>oliver-yasuna</id>
