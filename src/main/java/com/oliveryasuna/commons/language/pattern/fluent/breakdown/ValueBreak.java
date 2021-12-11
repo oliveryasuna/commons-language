@@ -16,35 +16,32 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-import java.util.Objects;
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-/**
- * Represents an operation that accepts a single {@code short}-valued argument and returns no result.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface ShortConsumer {
+import java.util.function.Consumer;
 
-  /**
-   * Performs this operation on a given input.
-   *
-   * @param value The input.
-   */
-  void accept(short value);
+public final class ValueBreak<T, F extends IFluentFactory<T, F>, V> extends Break<T, F> {
 
-  /**
-   * Composes a {@link ShortConsumer} that performs, in sequence, this operation followed by the {@code after} operation.
-   */
-  default ShortConsumer andThen(final ShortConsumer after) {
-    Objects.requireNonNull(after);
+  private final V value;
 
-    return (t -> {
-      accept(t);
-      after.accept(t);
-    });
+  public ValueBreak(final F factory, final V value) {
+    super(factory);
+
+    this.value = value;
+  }
+
+  public final ValueBreak<T, F, V> handle(final Consumer<V> action) {
+    if(action != null) {
+      action.accept(value);
+    }
+
+    return this;
+  }
+
+  public final V get() {
+    return value;
   }
 
 }

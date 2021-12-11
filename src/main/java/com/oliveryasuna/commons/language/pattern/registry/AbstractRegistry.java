@@ -16,22 +16,44 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.registry;
 
-/**
- * Represents a structure that is built over time.
- *
- * @param <T> The type of result supplied.
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface Factory<T> {
+import java.util.Map;
 
-  /**
-   * Gets the current object, whatever its state may be.
-   *
-   * @return The current object.
-   */
-  T get();
+public abstract class AbstractRegistry<T, D> implements Registry<T, D> {
+
+  private final Map<T, D> registrations;
+
+  protected AbstractRegistry(final Map<T, D> registrations) {
+    super();
+
+    if(registrations == null) throw new IllegalArgumentException("Argument [registrations] is null.");
+    if(!registrations.isEmpty()) throw new IllegalArgumentException("Expected an empty map.");
+
+    this.registrations = registrations;
+  }
+
+  @Override
+  public Registration register(final T type, final D data) {
+    registrations.put(type, data);
+
+    return (() -> registrations.remove(type));
+  }
+
+  @Override
+  public D forType(final T type) {
+    if(!contains(type)) throw new IllegalArgumentException("Type not registered.");
+
+    return registrations.get(type);
+  }
+
+  @Override
+  public boolean contains(final T type) {
+    return registrations.containsKey(type);
+  }
+
+  protected final Map<T, D> getRegistrations() {
+    return registrations;
+  }
 
 }

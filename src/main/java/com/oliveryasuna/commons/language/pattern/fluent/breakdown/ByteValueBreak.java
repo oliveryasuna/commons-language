@@ -16,24 +16,22 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.fluent.breakdown;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
+import com.oliveryasuna.commons.language.function.ByteConsumer;
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-import com.oliveryasuna.commons.language.fluent.IFluentFactory;
+public final class ByteValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-import java.util.function.DoubleConsumer;
+  private final byte value;
 
-public final class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
-
-  private final double value;
-
-  public DoubleValueBreak(final F factory, final double value) {
+  public ByteValueBreak(final F factory, final byte value) {
     super(factory);
 
     this.value = value;
   }
 
-  public final DoubleValueBreak<T, F> handle(final DoubleConsumer action) {
+  public final ByteValueBreak<T, F> handle(final ByteConsumer action) {
     if(action != null) {
       action.accept(value);
     }
@@ -41,7 +39,7 @@ public final class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends B
     return this;
   }
 
-  public final double get() {
+  public final byte get() {
     return value;
   }
 

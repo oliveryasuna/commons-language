@@ -16,9 +16,9 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.fluent.breakdown;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-import com.oliveryasuna.commons.language.fluent.IFluentFactory;
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
 import java.util.function.LongConsumer;
 

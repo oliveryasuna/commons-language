@@ -16,42 +16,26 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.fluent;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-import com.oliveryasuna.commons.language.pattern.CastThis;
-import com.oliveryasuna.commons.language.pattern.Factory;
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-import java.util.function.Consumer;
+public abstract class Break<T, F extends IFluentFactory<T, F>> {
 
-@FunctionalInterface
-public interface IFluentFactory<T, F extends IFluentFactory<T, F>> extends Factory<T>, CastThis<F> {
+  private final F factory;
 
-  default F condition(final boolean value, final Consumer<F> trueAction) {
-    final F this_ = uncheckedThis();
+  protected Break(final F factory) {
+    if(factory == null) throw new IllegalArgumentException("Null factory.");
 
-    if(value && trueAction != null) trueAction.accept(this_);
-
-    return this_;
+    this.factory = factory;
   }
 
-  default F condition(final boolean value, final Consumer<F> trueAction, final Consumer<F> falseAction) {
-    final F this_ = uncheckedThis();
-
-    if(value) {
-      if(trueAction != null) trueAction.accept(this_);
-    } else {
-      if(falseAction != null) falseAction.accept(this_);
-    }
-
-    return this_;
+  public final F back() {
+    return factory;
   }
 
-  default F complete(final Consumer<F> action) {
-    final F this_ = uncheckedThis();
-
-    if(action != null) action.accept(this_);
-
-    return this_;
+  protected final F getFactory() {
+    return factory;
   }
 
 }

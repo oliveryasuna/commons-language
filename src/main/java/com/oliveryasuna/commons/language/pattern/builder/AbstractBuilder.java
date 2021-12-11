@@ -16,32 +16,13 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.fluent.breakdown;
+package com.oliveryasuna.commons.language.pattern.builder;
 
-import com.oliveryasuna.commons.language.fluent.IFluentFactory;
-
-import java.util.function.IntConsumer;
-
-public final class IntValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
-
-  private final int value;
-
-  public IntValueBreak(final F factory, final int value) {
-    super(factory);
-
-    this.value = value;
-  }
-
-  public final IntValueBreak<T, F> handle(final IntConsumer action) {
-    if(action != null) {
-      action.accept(value);
-    }
-
-    return this;
-  }
-
-  public final int get() {
-    return value;
-  }
+/**
+ * Base class for builders.
+ *
+ * @author Oliver Yasuna
+ */
+public abstract class AbstractBuilder<T> implements Builder<T> {
 
 }

@@ -16,10 +16,10 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.fluent.breakdown;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-import com.oliveryasuna.commons.language.fluent.IFluentFactory;
 import com.oliveryasuna.commons.language.function.CharConsumer;
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
 public final class CharValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 

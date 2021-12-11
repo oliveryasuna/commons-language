@@ -16,35 +16,42 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language.pattern.fluent;
 
-import java.util.Objects;
+import com.oliveryasuna.commons.language.pattern.Factory;
+import com.oliveryasuna.commons.language.pattern.misc.CastThis;
 
-/**
- * Represents an operation that accepts a single {@code short}-valued argument and returns no result.
- *
- * @author Oliver Yasuna
- */
+import java.util.function.Consumer;
+
 @FunctionalInterface
-public interface ShortConsumer {
+public interface IFluentFactory<T, F extends IFluentFactory<T, F>> extends Factory<T>, CastThis<F> {
 
-  /**
-   * Performs this operation on a given input.
-   *
-   * @param value The input.
-   */
-  void accept(short value);
+  default F condition(final boolean value, final Consumer<F> trueAction) {
+    final F this_ = uncheckedThis();
 
-  /**
-   * Composes a {@link ShortConsumer} that performs, in sequence, this operation followed by the {@code after} operation.
-   */
-  default ShortConsumer andThen(final ShortConsumer after) {
-    Objects.requireNonNull(after);
+    if(value && trueAction != null) trueAction.accept(this_);
 
-    return (t -> {
-      accept(t);
-      after.accept(t);
-    });
+    return this_;
+  }
+
+  default F condition(final boolean value, final Consumer<F> trueAction, final Consumer<F> falseAction) {
+    final F this_ = uncheckedThis();
+
+    if(value) {
+      if(trueAction != null) trueAction.accept(this_);
+    } else {
+      if(falseAction != null) falseAction.accept(this_);
+    }
+
+    return this_;
+  }
+
+  default F complete(final Consumer<F> action) {
+    final F this_ = uncheckedThis();
+
+    if(action != null) action.accept(this_);
+
+    return this_;
   }
 
 }

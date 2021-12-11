@@ -16,35 +16,11 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language.pattern.factory;
 
-import java.util.Objects;
-
-/**
- * Represents an operation that accepts a single {@code short}-valued argument and returns no result.
- *
- * @author Oliver Yasuna
- */
 @FunctionalInterface
-public interface ShortConsumer {
+public interface AbstractFactory<T, P> {
 
-  /**
-   * Performs this operation on a given input.
-   *
-   * @param value The input.
-   */
-  void accept(short value);
-
-  /**
-   * Composes a {@link ShortConsumer} that performs, in sequence, this operation followed by the {@code after} operation.
-   */
-  default ShortConsumer andThen(final ShortConsumer after) {
-    Objects.requireNonNull(after);
-
-    return (t -> {
-      accept(t);
-      after.accept(t);
-    });
-  }
+  T create(final P parameter);
 
 }

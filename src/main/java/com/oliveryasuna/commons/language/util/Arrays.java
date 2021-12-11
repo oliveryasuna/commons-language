@@ -16,26 +16,24 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.fluent.breakdown;
+package com.oliveryasuna.commons.language.util;
 
-import com.oliveryasuna.commons.language.fluent.IFluentFactory;
+import com.oliveryasuna.commons.language.exception.UtilityClassException;
 
-public abstract class Break<T, F extends IFluentFactory<T, F>> {
+public final class Arrays {
 
-  private final F factory;
+  public static boolean isEmpty(final Object[] array) {
+    if(array == null) throw new IllegalArgumentException("Argument [array] is null.");
 
-  protected Break(final F factory) {
-    if(factory == null) throw new IllegalArgumentException("Null factory.");
-
-    this.factory = factory;
+    return (array.length == 0);
   }
 
-  public final F back() {
-    return factory;
+  public static boolean isNotEmpty(final Object[] array) {
+    return !isEmpty(array);
   }
 
-  protected final F getFactory() {
-    return factory;
+  private Arrays() {
+    throw new UtilityClassException();
   }
 
 }

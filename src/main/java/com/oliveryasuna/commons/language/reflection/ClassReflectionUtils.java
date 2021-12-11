@@ -31,13 +31,14 @@ import java.util.List;
  *
  * @author Oliver Yasuna
  */
-public final class ClassReflection {
+public final class ClassReflectionUtils {
 
   /**
    * Gets all declared methods of {@code clazz} will all annotations, {@code annotationTypes}.
    *
    * @param clazz           The class.
    * @param annotationTypes The annotations.
+   *
    * @return All declared methods of {@code clazz} will all annotations, {@code annotationTypes}.
    */
   @SafeVarargs
@@ -76,6 +77,7 @@ public final class ClassReflection {
    *
    * @param clazz           The class.
    * @param annotationTypes The annotations.
+   *
    * @return All declared fields of {@code clazz} will all annotations, {@code annotationTypes}.
    */
   @SafeVarargs
@@ -109,7 +111,7 @@ public final class ClassReflection {
     return result;
   }
 
-  private ClassReflection() {
+  private ClassReflectionUtils() {
     throw new UtilityClassException();
   }
 

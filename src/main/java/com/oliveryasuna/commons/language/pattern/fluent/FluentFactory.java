@@ -16,35 +16,26 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language.pattern.fluent;
 
-import java.util.Objects;
+public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentFactory<T, F> {
 
-/**
- * Represents an operation that accepts a single {@code short}-valued argument and returns no result.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface ShortConsumer {
+  private final T object;
 
   /**
-   * Performs this operation on a given input.
+   * Implementations will either pass an existing object or create a new instance.
    *
-   * @param value The input.
+   * @param object The object.
    */
-  void accept(short value);
+  protected FluentFactory(final T object) {
+    if(object == null) throw new IllegalArgumentException("Null object.");
 
-  /**
-   * Composes a {@link ShortConsumer} that performs, in sequence, this operation followed by the {@code after} operation.
-   */
-  default ShortConsumer andThen(final ShortConsumer after) {
-    Objects.requireNonNull(after);
+    this.object = object;
+  }
 
-    return (t -> {
-      accept(t);
-      after.accept(t);
-    });
+  @Override
+  public final T get() {
+    return object;
   }
 
 }

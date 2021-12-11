@@ -33,7 +33,7 @@ public interface BooleanConsumer {
    *
    * @param value The input.
    */
-  void accept(final boolean value);
+  void accept(boolean value);
 
   /**
    * Composes a {@link BooleanConsumer} that performs, in sequence, this operation followed by the {@code after} operation.

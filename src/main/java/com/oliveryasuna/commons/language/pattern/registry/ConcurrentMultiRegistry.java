@@ -16,35 +16,16 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language.pattern.registry;
 
-import java.util.Objects;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Represents an operation that accepts a single {@code short}-valued argument and returns no result.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface ShortConsumer {
+public class ConcurrentMultiRegistry<T, D> extends AbstractMultiRegistry<T, D> {
 
-  /**
-   * Performs this operation on a given input.
-   *
-   * @param value The input.
-   */
-  void accept(short value);
-
-  /**
-   * Composes a {@link ShortConsumer} that performs, in sequence, this operation followed by the {@code after} operation.
-   */
-  default ShortConsumer andThen(final ShortConsumer after) {
-    Objects.requireNonNull(after);
-
-    return (t -> {
-      accept(t);
-      after.accept(t);
-    });
+  public ConcurrentMultiRegistry() {
+    super(new ConcurrentHashMap<>(), () -> Collections.synchronizedSet(new HashSet<>()));
   }
 
 }

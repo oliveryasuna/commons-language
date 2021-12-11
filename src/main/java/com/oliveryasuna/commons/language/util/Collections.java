@@ -16,23 +16,26 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.util;
 
-/**
- * Provides a method that returns {@code this} casted to {@code T}.
- *
- * @param <T> The type of {@code this}.
- */
-public interface CastThis<T extends CastThis<T>> {
+import com.oliveryasuna.commons.language.exception.UtilityClassException;
 
-  /**
-   * Casts {@code this} to {@code T}.
-   *
-   * @return {@code this} casted to {@code T}.
-   */
-  @SuppressWarnings("unchecked")
-  default T uncheckedThis() {
-    return (T)this;
+import java.util.Collection;
+
+public final class Collections {
+
+  public static boolean isEmpty(final Collection<?> collection) {
+    if(collection == null) throw new IllegalArgumentException("Argument [collection] is null.");
+
+    return collection.isEmpty();
+  }
+
+  public static boolean isNotEmpty(final Collection<?> collection) {
+    return !isEmpty(collection);
+  }
+
+  private Collections() {
+    throw new UtilityClassException();
   }
 
 }

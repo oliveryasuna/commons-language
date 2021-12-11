@@ -16,31 +16,20 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.fluent.breakdown;
+package com.oliveryasuna.commons.language.pattern.builder;
 
-import com.oliveryasuna.commons.language.fluent.IFluentFactory;
-import com.oliveryasuna.commons.language.function.FloatConsumer;
+/**
+ * Represents a builder.
+ *
+ * @author Oliver Yasuna
+ */
+public interface Builder<T> {
 
-public final class FloatValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
-
-  private final float value;
-
-  public FloatValueBreak(final F factory, final float value) {
-    super(factory);
-
-    this.value = value;
-  }
-
-  public final FloatValueBreak<T, F> handle(final FloatConsumer action) {
-    if(action != null) {
-      action.accept(value);
-    }
-
-    return this;
-  }
-
-  public final float get() {
-    return value;
-  }
+  /**
+   * Builds the object.
+   *
+   * @return The object.
+   */
+  T build();
 
 }

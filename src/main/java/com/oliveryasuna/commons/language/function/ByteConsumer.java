@@ -33,7 +33,7 @@ public interface ByteConsumer {
    *
    * @param value The input.
    */
-  void accept(final byte value);
+  void accept(byte value);
 
   /**
    * Composes a {@link ByteConsumer} that performs, in sequence, this operation followed by the {@code after} operation.

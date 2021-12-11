@@ -16,35 +16,33 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-import java.util.Objects;
 
-/**
- * Represents an operation that accepts a single {@code short}-valued argument and returns no result.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface ShortConsumer {
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-  /**
-   * Performs this operation on a given input.
-   *
-   * @param value The input.
-   */
-  void accept(short value);
+import java.util.function.DoubleConsumer;
 
-  /**
-   * Composes a {@link ShortConsumer} that performs, in sequence, this operation followed by the {@code after} operation.
-   */
-  default ShortConsumer andThen(final ShortConsumer after) {
-    Objects.requireNonNull(after);
+public final class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-    return (t -> {
-      accept(t);
-      after.accept(t);
-    });
+  private final double value;
+
+  public DoubleValueBreak(final F factory, final double value) {
+    super(factory);
+
+    this.value = value;
+  }
+
+  public final DoubleValueBreak<T, F> handle(final DoubleConsumer action) {
+    if(action != null) {
+      action.accept(value);
+    }
+
+    return this;
+  }
+
+  public final double get() {
+    return value;
   }
 
 }

@@ -16,13 +16,23 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.misc;
 
 /**
- * Base class for builders.
+ * Provides a method that returns {@code this} casted to {@code T}.
  *
- * @author Oliver Yasuna
+ * @param <T> The type of {@code this}.
  */
-public abstract class AbstractBuilder<T> implements Builder<T> {
+public interface CastThis<T extends CastThis<T>> {
+
+  /**
+   * Casts {@code this} to {@code T}.
+   *
+   * @return {@code this} casted to {@code T}.
+   */
+  @SuppressWarnings("unchecked")
+  default T uncheckedThis() {
+    return (T)this;
+  }
 
 }

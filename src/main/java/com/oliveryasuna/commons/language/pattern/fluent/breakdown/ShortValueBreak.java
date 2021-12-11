@@ -16,26 +16,31 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.fluent;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentFactory<T, F> {
+import com.oliveryasuna.commons.language.function.ShortConsumer;
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-  private final T object;
+public final class ShortValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-  /**
-   * Implementations will either pass an existing object or create a new instance.
-   *
-   * @param object The object.
-   */
-  protected FluentFactory(final T object) {
-    if(object == null) throw new IllegalArgumentException("Null object.");
+  private final short value;
 
-    this.object = object;
+  public ShortValueBreak(final F factory, final short value) {
+    super(factory);
+
+    this.value = value;
   }
 
-  @Override
-  public final T get() {
-    return object;
+  public final ShortValueBreak<T, F> handle(final ShortConsumer action) {
+    if(action != null) {
+      action.accept(value);
+    }
+
+    return this;
+  }
+
+  public final short get() {
+    return value;
   }
 
 }

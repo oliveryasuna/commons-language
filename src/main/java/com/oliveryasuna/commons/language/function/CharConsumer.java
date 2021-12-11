@@ -33,7 +33,7 @@ public interface CharConsumer {
    *
    * @param value The input.
    */
-  void accept(final char value);
+  void accept(char value);
 
   /**
    * Composes a {@link CharConsumer} that performs, in sequence, this operation followed by the {@code after} operation.

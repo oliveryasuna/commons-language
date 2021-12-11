@@ -33,7 +33,7 @@ public interface FloatConsumer {
    *
    * @param value The input.
    */
-  void accept(final float value);
+  void accept(float value);
 
   /**
    * Composes a {@link FloatConsumer} that performs, in sequence, this operation followed by the {@code after} operation.

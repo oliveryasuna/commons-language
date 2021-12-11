@@ -16,31 +16,18 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.fluent.breakdown;
+package com.oliveryasuna.commons.language.pattern.registry;
 
-import com.oliveryasuna.commons.language.fluent.IFluentFactory;
-import com.oliveryasuna.commons.language.function.ByteConsumer;
+import java.util.Iterator;
 
-public final class ByteValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+public interface MultiRegistry<T, D> {
 
-  private final byte value;
+  Registration register(T type, D data);
 
-  public ByteValueBreak(final F factory, final byte value) {
-    super(factory);
+  Iterator<D> forType(T type);
 
-    this.value = value;
-  }
+  int entryCount(T type);
 
-  public final ByteValueBreak<T, F> handle(final ByteConsumer action) {
-    if(action != null) {
-      action.accept(value);
-    }
-
-    return this;
-  }
-
-  public final byte get() {
-    return value;
-  }
+  boolean contains(final T type);
 
 }
