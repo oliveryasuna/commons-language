@@ -18,13 +18,14 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent;
 
-import com.oliveryasuna.commons.language.pattern.Factory;
 import com.oliveryasuna.commons.language.pattern.misc.CastThis;
 
 import java.util.function.Consumer;
 
 @FunctionalInterface
-public interface IFluentFactory<T, F extends IFluentFactory<T, F>> extends Factory<T>, CastThis<F> {
+public interface IFluentFactory<T, F extends IFluentFactory<T, F>> extends CastThis<F> {
+
+  T get();
 
   default F condition(final boolean value, final Consumer<F> trueAction) {
     final F this_ = uncheckedThis();
