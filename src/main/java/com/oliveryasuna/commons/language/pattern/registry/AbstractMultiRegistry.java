@@ -57,7 +57,7 @@ public abstract class AbstractMultiRegistry<T, D> implements MultiRegistry<T, D>
 
     registrations.get(type).add(data);
 
-    return null;
+    return (() -> registrations.get(type).remove(data));
   }
 
   @Override

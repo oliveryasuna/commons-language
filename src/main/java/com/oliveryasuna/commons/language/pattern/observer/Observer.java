@@ -18,9 +18,10 @@
 
 package com.oliveryasuna.commons.language.pattern.observer;
 
-@FunctionalInterface
 public interface Observer<OBSERVATION_TYPE extends Observation<SOURCE_TYPE>, SOURCE_TYPE extends Observable> {
 
   void observe(OBSERVATION_TYPE observed);
+
+  Class<OBSERVATION_TYPE> getObservationType();
 
 }
