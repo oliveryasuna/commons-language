@@ -18,8 +18,8 @@
 
 package com.oliveryasuna.commons.language.pattern.observer;
 
-public interface Observation<S extends Observable> {
+public interface Observation<SOURCE_TYPE extends Observable> {
 
-  S getSource();
+  SOURCE_TYPE getSource();
 
 }
