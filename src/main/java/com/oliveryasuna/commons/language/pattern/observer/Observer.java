@@ -19,7 +19,7 @@
 package com.oliveryasuna.commons.language.pattern.observer;
 
 @FunctionalInterface
-public interface Observer<T extends Observed> {
+public interface Observer<T extends Observation> {
 
   void observe(T observed);
 

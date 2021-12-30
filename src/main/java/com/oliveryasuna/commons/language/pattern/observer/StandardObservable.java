@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.observer;
 
-public interface StandardObservable<T extends Observed<S>, S extends Observable> extends Observable {
+public interface StandardObservable<T extends Observation<S>, S extends Observable> extends Observable {
 
   boolean addObserver(Observer<T> observer);
 

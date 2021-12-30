@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.observer;
 
-public interface Observed<S extends Observable> {
+public interface Observation<S extends Observable> {
 
   S getSource();
 
