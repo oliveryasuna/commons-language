@@ -21,8 +21,8 @@ package com.oliveryasuna.commons.language.pattern.observer;
 import com.oliveryasuna.commons.language.pattern.registry.Registration;
 
 @FunctionalInterface
-public interface RegistryObservable<OBSERVATION_TYPE extends Observation<OBSERVABLE_TYPE>, OBSERVABLE_TYPE extends Observable> extends Observable {
+public interface RegistryObservable<OBSERVATION_TYPE extends Observation, OBSERVABLE_TYPE extends Observable> extends Observable {
 
-  <OBSERVATION_TYPE_2 extends OBSERVATION_TYPE> Registration addObserver(Class<? extends Observation> type, Observer<OBSERVATION_TYPE_2, OBSERVABLE_TYPE> observer);
+  Registration addObserver(Class<? extends OBSERVATION_TYPE> type, Observer<? extends OBSERVATION_TYPE, OBSERVABLE_TYPE> observer);
 
 }
