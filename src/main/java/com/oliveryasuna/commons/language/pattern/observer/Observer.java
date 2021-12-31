@@ -20,6 +20,6 @@ package com.oliveryasuna.commons.language.pattern.observer;
 
 public interface Observer<OBSERVATION_TYPE extends Observation<SOURCE_TYPE>, SOURCE_TYPE extends Observable> {
 
-  void observe(OBSERVATION_TYPE observed);
+  void observe(OBSERVATION_TYPE observation);
 
 }
