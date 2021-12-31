@@ -22,6 +22,4 @@ public interface Observer<OBSERVATION_TYPE extends Observation<SOURCE_TYPE>, SOU
 
   void observe(OBSERVATION_TYPE observed);
 
-  Class<OBSERVATION_TYPE> getObservationType(); // TODO: Remove this.
-
 }
