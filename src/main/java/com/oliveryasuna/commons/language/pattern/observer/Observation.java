@@ -18,8 +18,9 @@
 
 package com.oliveryasuna.commons.language.pattern.observer;
 
-public interface Observation<SOURCE_TYPE extends Observable> {
+@FunctionalInterface
+public interface Observation<SRC extends Observable> {
 
-  SOURCE_TYPE getSource();
+  SRC getSource();
 
 }

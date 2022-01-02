@@ -18,10 +18,10 @@
 
 package com.oliveryasuna.commons.language.pattern.observer;
 
-public interface StandardObservable<OBSERVATION_TYPE extends Observation, OBSERVABLE_TYPE extends Observable> extends Observable {
+public interface StandardObservable<OBS extends Observation<SUB>, SUB extends Observable> extends Observable {
 
-  boolean addObserver(Class<? extends OBSERVATION_TYPE> type, Observer<? extends OBSERVATION_TYPE, OBSERVABLE_TYPE> observer);
+  boolean addObserver(Class<? super OBS> type, Observer<? extends OBS, SUB> observer);
 
-  boolean removeObserver(Class<? extends OBSERVATION_TYPE> type, Observer<? extends OBSERVATION_TYPE, OBSERVABLE_TYPE> observer);
+  boolean removeObserver(Class<? super OBS> type, Observer<? extends OBS, SUB> observer);
 
 }
