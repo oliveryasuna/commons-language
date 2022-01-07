@@ -23,6 +23,7 @@ import com.google.common.collect.Iterators;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public abstract class AbstractMultiRegistry<T, D> implements MultiRegistry<T, D> {
@@ -34,13 +35,9 @@ public abstract class AbstractMultiRegistry<T, D> implements MultiRegistry<T, D>
   protected AbstractMultiRegistry(final Map<T, Collection<D>> registrations, final Supplier<Collection<D>> entryCollectionSupplier) {
     super();
 
-    if(registrations == null) throw new IllegalArgumentException("Argument [registrations] is null.");
-    if(!registrations.isEmpty()) throw new IllegalArgumentException("Expected an empty map.");
-    if(entryCollectionSupplier == null) throw new IllegalArgumentException("Argument [entryCollectionSupplier] is null.");
+    this.registrations = Objects.requireNonNull(registrations);
 
-    this.registrations = registrations;
-
-    this.entryCollectionSupplier = entryCollectionSupplier;
+    this.entryCollectionSupplier = Objects.requireNonNull(entryCollectionSupplier);
   }
 
   @Override

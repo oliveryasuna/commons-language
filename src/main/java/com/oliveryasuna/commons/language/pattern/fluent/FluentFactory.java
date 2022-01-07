@@ -18,6 +18,8 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent;
 
+import java.util.Objects;
+
 public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentFactory<T, F> {
 
   private final T object;
@@ -28,9 +30,7 @@ public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements
    * @param object The object.
    */
   protected FluentFactory(final T object) {
-    if(object == null) throw new IllegalArgumentException("Null object.");
-
-    this.object = object;
+    this.object = Objects.requireNonNull(object);
   }
 
   @Override

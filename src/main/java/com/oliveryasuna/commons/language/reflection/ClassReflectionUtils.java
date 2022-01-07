@@ -25,6 +25,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Various reflection-upon-class utilities.
@@ -43,7 +44,7 @@ public final class ClassReflectionUtils {
    */
   @SafeVarargs
   public static List<Method> getAnnotatedMethods(Class<?> clazz, final Class<? extends Annotation>... annotationTypes) {
-    if(clazz == null) throw new IllegalArgumentException("Requires a class.");
+    Objects.requireNonNull(clazz);
 
     final List<Method> result = new ArrayList<>();
 
@@ -82,7 +83,7 @@ public final class ClassReflectionUtils {
    */
   @SafeVarargs
   public static List<Field> getAnnotatedFields(Class<?> clazz, final Class<? extends Annotation>... annotationTypes) {
-    if(clazz == null) throw new IllegalArgumentException("Requires a class.");
+    Objects.requireNonNull(clazz);
 
     final List<Field> result = new ArrayList<>();
 

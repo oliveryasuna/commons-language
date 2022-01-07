@@ -19,6 +19,7 @@
 package com.oliveryasuna.commons.language.pattern.registry;
 
 import java.util.Map;
+import java.util.Objects;
 
 public abstract class AbstractRegistry<T, D> implements Registry<T, D> {
 
@@ -27,10 +28,7 @@ public abstract class AbstractRegistry<T, D> implements Registry<T, D> {
   protected AbstractRegistry(final Map<T, D> registrations) {
     super();
 
-    if(registrations == null) throw new IllegalArgumentException("Argument [registrations] is null.");
-    if(!registrations.isEmpty()) throw new IllegalArgumentException("Expected an empty map.");
-
-    this.registrations = registrations;
+    this.registrations = Objects.requireNonNull(registrations);
   }
 
   @Override

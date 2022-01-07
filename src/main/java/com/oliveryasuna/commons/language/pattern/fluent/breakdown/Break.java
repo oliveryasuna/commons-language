@@ -20,14 +20,14 @@ package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
+import java.util.Objects;
+
 public abstract class Break<T, F extends IFluentFactory<T, F>> {
 
   private final F factory;
 
   protected Break(final F factory) {
-    if(factory == null) throw new IllegalArgumentException("Null factory.");
-
-    this.factory = factory;
+    this.factory = Objects.requireNonNull(factory);
   }
 
   public final F back() {
