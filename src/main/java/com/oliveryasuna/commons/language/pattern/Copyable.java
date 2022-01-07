@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,21 +16,16 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern.registry;
+package com.oliveryasuna.commons.language.pattern;
 
 /**
- * Represents a registration that can be removed.
- * <p>
- * Usually for listeners.
+ * Similar to {@link Cloneable} but uses the method {@link #copy()}.
  *
  * @author Oliver Yasuna
  */
 @FunctionalInterface
-public interface Registration {
+public interface Copyable {
 
-  /**
-   * Unregister whatever is registered.
-   */
-  void remove();
+  Copyable copy() throws CloneNotSupportedException;
 
 }

@@ -16,37 +16,41 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.stream;
+package com.oliveryasuna.commons.language.function;
 
-import com.oliveryasuna.commons.language.exception.UtilityClassException;
-
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import com.oliveryasuna.commons.language.Arguments;
 
 /**
- * Various stream utilities.
+ * Represents an operation that accepts a single {@code long} argument and returns no result.
  *
  * @author Oliver Yasuna
  */
-public final class StreamUtils {
+@FunctionalInterface
+public interface LongConsumer extends java.util.function.LongConsumer {
 
   /**
-   * Reverses the order of a stream.
-   *
-   * @param stream The stream.
-   * @param <T>    The type of value in the stream.
-   * @return A reversed stream.
+   * Performs the operation.
    */
-  @SuppressWarnings("unchecked")
-  public static <T> Stream<T> reverse(final Stream<T> stream) {
-    final Object[] temp = stream.toArray();
+  @Override
+  void accept(long argument);
 
-    return (Stream<T>)IntStream.range(0, temp.length)
-        .mapToObj(i -> temp[temp.length - i - 1]);
-  }
+  /**
+   * Creates a composed {@link LongConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @param after The operation to perform after this operation.
+   *
+   * @return A composed {@link LongConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
+   */
+  @Override
+  default LongConsumer andThen(final java.util.function.LongConsumer after) {
+    Arguments.requireNonNull(after);
 
-  private StreamUtils() {
-    throw new UtilityClassException();
+    return (argument -> {
+      accept(argument);
+      after.accept(argument);
+    });
   }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,13 +16,46 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern.observer;
+package com.oliveryasuna.commons.language;
 
-import com.oliveryasuna.commons.language.pattern.registry.Registration;
+import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
-@FunctionalInterface
-public interface RegistryObservable<OBS extends Observation<SUB>, SUB extends Observable> extends Observable {
+/**
+ * Various {@code static} utility methods for operating on arrays.
+ *
+ * @author Oliver Yasuna
+ */
+public final class Arrays {
 
-  <T extends OBS> Registration addObserver(Class<? extends T> type, Observer<? extends T, SUB> observer);
+  /**
+   * Gets whether an array is empty.
+   *
+   * @param array The array.
+   *
+   * @return {@code true}, if the array is empty; otherwise, {@code false}.
+   */
+  public static boolean isEmpty(final Object[] array) {
+    return (Arguments.requireNonNull(array).length == 0);
+  }
+
+  /**
+   * Gets whether an array is not empty.
+   *
+   * @param array The array.
+   *
+   * @return {@code true}, if the array is not empty; otherwise, {@code false}.
+   */
+  public static boolean isNotEmpty(final Object[] array) {
+    return !isEmpty(array);
+  }
+
+  /**
+   * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
+   */
+  private Arrays() {
+    super();
+
+    throw new UnsupportedInstantiationException();
+  }
 
 }

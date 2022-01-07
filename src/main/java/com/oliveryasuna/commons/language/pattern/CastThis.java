@@ -16,42 +16,23 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern.registry;
+package com.oliveryasuna.commons.language.pattern;
 
-import java.util.Map;
-import java.util.Objects;
+/**
+ * Provides a method that returns {@code this} casted to {@code T}.
+ *
+ * @param <T> The type of {@code this}.
+ */
+public interface CastThis<T extends CastThis<T>> {
 
-public abstract class AbstractRegistry<T, D> implements Registry<T, D> {
-
-  private final Map<T, D> registrations;
-
-  protected AbstractRegistry(final Map<T, D> registrations) {
-    super();
-
-    this.registrations = Objects.requireNonNull(registrations);
-  }
-
-  @Override
-  public Registration register(final T type, final D data) {
-    registrations.put(type, data);
-
-    return (() -> registrations.remove(type));
-  }
-
-  @Override
-  public D forType(final T type) {
-    if(!contains(type)) throw new IllegalArgumentException("Type not registered.");
-
-    return registrations.get(type);
-  }
-
-  @Override
-  public boolean contains(final T type) {
-    return registrations.containsKey(type);
-  }
-
-  protected final Map<T, D> getRegistrations() {
-    return registrations;
+  /**
+   * Casts {@code this} to {@code T}.
+   *
+   * @return {@code this} casted to {@code T}.
+   */
+  @SuppressWarnings("unchecked")
+  default T uncheckedThis() {
+    return (T)this;
   }
 
 }

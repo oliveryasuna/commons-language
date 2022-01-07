@@ -18,10 +18,10 @@
 
 package com.oliveryasuna.commons.language.function;
 
-import java.util.Objects;
+import com.oliveryasuna.commons.language.Arguments;
 
 /**
- * Represents an operation that accepts a single {@code short}-valued argument and returns no result.
+ * Represents an operation that accepts a single {@code short} argument and returns no result.
  *
  * @author Oliver Yasuna
  */
@@ -29,21 +29,25 @@ import java.util.Objects;
 public interface ShortConsumer {
 
   /**
-   * Performs this operation on a given input.
-   *
-   * @param value The input.
+   * Performs the operation.
    */
-  void accept(short value);
+  void accept(short argument);
 
   /**
-   * Composes a {@link ShortConsumer} that performs, in sequence, this operation followed by the {@code after} operation.
+   * Creates a composed {@link ShortConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @param after The operation to perform after this operation.
+   *
+   * @return A composed {@link ShortConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
    */
   default ShortConsumer andThen(final ShortConsumer after) {
-    Objects.requireNonNull(after);
+    Arguments.requireNonNull(after);
 
-    return (t -> {
-      accept(t);
-      after.accept(t);
+    return (argument -> {
+      accept(argument);
+      after.accept(argument);
     });
   }
 

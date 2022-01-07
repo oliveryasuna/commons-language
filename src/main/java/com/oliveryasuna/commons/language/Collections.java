@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,11 +16,48 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern.factory;
+package com.oliveryasuna.commons.language;
 
-@FunctionalInterface
-public interface AbstractFactory<T, P> {
+import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
-  T create(final P parameter);
+import java.util.Collection;
+
+/**
+ * Various {@code static} utility methods for operating on collections.
+ *
+ * @author Oliver Yasuna
+ */
+public final class Collections {
+
+  /**
+   * Gets whether a collection is empty.
+   *
+   * @param collection The collection.
+   *
+   * @return {@code true}, if the collection is empty; otherwise, {@code false}.
+   */
+  public static boolean isEmpty(final Collection<?> collection) {
+    return Arguments.requireNonNull(collection).isEmpty();
+  }
+
+  /**
+   * Gets whether a collection is not empty.
+   *
+   * @param collection The collection.
+   *
+   * @return {@code true}, if the collection is not empty; otherwise, {@code false}.
+   */
+  public static boolean isNotEmpty(final Collection<?> collection) {
+    return !isEmpty(collection);
+  }
+
+  /**
+   * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
+   */
+  private Collections() {
+    super();
+
+    throw new UnsupportedInstantiationException();
+  }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,24 +16,46 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.util;
+package com.oliveryasuna.commons.language;
 
-import com.oliveryasuna.commons.language.exception.UtilityClassException;
+import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
-public final class Arrays {
+/**
+ * Various {@code static} utility methods for operating on booleans.
+ *
+ * @author Oliver Yasuna
+ */
+public final class Booleans {
 
-  public static boolean isEmpty(final Object[] array) {
-    if(array == null) throw new IllegalArgumentException("Argument [array] is null.");
-
-    return (array.length == 0);
+  /**
+   * Gets whether a {@code boolean} is {@code true}.
+   *
+   * @param bool The {@code boolean}.
+   *
+   * @return {@code true}, if the {@code boolean} is {@code true}; otherwise, {@code false}.
+   */
+  public static boolean isTrue(final boolean bool) {
+    return bool;
   }
 
-  public static boolean isNotEmpty(final Object[] array) {
-    return !isEmpty(array);
+  /**
+   * Gets whether a {@code boolean} is {@code false}.
+   *
+   * @param bool The {@code boolean}.
+   *
+   * @return {@code true}, if the {@code boolean} is {@code false}; otherwise, {@code true}.
+   */
+  public static boolean isFalse(final boolean bool) {
+    return !bool;
   }
 
-  private Arrays() {
-    throw new UtilityClassException();
+  /**
+   * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
+   */
+  private Booleans() {
+    super();
+
+    throw new UnsupportedInstantiationException();
   }
 
 }

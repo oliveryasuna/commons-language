@@ -18,9 +18,8 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
+import com.oliveryasuna.commons.language.function.LongConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
-
-import java.util.function.LongConsumer;
 
 public final class LongValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 

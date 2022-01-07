@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,11 +16,29 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern.observer;
+package com.oliveryasuna.commons.language.exception;
 
-@FunctionalInterface
-public interface Observation<SRC extends Observable> {
+/**
+ * Thrown to indicate that a requested clone cannot be completed due to the state of the object.
+ *
+ * @author Oliver Yasuna
+ */
+public class IllegalCloneException extends IllegalStateException {
 
-  SRC getSource();
+  public IllegalCloneException() {
+    super();
+  }
+
+  public IllegalCloneException(final String message) {
+    super(message);
+  }
+
+  public IllegalCloneException(final String message, final Throwable cause) {
+    super(message, cause);
+  }
+
+  public IllegalCloneException(final Throwable cause) {
+    super(cause);
+  }
 
 }

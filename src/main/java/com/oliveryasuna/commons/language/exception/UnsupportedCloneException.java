@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,20 +16,29 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern.builder;
+package com.oliveryasuna.commons.language.exception;
 
 /**
- * Represents a builder.
+ * Thrown to indicate that a requested clone is not supported.
  *
  * @author Oliver Yasuna
  */
-public interface Builder<T> {
+public class UnsupportedCloneException extends UnsupportedOperationException {
 
-  /**
-   * Builds the object.
-   *
-   * @return The object.
-   */
-  T build();
+  public UnsupportedCloneException() {
+    super();
+  }
+
+  public UnsupportedCloneException(final String message) {
+    super(message);
+  }
+
+  public UnsupportedCloneException(final String message, final Throwable cause) {
+    super(message, cause);
+  }
+
+  public UnsupportedCloneException(final Throwable cause) {
+    super(cause);
+  }
 
 }

@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent;
 
-import com.oliveryasuna.commons.language.pattern.misc.CastThis;
+import com.oliveryasuna.commons.language.pattern.CastThis;
 
 import java.util.function.Consumer;
 

@@ -18,14 +18,37 @@
 
 package com.oliveryasuna.commons.language.function;
 
+import com.oliveryasuna.commons.language.Arguments;
+
 /**
- * Represents an invokable function with no parameters and no return value.
+ * Represents an operation that accepts no arguments and returns no result.
  *
  * @author Oliver Yasuna
  */
 @FunctionalInterface
 public interface Action {
 
+  /**
+   * Performs the operation.
+   */
   void perform();
+
+  /**
+   * Creates a composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @param after The operation to perform after this operation.
+   *
+   * @return A composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
+   */
+  default Action andThen(final Action after) {
+    Arguments.requireNonNull(after);
+
+    return (() -> {
+      perform();
+      after.perform();
+    });
+  }
 
 }

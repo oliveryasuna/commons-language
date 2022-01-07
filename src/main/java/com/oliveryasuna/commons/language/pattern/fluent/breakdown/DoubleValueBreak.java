@@ -19,9 +19,8 @@
 package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
 
+import com.oliveryasuna.commons.language.function.DoubleConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
-
-import java.util.function.DoubleConsumer;
 
 public final class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 

@@ -16,26 +16,41 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.util;
+package com.oliveryasuna.commons.language.function;
 
-import com.oliveryasuna.commons.language.exception.UtilityClassException;
+import com.oliveryasuna.commons.language.Arguments;
 
-import java.util.Collection;
+/**
+ * Represents an operation that accepts a single {@code int} argument and returns no result.
+ *
+ * @author Oliver Yasuna
+ */
+@FunctionalInterface
+public interface IntConsumer extends java.util.function.IntConsumer {
 
-public final class Collections {
+  /**
+   * Performs the operation.
+   */
+  @Override
+  void accept(int argument);
 
-  public static boolean isEmpty(final Collection<?> collection) {
-    if(collection == null) throw new IllegalArgumentException("Argument [collection] is null.");
+  /**
+   * Creates a composed {@link IntConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @param after The operation to perform after this operation.
+   *
+   * @return A composed {@link IntConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
+   */
+  @Override
+  default IntConsumer andThen(final java.util.function.IntConsumer after) {
+    Arguments.requireNonNull(after);
 
-    return collection.isEmpty();
-  }
-
-  public static boolean isNotEmpty(final Collection<?> collection) {
-    return !isEmpty(collection);
-  }
-
-  private Collections() {
-    throw new UtilityClassException();
+    return (argument -> {
+      accept(argument);
+      after.accept(argument);
+    });
   }
 
 }

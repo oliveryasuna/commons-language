@@ -18,9 +18,8 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
+import com.oliveryasuna.commons.language.function.IntConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
-
-import java.util.function.IntConsumer;
 
 public final class IntValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 

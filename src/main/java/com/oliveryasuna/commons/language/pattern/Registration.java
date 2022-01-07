@@ -16,13 +16,21 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern.builder;
+package com.oliveryasuna.commons.language.pattern;
 
 /**
- * Base class for builders.
+ * Represents a registration that can be removed.
+ * <p>
+ * Usually for listeners.
  *
  * @author Oliver Yasuna
  */
-public abstract class AbstractBuilder<T> implements Builder<T> {
+@FunctionalInterface
+public interface Registration {
+
+  /**
+   * Unregister whatever is registered.
+   */
+  void remove();
 
 }

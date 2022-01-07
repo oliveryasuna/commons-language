@@ -16,8 +16,41 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern.observer;
+package com.oliveryasuna.commons.language.function;
 
-public interface Observable {
+import com.oliveryasuna.commons.language.Arguments;
+
+/**
+ * Represents an operation that accepts a single {@code double} argument and returns no result.
+ *
+ * @author Oliver Yasuna
+ */
+@FunctionalInterface
+public interface DoubleConsumer extends java.util.function.DoubleConsumer {
+
+  /**
+   * Performs the operation.
+   */
+  @Override
+  void accept(double argument);
+
+  /**
+   * Creates a composed {@link DoubleConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @param after The operation to perform after this operation.
+   *
+   * @return A composed {@link DoubleConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
+   */
+  @Override
+  default DoubleConsumer andThen(final java.util.function.DoubleConsumer after) {
+    Arguments.requireNonNull(after);
+
+    return (argument -> {
+      accept(argument);
+      after.accept(argument);
+    });
+  }
 
 }

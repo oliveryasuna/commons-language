@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -18,16 +18,81 @@
 
 package com.oliveryasuna.commons.language.pattern.registry;
 
+import com.oliveryasuna.commons.language.pattern.Registration;
+
 import java.util.Iterator;
 
-public interface MultiRegistry<T, D> {
+/**
+ * Represents a registry that can store one-or-more values per key.
+ *
+ * @param <K> The type of key.
+ *
+ * @author Oliver Yasuna
+ */
+public interface MultiRegistry<K> {
 
-  Registration register(T type, D data);
+  /**
+   * Registers a new entry.
+   *
+   * @param key   The entry key.
+   * @param value The entry value.
+   *
+   * @return A {@link Registration} object, which a call to {@link Registration#remove()} would unregister the entry.
+   *
+   * @implSpec The {@link Registration} must call {@link #unregister(Object, Object)}.
+   */
+  Registration register(K key, Object value);
 
-  Iterator<D> forType(T type);
+  /**
+   * Unregisters all entries with the specified key.
+   *
+   * @param key The key.
+   *
+   * @return An {@link Iterator} over all values unregistered.
+   */
+  Iterator<Object> unregister(K key);
 
-  int entryCount(T type);
+  /**
+   * Unregisters the entry with the specified key and value.
+   *
+   * @param key The key.
+   */
+  void unregister(K key, Object value);
 
-  boolean contains(final T type);
+  /**
+   * Unregisters all entry with the specified key and value.
+   *
+   * @param key The key.
+   *
+   * @return The number of entries unregistered.
+   */
+  int unregisterAll(K key, Object value);
+
+  /**
+   * Gets an {@link Iterable} over all values associated with entries by their key.
+   *
+   * @param key The key.
+   *
+   * @return The {@link Iterator} over all values associated with entries by their key.
+   */
+  Iterator<Object> forKey(K key);
+
+  /**
+   * Gets whether an entry exists associated with a specified key.
+   *
+   * @param key The key.
+   *
+   * @return {@code true}, if an entry with the argument {@code key} exists; otherwise, {@code false}.
+   */
+  boolean contains(K key);
+
+  /**
+   * Gets the number of values associated with a given key.
+   *
+   * @param key The key.
+   *
+   * @return The number of values associated with the key {@code key}.
+   */
+  int count(K key);
 
 }

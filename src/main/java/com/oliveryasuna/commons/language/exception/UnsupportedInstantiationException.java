@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,23 +16,31 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern.misc;
+package com.oliveryasuna.commons.language.exception;
 
 /**
- * Provides a method that returns {@code this} casted to {@code T}.
+ * Thrown to indicate that a requested instantiation is not supported.
+ * <p>
+ * An example usage is on a utility class's constructor.
  *
- * @param <T> The type of {@code this}.
+ * @author Oliver Yasuna
  */
-public interface CastThis<T extends CastThis<T>> {
+public class UnsupportedInstantiationException extends UnsupportedOperationException {
 
-  /**
-   * Casts {@code this} to {@code T}.
-   *
-   * @return {@code this} casted to {@code T}.
-   */
-  @SuppressWarnings("unchecked")
-  default T uncheckedThis() {
-    return (T)this;
+  public UnsupportedInstantiationException() {
+    super();
+  }
+
+  public UnsupportedInstantiationException(final String message) {
+    super(message);
+  }
+
+  public UnsupportedInstantiationException(final String message, final Throwable cause) {
+    super(message, cause);
+  }
+
+  public UnsupportedInstantiationException(final Throwable cause) {
+    super(cause);
   }
 
 }

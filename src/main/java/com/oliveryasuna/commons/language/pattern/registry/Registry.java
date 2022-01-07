@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -18,12 +18,82 @@
 
 package com.oliveryasuna.commons.language.pattern.registry;
 
-public interface Registry<T, D> {
+import com.oliveryasuna.commons.language.pattern.Registration;
 
-  Registration register(T type, D data);
+import java.util.Optional;
 
-  D forType(T type);
+/**
+ * Represents a registry.
+ *
+ * @param <K> The type of key.
+ *
+ * @author Oliver Yasuna
+ */
+public interface Registry<K> {
 
-  boolean contains(final T type);
+  /**
+   * Registers a new entry.
+   *
+   * @param key   The entry key.
+   * @param value The entry value.
+   *
+   * @return A {@link Registration} object, which a call to {@link Registration#remove()} would unregister the entry.
+   *
+   * @implSpec The {@link Registration} must call {@link #unregister(Object)}.
+   */
+  Registration register(K key, Object value);
+
+  /**
+   * Unregisters an entry.
+   *
+   * @param key The entry key.
+   *
+   * @return The previous value associated with the now unregistered entry.
+   */
+  Object unregister(K key);
+
+  /**
+   * Unregisters an entry.
+   *
+   * @param key  The entry key.
+   * @param type The class type of entry value.
+   * @param <V>  The type of entry value.
+   *
+   * @return The previous value associated with the now unregistered entry.
+   *
+   * @throws ClassCastException If the value cannot be cast to the type specified by argument {@code type}.
+   */
+  <V> V unregister(K key, Class<V> type);
+
+  /**
+   * Gets the value associated with an entry by its key.
+   *
+   * @param key The entry key.
+   *
+   * @return The value associated with the entry retrieved by its key.
+   */
+  Optional<Object> forKey(K key);
+
+  /**
+   * Gets the value associated with an entry by its key.
+   *
+   * @param key  The entry key.
+   * @param type The class type of entry value.
+   * @param <V>  The type of entry value.
+   *
+   * @return The value associated with the entry retrieved by its key.
+   *
+   * @throws ClassCastException If the value cannot be cast to the type specified by argument {@code type}.
+   */
+  <V> Optional<V> forKey(K key, Class<V> type);
+
+  /**
+   * Gets whether an entry exists associated with a specified key.
+   *
+   * @param key The key.
+   *
+   * @return {@code true}, if an entry with the argument {@code key} exists; otherwise, {@code false}.
+   */
+  boolean contains(K key);
 
 }
