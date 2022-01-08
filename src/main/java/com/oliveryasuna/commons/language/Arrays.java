@@ -20,12 +20,119 @@ package com.oliveryasuna.commons.language;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
+import java.util.Comparator;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
 /**
  * Various {@code static} utility methods for operating on arrays.
  *
  * @author Oliver Yasuna
  */
 public final class Arrays {
+
+  public static <T> T[] map(final T[] array, final Function<? super T, ? extends T> mapper) {
+    if(array == null) return null;
+
+    for(int i = 0; i < array.length; i++) {
+      array[i] = mapper.apply(array[i]);
+    }
+
+    return array;
+  }
+
+  @SuppressWarnings("unchecked")
+  public static <T, R> R[] mapTo(final T[] array, final Function<? super T, ? extends R> mapper) {
+    if(array == null) return null;
+
+    final Object[] result = new Object[array.length];
+
+    for(int i = 0; i < array.length; i++) {
+      result[i] = mapper.apply(array[i]);
+    }
+
+    return (R[])result;
+  }
+
+  public static <T> Optional<T> max(final T[] array, final Comparator<? super T> comparator) {
+    if(array == null || array.length == 0) return Optional.empty();
+    if(array.length == 1) return Optional.of(array[0]);
+
+    T max = array[0];
+
+    for(int i = 1; i < array.length; i++) {
+      max = comparator.compare(array[i], max) > 0 ? array[i] : max;
+    }
+
+    return Optional.of(max);
+  }
+
+  public static <T extends Comparable<T>> Optional<T> max(final T[] array) {
+    return max(array, T::compareTo);
+  }
+
+  public static <T> Optional<T> min(final T[] array, final Comparator<? super T> comparator) {
+    if(array == null || array.length == 0) return Optional.empty();
+    if(array.length == 1) return Optional.of(array[0]);
+
+    T min = array[0];
+
+    for(int i = 1; i < array.length; i++) {
+      min = comparator.compare(array[i], min) < 0 ? array[i] : min;
+    }
+
+    return Optional.of(min);
+  }
+
+  public static <T extends Comparable<T>> Optional<T> min(final T[] array) {
+    return min(array, T::compareTo);
+  }
+
+  public static <T> boolean allMatch(final T[] array, final Predicate<? super T> predicate) {
+    if(array == null) return false;
+
+    for(final T element : array) {
+      if(!predicate.test(element)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  public static <T> boolean anyMatch(final T[] array, final Predicate<? super T> predicate) {
+    if(array == null) return false;
+
+    for(final T element : array) {
+      if(predicate.test(element)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public static <T> boolean noneMatch(final T[] array, final Predicate<? super T> predicate) {
+    if(array == null) return false;
+
+    for(final T element : array) {
+      if(predicate.test(element)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  public static <T> void forEach(final T[] array, final Consumer<T> action) {
+    if(array == null) return;
+
+    for(final T element : array) {
+      action.accept(element);
+    }
+  }
 
   /**
    * Gets whether an array is empty.
