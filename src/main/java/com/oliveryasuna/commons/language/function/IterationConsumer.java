@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -20,34 +20,28 @@ package com.oliveryasuna.commons.language.function;
 
 import com.oliveryasuna.commons.language.Arguments;
 
-/**
- * Represents an operation that accepts no arguments and returns no result.
- *
- * @author Oliver Yasuna
- */
+import java.util.function.BiConsumer;
+
 @FunctionalInterface
-public interface Action {
+public interface IterationConsumer<T> {
 
-  /**
-   * Performs the operation.
-   */
-  void perform();
+  void accept(T element, int index);
 
-  /**
-   * Creates a composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
-   *
-   * @param after The operation to perform after this operation.
-   *
-   * @return A composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
-   *
-   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
-   */
-  default Action andThen(final Action after) {
+  default IterationConsumer<T> andThen(final IterationConsumer<? super T> after) {
     Arguments.requireNonNull(after, "after");
 
-    return (() -> {
-      perform();
-      after.perform();
+    return ((element, index) -> {
+      accept(element, index);
+      after.accept(element, index);
+    });
+  }
+
+  default IterationConsumer<T> andThen(final BiConsumer<? super T, Integer> after) {
+    Arguments.requireNonNull(after, "after");
+
+    return ((element, index) -> {
+      accept(element, index);
+      after.accept(element, index);
     });
   }
 

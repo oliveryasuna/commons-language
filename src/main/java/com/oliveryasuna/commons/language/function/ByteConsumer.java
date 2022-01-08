@@ -43,7 +43,7 @@ public interface ByteConsumer {
    * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
    */
   default ByteConsumer andThen(final ByteConsumer after) {
-    Arguments.requireNonNull(after);
+    Arguments.requireNonNull(after, "after");
 
     return (argument -> {
       accept(argument);

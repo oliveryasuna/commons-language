@@ -81,6 +81,129 @@ public final class Arguments {
         : requireNonNull(requireNonNull(defaultArgumentSupplier.get(), "defaultArgumentSupplier"), "defaultArgumentSupplier.get()"));
   }
 
+  public static <T extends Comparable<T>> T requireInRangeInclusive(final T argument, final T minimum, final T maximum, final String message) {
+    Arguments.requireNonNull(argument, "argument");
+    Arguments.requireNonNull(minimum, "minimum");
+    Arguments.requireNonNull(maximum, "maximum");
+
+    if(argument.compareTo(minimum) < 0 || argument.compareTo(maximum) > 0) {
+      throw new IllegalArgumentException(message);
+    }
+
+    return argument;
+  }
+
+  public static <T extends Comparable<T>> T requireInRangeInclusive(final T argument, final T minimum, final T maximum,
+      final Supplier<String> messageSupplier) {
+    Arguments.requireNonNull(argument, "argument");
+    Arguments.requireNonNull(minimum, "minimum");
+    Arguments.requireNonNull(maximum, "maximum");
+
+    if(argument.compareTo(minimum) < 0 || argument.compareTo(maximum) > 0) {
+      if(messageSupplier != null) {
+        throw new IllegalArgumentException(messageSupplier.get());
+      } else {
+        throw new IllegalArgumentException();
+      }
+    }
+
+    return argument;
+  }
+
+  public static <T extends Comparable<T>> T requireInRangeInclusive(final T argument, final T minimum, final T maximum) {
+    Arguments.requireNonNull(argument, "argument");
+    Arguments.requireNonNull(minimum, "minimum");
+    Arguments.requireNonNull(maximum, "maximum");
+
+    if(argument.compareTo(minimum) < 0 || argument.compareTo(maximum) > 0) {
+      throw new IllegalArgumentException();
+    }
+
+    return argument;
+  }
+
+  public static <T extends Comparable<T>> T requireInRangeExclusive(final T argument, final T minimum, final T maximum, final String message) {
+    Arguments.requireNonNull(argument, "argument");
+    Arguments.requireNonNull(minimum, "minimum");
+    Arguments.requireNonNull(maximum, "maximum");
+
+    if(argument.compareTo(minimum) <= 0 || argument.compareTo(maximum) >= 0) {
+      throw new IllegalArgumentException(message);
+    }
+
+    return argument;
+  }
+
+  public static <T extends Comparable<T>> T requireInRangeExclusive(final T argument, final T minimum, final T maximum,
+      final Supplier<String> messageSupplier) {
+    Arguments.requireNonNull(argument, "argument");
+    Arguments.requireNonNull(minimum, "minimum");
+    Arguments.requireNonNull(maximum, "maximum");
+
+    if(argument.compareTo(minimum) <= 0 || argument.compareTo(maximum) >= 0) {
+      if(messageSupplier != null) {
+        throw new IllegalArgumentException(messageSupplier.get());
+      } else {
+        throw new IllegalArgumentException();
+      }
+    }
+
+    return argument;
+  }
+
+  public static <T extends Comparable<T>> T requireInRangeExclusive(final T argument, final T minimum, final T maximum) {
+    Arguments.requireNonNull(argument, "argument");
+    Arguments.requireNonNull(minimum, "minimum");
+    Arguments.requireNonNull(maximum, "maximum");
+
+    if(argument.compareTo(minimum) <= 0 || argument.compareTo(maximum) >= 0) {
+      throw new IllegalArgumentException();
+    }
+
+    return argument;
+  }
+
+  public static <T extends Comparable<T>> T requireInRangeExclusiveMaximum(final T argument, final T minimum, final T maximum, final String message) {
+    Arguments.requireNonNull(argument, "argument");
+    Arguments.requireNonNull(minimum, "minimum");
+    Arguments.requireNonNull(maximum, "maximum");
+
+    if(argument.compareTo(minimum) < 0 || argument.compareTo(maximum) >= 0) {
+      throw new IllegalArgumentException(message);
+    }
+
+    return argument;
+  }
+
+  public static <T extends Comparable<T>> T requireInRangeExclusiveMaximum(final T argument, final T minimum, final T maximum,
+      final Supplier<String> messageSupplier) {
+    Arguments.requireNonNull(argument, "argument");
+    Arguments.requireNonNull(minimum, "minimum");
+    Arguments.requireNonNull(maximum, "maximum");
+
+    if(argument.compareTo(minimum) < 0 || argument.compareTo(maximum) >= 0) {
+      if(messageSupplier != null) {
+        throw new IllegalArgumentException(messageSupplier.get());
+      } else {
+        throw new IllegalArgumentException();
+      }
+    }
+
+    return argument;
+  }
+
+  public static <T extends Comparable<T>> T requireInRangeExclusiveMaximum(final T argument, final T minimum, final T maximum) {
+    Arguments.requireNonNull(argument, "argument");
+    Arguments.requireNonNull(minimum, "minimum");
+    Arguments.requireNonNull(maximum, "maximum");
+
+    if(argument.compareTo(minimum) < 0 || argument.compareTo(maximum) >= 0) {
+      throw new IllegalArgumentException();
+    }
+
+    return argument;
+  }
+
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */

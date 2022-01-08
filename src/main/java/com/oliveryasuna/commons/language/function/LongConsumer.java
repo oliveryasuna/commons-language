@@ -45,7 +45,7 @@ public interface LongConsumer extends java.util.function.LongConsumer {
    */
   @Override
   default LongConsumer andThen(final java.util.function.LongConsumer after) {
-    Arguments.requireNonNull(after);
+    Arguments.requireNonNull(after, "after");
 
     return (argument -> {
       accept(argument);

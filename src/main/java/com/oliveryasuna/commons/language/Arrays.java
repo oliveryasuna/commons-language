@@ -34,7 +34,7 @@ import java.util.function.Predicate;
 public final class Arrays {
 
   public static <T> T[] map(final T[] array, final Function<? super T, ? extends T> mapper) {
-    if(array == null) return null;
+    Arguments.requireNonNull(array, "array");
 
     for(int i = 0; i < array.length; i++) {
       array[i] = mapper.apply(array[i]);
@@ -45,7 +45,8 @@ public final class Arrays {
 
   @SuppressWarnings("unchecked")
   public static <T, R> R[] mapTo(final T[] array, final Function<? super T, ? extends R> mapper) {
-    if(array == null) return null;
+    Arguments.requireNonNull(array, "array");
+    Arguments.requireNonNull(mapper, "mapper");
 
     final Object[] result = new Object[array.length];
 
@@ -57,8 +58,12 @@ public final class Arrays {
   }
 
   public static <T> Optional<T> max(final T[] array, final Comparator<? super T> comparator) {
-    if(array == null || array.length == 0) return Optional.empty();
+    Arguments.requireNonNull(array, "array");
+
+    if(array.length == 0) return Optional.empty();
     if(array.length == 1) return Optional.of(array[0]);
+
+    Arguments.requireNonNull(comparator, "comparator");
 
     T max = array[0];
 
@@ -74,8 +79,12 @@ public final class Arrays {
   }
 
   public static <T> Optional<T> min(final T[] array, final Comparator<? super T> comparator) {
-    if(array == null || array.length == 0) return Optional.empty();
+    Arguments.requireNonNull(array, "array");
+
+    if(array.length == 0) return Optional.empty();
     if(array.length == 1) return Optional.of(array[0]);
+
+    Arguments.requireNonNull(comparator, "comparator");
 
     T min = array[0];
 
@@ -91,7 +100,8 @@ public final class Arrays {
   }
 
   public static <T> boolean allMatch(final T[] array, final Predicate<? super T> predicate) {
-    if(array == null) return false;
+    Arguments.requireNonNull(array, "array");
+    Arguments.requireNonNull(predicate, "predicate");
 
     for(final T element : array) {
       if(!predicate.test(element)) {
@@ -103,7 +113,8 @@ public final class Arrays {
   }
 
   public static <T> boolean anyMatch(final T[] array, final Predicate<? super T> predicate) {
-    if(array == null) return false;
+    Arguments.requireNonNull(array, "array");
+    Arguments.requireNonNull(predicate, "predicate");
 
     for(final T element : array) {
       if(predicate.test(element)) {
@@ -115,7 +126,8 @@ public final class Arrays {
   }
 
   public static <T> boolean noneMatch(final T[] array, final Predicate<? super T> predicate) {
-    if(array == null) return false;
+    Arguments.requireNonNull(array, "array");
+    Arguments.requireNonNull(predicate, "predicate");
 
     for(final T element : array) {
       if(predicate.test(element)) {
@@ -126,11 +138,12 @@ public final class Arrays {
     return true;
   }
 
-  public static <T> void forEach(final T[] array, final Consumer<T> action) {
-    if(array == null) return;
+  public static <T> void forEach(final T[] array, final Consumer<T> consumer) {
+    Arguments.requireNonNull(array, "array");
+    Arguments.requireNonNull(consumer, "consumer");
 
     for(final T element : array) {
-      action.accept(element);
+      consumer.accept(element);
     }
   }
 
@@ -142,7 +155,7 @@ public final class Arrays {
    * @return {@code true}, if the array is empty; otherwise, {@code false}.
    */
   public static boolean isEmpty(final Object[] array) {
-    return (Arguments.requireNonNull(array).length == 0);
+    return (Arguments.requireNonNull(array, "array").length == 0);
   }
 
   /**

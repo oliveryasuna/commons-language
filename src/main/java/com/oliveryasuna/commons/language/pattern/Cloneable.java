@@ -24,11 +24,11 @@ package com.oliveryasuna.commons.language.pattern;
  * @author Oliver Yasuna
  */
 @FunctionalInterface
-public interface Cloneable extends java.lang.Cloneable {
+public interface Cloneable<T> extends java.lang.Cloneable {
 
   /**
    * As specified by {@link Object#clone()}.
    */
-  Cloneable clone() throws CloneNotSupportedException;
+  T clone() throws CloneNotSupportedException;
 
 }

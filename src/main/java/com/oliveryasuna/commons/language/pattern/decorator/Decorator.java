@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,39 +16,17 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language.pattern.decorator;
 
-import com.oliveryasuna.commons.language.Arguments;
+public interface Decorator<T> {
 
-/**
- * Represents an operation that accepts no arguments and returns no result.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface Action {
+  @Override
+  boolean equals(Object other);
 
-  /**
-   * Performs the operation.
-   */
-  void perform();
+  @Override
+  int hashCode();
 
-  /**
-   * Creates a composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
-   *
-   * @param after The operation to perform after this operation.
-   *
-   * @return A composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
-   *
-   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
-   */
-  default Action andThen(final Action after) {
-    Arguments.requireNonNull(after, "after");
-
-    return (() -> {
-      perform();
-      after.perform();
-    });
-  }
+  @Override
+  String toString();
 
 }

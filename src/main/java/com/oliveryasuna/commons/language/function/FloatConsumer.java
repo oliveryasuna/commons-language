@@ -43,7 +43,7 @@ public interface FloatConsumer {
    * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
    */
   default FloatConsumer andThen(final FloatConsumer after) {
-    Arguments.requireNonNull(after);
+    Arguments.requireNonNull(after, "after");
 
     return (argument -> {
       accept(argument);

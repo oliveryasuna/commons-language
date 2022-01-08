@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -20,35 +20,39 @@ package com.oliveryasuna.commons.language.function;
 
 import com.oliveryasuna.commons.language.Arguments;
 
-/**
- * Represents an operation that accepts no arguments and returns no result.
- *
- * @author Oliver Yasuna
- */
+import java.util.function.BiPredicate;
+
 @FunctionalInterface
-public interface Action {
+public interface IterationPredicate<T> {
 
-  /**
-   * Performs the operation.
-   */
-  void perform();
+  boolean test(T element, int index);
 
-  /**
-   * Creates a composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
-   *
-   * @param after The operation to perform after this operation.
-   *
-   * @return A composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
-   *
-   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
-   */
-  default Action andThen(final Action after) {
-    Arguments.requireNonNull(after, "after");
+  default IterationPredicate<T> and(final IterationPredicate<? super T> other) {
+    Arguments.requireNonNull(other, "other");
 
-    return (() -> {
-      perform();
-      after.perform();
-    });
+    return ((element, index) -> test(element, index) && other.test(element, index));
+  }
+
+  default IterationPredicate<T> and(final BiPredicate<? super T, Integer> other) {
+    Arguments.requireNonNull(other, "other");
+
+    return ((element, index) -> test(element, index) && other.test(element, index));
+  }
+
+  default IterationPredicate<T> or(final IterationPredicate<? super T> other) {
+    Arguments.requireNonNull(other, "other");
+
+    return ((element, index) -> test(element, index) || other.test(element, index));
+  }
+
+  default IterationPredicate<T> or(final BiPredicate<? super T, Integer> other) {
+    Arguments.requireNonNull(other, "other");
+
+    return ((element, index) -> test(element, index) || other.test(element, index));
+  }
+
+  default IterationPredicate<T> negate() {
+    return ((element, index) -> !test(element, index));
   }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,39 +16,52 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language;
 
-import com.oliveryasuna.commons.language.Arguments;
+import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
 /**
- * Represents an operation that accepts no arguments and returns no result.
+ * Various {@code static} utility methods for operating on objects.
  *
  * @author Oliver Yasuna
  */
-@FunctionalInterface
-public interface Action {
+public class Objects {
+
+  public static boolean equals(final Object expected, final Object... candidates) {
+    Arguments.requireNonNull(expected, "expected");
+
+    if(candidates == null || candidates.length == 0) return false;
+
+    for(final Object candidate : candidates) {
+      if(expected == candidate) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public static boolean deepEquals(final Object expected, final Object... candidates) {
+    Arguments.requireNonNull(expected, "expected");
+
+    if(candidates == null || candidates.length == 0) return false;
+
+    for(final Object candidate : candidates) {
+      if(expected.equals(candidate)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 
   /**
-   * Performs the operation.
+   * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  void perform();
+  private Objects() {
+    super();
 
-  /**
-   * Creates a composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
-   *
-   * @param after The operation to perform after this operation.
-   *
-   * @return A composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
-   *
-   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
-   */
-  default Action andThen(final Action after) {
-    Arguments.requireNonNull(after, "after");
-
-    return (() -> {
-      perform();
-      after.perform();
-    });
+    throw new UnsupportedInstantiationException();
   }
 
 }

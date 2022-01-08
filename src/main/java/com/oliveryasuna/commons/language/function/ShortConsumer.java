@@ -43,7 +43,7 @@ public interface ShortConsumer {
    * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
    */
   default ShortConsumer andThen(final ShortConsumer after) {
-    Arguments.requireNonNull(after);
+    Arguments.requireNonNull(after, "after");
 
     return (argument -> {
       accept(argument);

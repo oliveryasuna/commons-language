@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,39 +16,66 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language.pattern.decorator;
 
 import com.oliveryasuna.commons.language.Arguments;
+import com.oliveryasuna.commons.language.pattern.Cloneable;
 
 /**
- * Represents an operation that accepts no arguments and returns no result.
+ * Wraps an array.
+ * <p>
+ * Definitely an anti-pattern.
+ *
+ * @param <T> The type of array elements
  *
  * @author Oliver Yasuna
  */
-@FunctionalInterface
-public interface Action {
+public class ArrayDecorator<T> extends ObjectDecorator<T[]> implements Cloneable<T[]>, java.lang.Cloneable {
+
+  // Constructors
+  //--------------------------------------------------
 
   /**
-   * Performs the operation.
+   * Creates an instance.
+   *
+   * @param array The underlying array.
    */
-  void perform();
+  public ArrayDecorator(final T[] array) {
+    super(Arguments.requireNonNull(array), "array)");
+  }
+
+  // Array methods
+  //--------------------------------------------------
+
+  public T[] get() {
+    return getUnderlyingObject();
+  }
+
+  public T get(final int index) {
+    return get()[index];
+  }
+
+  public void set(final int index, final T element) {
+    get()[index] = element;
+  }
+
+  public int length() {
+    return get().length;
+  }
+
+  // Object methods
+  //--------------------------------------------------
 
   /**
-   * Creates a composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
+   * Returns {@link Object#clone()} on the underlying array.
+   * <p>
+   * Breaks the contract of {@link Object#clone()}.
    *
-   * @param after The operation to perform after this operation.
-   *
-   * @return A composed {@link Action} that performs this operation followed by the operation specified by the argument {@code after}.
-   *
-   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
+   * @return The result of {@link Object#clone()} of {@link #underlyingObject}.
    */
-  default Action andThen(final Action after) {
-    Arguments.requireNonNull(after, "after");
-
-    return (() -> {
-      perform();
-      after.perform();
-    });
+  @Override
+  public T[] clone() {
+    return underlyingObject.clone();
   }
 
 }

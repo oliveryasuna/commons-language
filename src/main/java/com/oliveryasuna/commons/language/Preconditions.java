@@ -20,41 +20,71 @@ package com.oliveryasuna.commons.language;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
-import java.util.Collection;
+import java.util.function.Supplier;
 
 /**
- * Various {@code static} utility methods for operating on collections.
+ * Various {@code static} utility methods for dealing with object states.
  *
  * @author Oliver Yasuna
  */
-public final class Collections {
+public final class Preconditions {
 
   /**
-   * Gets whether a collection is empty.
-   *
-   * @param collection The collection.
-   *
-   * @return {@code true}, if the collection is empty; otherwise, {@code false}.
+   * TODO: Documentation.
    */
-  public static boolean isEmpty(final Collection<?> collection) {
-    return Arguments.requireNonNull(collection, "collection").isEmpty();
+  public static <T> T requireNonNull(final T object, final String message) {
+    if(object == null) {
+      throw new IllegalStateException(message);
+    }
+
+    return object;
   }
 
   /**
-   * Gets whether a collection is not empty.
-   *
-   * @param collection The collection.
-   *
-   * @return {@code true}, if the collection is not empty; otherwise, {@code false}.
+   * TODO: Documentation.
    */
-  public static boolean isNotEmpty(final Collection<?> collection) {
-    return !isEmpty(collection);
+  public static <T> T requireNonNull(final T object, final Supplier<String> messageSupplier) {
+    if(object == null) {
+      if(messageSupplier != null) {
+        throw new IllegalStateException(messageSupplier.get());
+      } else {
+        throw new IllegalStateException();
+      }
+    }
+
+    return object;
+  }
+
+  /**
+   * TODO: Documentation.
+   */
+  public static <T> T requireNonNull(final T object) {
+    if(object == null) {
+      throw new IllegalStateException();
+    }
+
+    return object;
+  }
+
+  /**
+   * TODO: Documentation.
+   */
+  public static <T> T requireNonNullElse(final T object, final T defaultValue) {
+    return (object != null ? object : requireNonNull(defaultValue, "defaultValue"));
+  }
+
+  /**
+   * TODO: Documentation.
+   */
+  public static <T> T requireNonNullElse(final T object, final Supplier<? extends T> defaultArgumentSupplier) {
+    return (object != null ? object
+        : requireNonNull(requireNonNull(defaultArgumentSupplier.get(), "defaultArgumentSupplier"), "defaultArgumentSupplier.get()"));
   }
 
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  private Collections() {
+  private Preconditions() {
     super();
 
     throw new UnsupportedInstantiationException();
