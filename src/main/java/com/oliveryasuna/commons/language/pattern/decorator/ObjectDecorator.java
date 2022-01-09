@@ -20,7 +20,7 @@ package com.oliveryasuna.commons.language.pattern.decorator;
 
 import com.oliveryasuna.commons.language.Objects;
 
-public class ObjectDecorator<T> implements Decorator<T> {
+public class ObjectDecorator<T> implements Decorator {
 
   // Constructors
   //--------------------------------------------------

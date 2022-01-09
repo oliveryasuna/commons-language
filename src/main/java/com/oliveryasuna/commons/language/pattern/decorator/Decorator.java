@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.decorator;
 
-public interface Decorator<T> {
+public interface Decorator {
 
   @Override
   boolean equals(Object other);
