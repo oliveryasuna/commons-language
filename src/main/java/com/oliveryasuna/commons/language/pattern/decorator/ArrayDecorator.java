@@ -30,7 +30,7 @@ import com.oliveryasuna.commons.language.pattern.Cloneable;
  *
  * @author Oliver Yasuna
  */
-public class ArrayDecorator<T> extends ObjectDecorator<T[]> implements Cloneable<T[]>, java.lang.Cloneable {
+public class ArrayDecorator<T> extends ObjectDecorator<T[]> implements Cloneable<T[]> {
 
   // Constructors
   //--------------------------------------------------
@@ -41,7 +41,7 @@ public class ArrayDecorator<T> extends ObjectDecorator<T[]> implements Cloneable
    * @param array The underlying array.
    */
   public ArrayDecorator(final T[] array) {
-    super(Arguments.requireNonNull(array), "array)");
+    super(Arguments.requireNonNull(array, "array"));
   }
 
   // Array methods
