@@ -30,16 +30,55 @@ import java.util.function.Predicate;
  */
 public final class Predicates {
 
+  public static <T> Predicate<T> and(final Predicate<T> predicate, final Predicate<? super T>... others) {
+    Arguments.requireNonNull(predicate, "predicate");
+    Arguments.requireNonNullElements(others, "others");
+
+    if(others == null) return predicate;
+
+    return (t -> {
+      if(!predicate.test(t)) return false;
+
+      for(final Predicate<? super T> other : others) {
+        if(!other.test(t)) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }
+
+  public static <T> Predicate<T> or(final Predicate<T> predicate, final Predicate<? super T>... others) {
+    Arguments.requireNonNull(predicate, "predicate");
+    Arguments.requireNonNullElements(others, "others");
+
+    if(others == null) return predicate;
+
+    return (t -> {
+      if(predicate.test(t)) return true;
+
+      for(final Predicate<? super T> other : others) {
+        if(other.test(t)) {
+          return true;
+        }
+      }
+
+      return false;
+    });
+  }
+
   public static <T, U> BiPredicate<T, U> and(final BiPredicate<T, U> biPredicate, final BiPredicate<? super T, ? super U>... others) {
     Arguments.requireNonNull(biPredicate, "biPredicate");
+    Arguments.requireNonNullElements(others, "others");
 
     if(others == null) return biPredicate;
 
     return ((t, u) -> {
       if(!biPredicate.test(t, u)) return false;
 
-      for(int i = 0; i < others.length; i++) {
-        if(!Arguments.requireNonNull(others[i], "others[" + i + "]").test(t, u)) {
+      for(final BiPredicate<? super T, ? super U> other : others) {
+        if(!other.test(t, u)) {
           return false;
         }
       }
@@ -50,6 +89,7 @@ public final class Predicates {
 
   public static <T, U> BiPredicate<T, U> andT(final BiPredicate<T, U> biPredicate, final Predicate<? super T>... predicates) {
     Arguments.requireNonNull(biPredicate, "biPredicate");
+    Arguments.requireNonNullElements(predicates, "predicates");
 
     if(predicates == null) return biPredicate;
 
@@ -57,7 +97,7 @@ public final class Predicates {
       if(!biPredicate.test(t, u)) return false;
 
       for(int i = 0; i < predicates.length; i++) {
-        if(!Arguments.requireNonNull(predicates[i], "predicates[" + i + "]").test(t)) {
+        if(!predicates[i].test(t)) {
           return false;
         }
       }
@@ -68,6 +108,7 @@ public final class Predicates {
 
   public static <T, U> BiPredicate<T, U> andU(final BiPredicate<T, U> biPredicate, final Predicate<? super U>... predicates) {
     Arguments.requireNonNull(biPredicate, "biPredicate");
+    Arguments.requireNonNullElements(predicates, "predicates");
 
     if(predicates == null) return biPredicate;
 
@@ -75,7 +116,7 @@ public final class Predicates {
       if(!biPredicate.test(t, u)) return false;
 
       for(int i = 0; i < predicates.length; i++) {
-        if(!Arguments.requireNonNull(predicates[i], "predicates[" + i + "]").test(u)) {
+        if(!predicates[i].test(u)) {
           return false;
         }
       }
@@ -86,6 +127,7 @@ public final class Predicates {
 
   public static <T, U> BiPredicate<T, U> or(final BiPredicate<T, U> biPredicate, final BiPredicate<? super T, ? super U>... others) {
     Arguments.requireNonNull(biPredicate, "biPredicate");
+    Arguments.requireNonNullElements(others, "others");
 
     if(others == null) return biPredicate;
 
@@ -93,7 +135,7 @@ public final class Predicates {
       if(biPredicate.test(t, u)) return true;
 
       for(int i = 0; i < others.length; i++) {
-        if(Arguments.requireNonNull(others[i], "others[" + i + "]").test(t, u)) {
+        if(others[i].test(t, u)) {
           return true;
         }
       }
@@ -103,7 +145,8 @@ public final class Predicates {
   }
 
   public static <T, U> BiPredicate<T, U> orT(final BiPredicate<T, U> biPredicate, final Predicate<? super T>... predicates) {
-    Arguments.requireNonNull(biPredicate, "biPredicate")
+    Arguments.requireNonNull(biPredicate, "biPredicate");
+    Arguments.requireNonNullElements(predicates, "predicates");
 
     if(predicates == null) return biPredicate;
 
@@ -111,7 +154,7 @@ public final class Predicates {
       if(biPredicate.test(t, u)) return true;
 
       for(int i = 0; i < predicates.length; i++) {
-        if(Arguments.requireNonNull(predicates[i], "predicates[" + i + "]").test(t)) {
+        if(predicates[i].test(t)) {
           return true;
         }
       }
@@ -122,6 +165,7 @@ public final class Predicates {
 
   public static <T, U> BiPredicate<T, U> orU(final BiPredicate<T, U> biPredicate, final Predicate<? super U>... predicates) {
     Arguments.requireNonNull(biPredicate, "biPredicate");
+    Arguments.requireNonNullElements(predicates, "predicates");
 
     if(predicates == null) return biPredicate;
 
@@ -129,7 +173,7 @@ public final class Predicates {
       if(biPredicate.test(t, u)) return true;
 
       for(int i = 0; i < predicates.length; i++) {
-        if(Arguments.requireNonNull(predicates[i], "predicates[" + i + "]").test(u)) {
+        if(predicates[i].test(u)) {
           return true;
         }
       }

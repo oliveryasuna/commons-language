@@ -20,6 +20,7 @@ package com.oliveryasuna.commons.language;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
+import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
 /**
@@ -199,6 +200,30 @@ public final class Arguments {
 
     if(argument.compareTo(minimum) < 0 || argument.compareTo(maximum) >= 0) {
       throw new IllegalArgumentException();
+    }
+
+    return argument;
+  }
+
+  public static <T> T[] requireNonNullElements(final T[] argument, final IntFunction<String> messageSupplier) {
+    if(argument == null) return null;
+
+    Arguments.requireNonNull(messageSupplier, "messageSupplier");
+
+    for(int i = 0; i < argument.length; i++) {
+      Arguments.requireNonNull(argument[i], messageSupplier.apply(i));
+    }
+
+    return argument;
+  }
+
+  public static <T> T[] requireNonNullElements(final T[] argument, final String argumentName) {
+    if(argument == null) return null;
+
+    Arguments.requireNonNull(argumentName, "argumentName");
+
+    for(int i = 0; i < argument.length; i++) {
+      Arguments.requireNonNull(argument[i], argumentName + "[" + i + "]");
     }
 
     return argument;
