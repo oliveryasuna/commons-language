@@ -19,7 +19,6 @@
 package com.oliveryasuna.commons.language.pattern.registry;
 
 import com.oliveryasuna.commons.language.pattern.Registration;
-import org.apache.commons.collections4.iterators.UnmodifiableIterator;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -123,7 +122,7 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
    */
   @Override
   public Iterator<Object> forKey(final K key) {
-    return UnmodifiableIterator.unmodifiableIterator(registrations.getOrDefault(key, valuesSupplier.get()).iterator());
+    return registrations.getOrDefault(key, valuesSupplier.get()).iterator();
   }
 
   /**
