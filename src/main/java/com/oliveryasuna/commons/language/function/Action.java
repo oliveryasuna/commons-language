@@ -43,7 +43,7 @@ public interface Action {
    * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
    */
   default Action andThen(final Action after) {
-    Arguments.requireNonNull(after, "after");
+    Arguments.requireNotNull(after, "after");
 
     return (() -> {
       perform();

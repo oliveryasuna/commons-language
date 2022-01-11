@@ -18,6 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.registry;
 
+import com.oliveryasuna.commons.language.Arguments;
 import com.oliveryasuna.commons.language.pattern.Registration;
 
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class MapRegistry<K> implements Registry<K> {
   public MapRegistry(final Supplier<? extends Map<K, Object>> mapSupplier) {
     super();
 
-    this.registrations = mapSupplier.get();
+    this.registrations = Arguments.requireNotNull(Arguments.requireNotNull(mapSupplier, "mapSupplier").get(), "mapSupplier.get()");
   }
 
   /**

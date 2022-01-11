@@ -28,7 +28,7 @@ public interface IterationConsumer<T> {
   void accept(T element, int index);
 
   default IterationConsumer<T> andThen(final IterationConsumer<? super T> after) {
-    Arguments.requireNonNull(after, "after");
+    Arguments.requireNotNull(after, "after");
 
     return ((element, index) -> {
       accept(element, index);
@@ -37,7 +37,7 @@ public interface IterationConsumer<T> {
   }
 
   default IterationConsumer<T> andThen(final BiConsumer<? super T, Integer> after) {
-    Arguments.requireNonNull(after, "after");
+    Arguments.requireNotNull(after, "after");
 
     return ((element, index) -> {
       accept(element, index);

@@ -28,25 +28,25 @@ public interface IterationPredicate<T> {
   boolean test(T element, int index);
 
   default IterationPredicate<T> and(final IterationPredicate<? super T> other) {
-    Arguments.requireNonNull(other, "other");
+    Arguments.requireNotNull(other, "other");
 
     return ((element, index) -> test(element, index) && other.test(element, index));
   }
 
   default IterationPredicate<T> and(final BiPredicate<? super T, Integer> other) {
-    Arguments.requireNonNull(other, "other");
+    Arguments.requireNotNull(other, "other");
 
     return ((element, index) -> test(element, index) && other.test(element, index));
   }
 
   default IterationPredicate<T> or(final IterationPredicate<? super T> other) {
-    Arguments.requireNonNull(other, "other");
+    Arguments.requireNotNull(other, "other");
 
     return ((element, index) -> test(element, index) || other.test(element, index));
   }
 
   default IterationPredicate<T> or(final BiPredicate<? super T, Integer> other) {
-    Arguments.requireNonNull(other, "other");
+    Arguments.requireNotNull(other, "other");
 
     return ((element, index) -> test(element, index) || other.test(element, index));
   }

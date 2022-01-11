@@ -18,6 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.registry;
 
+import com.oliveryasuna.commons.language.Arguments;
 import com.oliveryasuna.commons.language.pattern.Registration;
 
 import java.util.Collection;
@@ -42,9 +43,9 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
   public MapMultiRegistry(final Supplier<? extends Map<K, V>> mapSupplier, final Supplier<V> valuesSupplier) {
     super();
 
-    this.registrations = mapSupplier.get();
+    this.registrations = Arguments.requireNotNull(Arguments.requireNotNull(mapSupplier, "mapSupplier").get(), "mapSupplier.get()");
 
-    this.valuesSupplier = valuesSupplier;
+    this.valuesSupplier = Arguments.requireNotNull(valuesSupplier, "valuesSupplier");
   }
 
   /**

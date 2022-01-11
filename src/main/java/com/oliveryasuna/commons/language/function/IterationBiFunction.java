@@ -16,48 +16,27 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language;
+package com.oliveryasuna.commons.language.function;
 
-import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
+import com.oliveryasuna.commons.language.Arguments;
 
-import java.util.Collection;
+import java.util.function.BiFunction;
 
-/**
- * Various {@code static} utility methods for operating on collections.
- *
- * @author Oliver Yasuna
- */
-public final class Collections {
+@FunctionalInterface
+public interface IterationBiFunction<T, R> {
 
-  /**
-   * Gets whether a collection is empty.
-   *
-   * @param collection The collection.
-   *
-   * @return {@code true}, if the collection is empty; otherwise, {@code false}.
-   */
-  public static boolean isEmpty(final Collection<?> collection) {
-    return Arguments.requireNotNull(collection, "collection").isEmpty();
+  R apply(T element, int index);
+
+  default <U> IterationBiFunction<T, U> andThen(final IterationBiFunction<? super R, ? extends U> after) {
+    Arguments.requireNotNull(after, "after");
+
+    return ((element, index) -> after.apply(apply(element, index), index));
   }
 
-  /**
-   * Gets whether a collection is not empty.
-   *
-   * @param collection The collection.
-   *
-   * @return {@code true}, if the collection is not empty; otherwise, {@code false}.
-   */
-  public static boolean isNotEmpty(final Collection<?> collection) {
-    return !isEmpty(collection);
-  }
+  default <U> IterationBiFunction<T, U> andThen(final BiFunction<? super R, Integer, ? extends U> after) {
+    Arguments.requireNotNull(after, "after");
 
-  /**
-   * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
-   */
-  private Collections() {
-    super();
-
-    throw new UnsupportedInstantiationException();
+    return ((element, index) -> after.apply(apply(element, index), index));
   }
 
 }

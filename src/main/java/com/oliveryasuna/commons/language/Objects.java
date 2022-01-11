@@ -28,7 +28,7 @@ import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationExcep
 public class Objects {
 
   public static boolean equals(final Object expected, final Object... candidates) {
-    Arguments.requireNonNull(expected, "expected");
+    Arguments.requireNotNull(expected, "expected");
 
     if(candidates == null || candidates.length == 0) return false;
 
@@ -42,7 +42,7 @@ public class Objects {
   }
 
   public static boolean deepEquals(final Object expected, final Object... candidates) {
-    Arguments.requireNonNull(expected, "expected");
+    Arguments.requireNotNull(expected, "expected");
 
     if(candidates == null || candidates.length == 0) return false;
 

@@ -26,8 +26,8 @@ import java.util.function.Consumer;
 public final class Consumers {
 
   public static <T> Consumer<T> andThen(final Consumer<T> consumer, final Consumer<T>... others) {
-    Arguments.requireNonNull(consumer, "consumer");
-    Arguments.requireNonNullElements(others, "others");
+    Arguments.requireNotNull(consumer, "consumer");
+    Arguments.requireArrayNotContainsSame(others, null, index -> "others[" + index + "]");
 
     if(others == null) return consumer;
 
@@ -39,8 +39,8 @@ public final class Consumers {
   }
 
   public static <T, U> BiConsumer<T, U> andThen(final BiConsumer<T, U> biConsumer, final BiConsumer<? super T, ? super U>... others) {
-    Arguments.requireNonNull(biConsumer, "biConsumer");
-    Arguments.requireNonNullElements(others, "others");
+    Arguments.requireNotNull(biConsumer, "biConsumer");
+    Arguments.requireArrayNotContainsSame(others, null, index -> "others[" + index + "]");
 
     if(others == null) return biConsumer;
 
@@ -52,8 +52,8 @@ public final class Consumers {
   }
 
   public static <T, U> BiConsumer<T, U> andThenT(final BiConsumer<T, U> biConsumer, final Consumer<? super T>... consumers) {
-    Arguments.requireNonNull(biConsumer, "biConsumer");
-    Arguments.requireNonNullElements(consumers, "consumers");
+    Arguments.requireNotNull(biConsumer, "biConsumer");
+    Arguments.requireArrayNotContainsSame(consumers, null, index -> "consumers[" + index + "]");
 
     if(consumers == null) return biConsumer;
 
@@ -66,8 +66,8 @@ public final class Consumers {
 
 
   public static <T, U> BiConsumer<T, U> andThenU(final BiConsumer<T, U> biConsumer, final Consumer<? super U>... consumers) {
-    Arguments.requireNonNull(biConsumer, "biConsumer");
-    Arguments.requireNonNullElements(consumers, "consumers");
+    Arguments.requireNotNull(biConsumer, "biConsumer");
+    Arguments.requireArrayNotContainsSame(consumers, null, index -> "consumers[" + index + "]");
 
     if(consumers == null) return biConsumer;
 

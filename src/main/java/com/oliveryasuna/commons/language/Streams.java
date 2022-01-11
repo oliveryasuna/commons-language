@@ -34,9 +34,6 @@ import java.util.stream.Stream;
  */
 public final class Streams {
 
-  /**
-   * TODO: Documentation.
-   */
   public static <T> Stream<T> reverse(final Stream<T> stream) {
     final Deque<T> stack = new LinkedList<>();
 

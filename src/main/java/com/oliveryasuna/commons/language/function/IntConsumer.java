@@ -45,7 +45,7 @@ public interface IntConsumer extends java.util.function.IntConsumer {
    */
   @Override
   default IntConsumer andThen(final java.util.function.IntConsumer after) {
-    Arguments.requireNonNull(after, "after");
+    Arguments.requireNotNull(after, "after");
 
     return (argument -> {
       accept(argument);

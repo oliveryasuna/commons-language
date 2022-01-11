@@ -43,7 +43,7 @@ public interface BooleanConsumer {
    * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
    */
   default BooleanConsumer andThen(final BooleanConsumer after) {
-    Arguments.requireNonNull(after, "after");
+    Arguments.requireNotNull(after, "after");
 
     return (argument -> {
       accept(argument);

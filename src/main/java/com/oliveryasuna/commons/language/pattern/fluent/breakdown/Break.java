@@ -18,16 +18,15 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
+import com.oliveryasuna.commons.language.Arguments;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
-
-import java.util.Objects;
 
 public abstract class Break<T, F extends IFluentFactory<T, F>> {
 
   private final F factory;
 
   protected Break(final F factory) {
-    this.factory = Objects.requireNonNull(factory);
+    this.factory = Arguments.requireNotNull(factory);
   }
 
   public final F back() {

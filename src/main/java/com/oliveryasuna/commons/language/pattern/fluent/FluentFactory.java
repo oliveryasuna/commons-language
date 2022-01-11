@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent;
 
-import java.util.Objects;
+import com.oliveryasuna.commons.language.Arguments;
 
 public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentFactory<T, F> {
 
@@ -30,7 +30,9 @@ public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements
    * @param object The object.
    */
   protected FluentFactory(final T object) {
-    this.object = Objects.requireNonNull(object);
+    super();
+
+    this.object = Arguments.requireNotNull(object);
   }
 
   @Override

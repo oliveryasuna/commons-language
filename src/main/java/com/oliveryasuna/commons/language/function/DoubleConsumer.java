@@ -45,7 +45,7 @@ public interface DoubleConsumer extends java.util.function.DoubleConsumer {
    */
   @Override
   default DoubleConsumer andThen(final java.util.function.DoubleConsumer after) {
-    Arguments.requireNonNull(after, "after");
+    Arguments.requireNotNull(after, "after");
 
     return (argument -> {
       accept(argument);

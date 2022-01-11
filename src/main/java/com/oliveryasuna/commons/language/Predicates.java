@@ -31,8 +31,8 @@ import java.util.function.Predicate;
 public final class Predicates {
 
   public static <T> Predicate<T> and(final Predicate<T> predicate, final Predicate<? super T>... others) {
-    Arguments.requireNonNull(predicate, "predicate");
-    Arguments.requireNonNullElements(others, "others");
+    Arguments.requireNotNull(predicate, "predicate");
+    Arguments.requireArrayNotContainsSame(others, null, index -> "others[" + index + "]");
 
     if(others == null) return predicate;
 
@@ -50,8 +50,8 @@ public final class Predicates {
   }
 
   public static <T> Predicate<T> or(final Predicate<T> predicate, final Predicate<? super T>... others) {
-    Arguments.requireNonNull(predicate, "predicate");
-    Arguments.requireNonNullElements(others, "others");
+    Arguments.requireNotNull(predicate, "predicate");
+    Arguments.requireArrayNotContainsSame(others, null, index -> "others[" + index + "]");
 
     if(others == null) return predicate;
 
@@ -69,8 +69,8 @@ public final class Predicates {
   }
 
   public static <T, U> BiPredicate<T, U> and(final BiPredicate<T, U> biPredicate, final BiPredicate<? super T, ? super U>... others) {
-    Arguments.requireNonNull(biPredicate, "biPredicate");
-    Arguments.requireNonNullElements(others, "others");
+    Arguments.requireNotNull(biPredicate, "biPredicate");
+    Arguments.requireArrayNotContainsSame(others, null, index -> "others[" + index + "]");
 
     if(others == null) return biPredicate;
 
@@ -88,8 +88,8 @@ public final class Predicates {
   }
 
   public static <T, U> BiPredicate<T, U> andT(final BiPredicate<T, U> biPredicate, final Predicate<? super T>... predicates) {
-    Arguments.requireNonNull(biPredicate, "biPredicate");
-    Arguments.requireNonNullElements(predicates, "predicates");
+    Arguments.requireNotNull(biPredicate, "biPredicate");
+    Arguments.requireArrayNotContainsSame(predicates, null, index -> "predicates[" + index + "]");
 
     if(predicates == null) return biPredicate;
 
@@ -107,8 +107,8 @@ public final class Predicates {
   }
 
   public static <T, U> BiPredicate<T, U> andU(final BiPredicate<T, U> biPredicate, final Predicate<? super U>... predicates) {
-    Arguments.requireNonNull(biPredicate, "biPredicate");
-    Arguments.requireNonNullElements(predicates, "predicates");
+    Arguments.requireNotNull(biPredicate, "biPredicate");
+    Arguments.requireArrayNotContainsSame(predicates, null, index -> "predicates[" + index + "]");
 
     if(predicates == null) return biPredicate;
 
@@ -126,8 +126,8 @@ public final class Predicates {
   }
 
   public static <T, U> BiPredicate<T, U> or(final BiPredicate<T, U> biPredicate, final BiPredicate<? super T, ? super U>... others) {
-    Arguments.requireNonNull(biPredicate, "biPredicate");
-    Arguments.requireNonNullElements(others, "others");
+    Arguments.requireNotNull(biPredicate, "biPredicate");
+    Arguments.requireArrayNotContainsSame(others, null, index -> "others[" + index + "]");
 
     if(others == null) return biPredicate;
 
@@ -145,8 +145,8 @@ public final class Predicates {
   }
 
   public static <T, U> BiPredicate<T, U> orT(final BiPredicate<T, U> biPredicate, final Predicate<? super T>... predicates) {
-    Arguments.requireNonNull(biPredicate, "biPredicate");
-    Arguments.requireNonNullElements(predicates, "predicates");
+    Arguments.requireNotNull(biPredicate, "biPredicate");
+    Arguments.requireArrayNotContainsSame(predicates, null, index -> "predicates[" + index + "]");
 
     if(predicates == null) return biPredicate;
 
@@ -164,8 +164,8 @@ public final class Predicates {
   }
 
   public static <T, U> BiPredicate<T, U> orU(final BiPredicate<T, U> biPredicate, final Predicate<? super U>... predicates) {
-    Arguments.requireNonNull(biPredicate, "biPredicate");
-    Arguments.requireNonNullElements(predicates, "predicates");
+    Arguments.requireNotNull(biPredicate, "biPredicate");
+    Arguments.requireArrayNotContainsSame(predicates, null, index -> "predicates[" + index + "]");
 
     if(predicates == null) return biPredicate;
 
