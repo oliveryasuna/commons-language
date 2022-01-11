@@ -39,8 +39,22 @@ public final class Arguments {
   // TODO: requireAll
   //--------------------------------------------------
 
-  // TODO: requireArrayContainsEquals
+  // requireArrayContainsEquals
   //--------------------------------------------------
+
+  // Generic
+
+  public static <T> T[] requireArrayContainsEquals(final T[] array, final Object search, final IntFunction<String> messageSupplier) {
+    return Conditions.requireArrayContainsEquals(array, search, messageSupplier, EXCEPTION_SUPPLIER);
+  }
+
+  public static <T> T[] requireArrayContainsEquals(final T[] array, final Object search, final String message) {
+    return Conditions.requireArrayContainsEquals(array, search, message, EXCEPTION_SUPPLIER);
+  }
+
+  public static <T> T[] requireArrayContainsEquals(final T[] array, final Object search) {
+    return Conditions.requireArrayContainsEquals(array, search, EXCEPTION_SUPPLIER);
+  }
 
   // TODO: requireArrayContainsSame
   //--------------------------------------------------
@@ -174,7 +188,7 @@ public final class Arguments {
 
   // Generic
 
-  public static <T> T[] requireArrayNotContainsSame(final T[] argument, final T search, final IntFunction<String> messageSupplier) {
+  public static <T> T[] requireArrayNotContainsSame(final T[] argument, final Object search, final IntFunction<String> messageSupplier) {
     return Conditions.requireArrayNotContainsSame(argument, search, messageSupplier, EXCEPTION_SUPPLIER);
   }
 

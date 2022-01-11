@@ -20,6 +20,7 @@ package com.oliveryasuna.commons.language;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
@@ -36,11 +37,270 @@ public final class Conditions {
   // TODO: requireAll
   //--------------------------------------------------
 
-  // TODO: requireArrayContainsEquals
+  // requireArrayContainsEquals
   //--------------------------------------------------
 
-  // TODO: requireArrayContainsSame
+  // Generic
+
+  public static <T> T[] requireArrayContainsEquals(final T[] array, final Object search, final IntFunction<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(int i = 0; i < array.length; i++) {
+      if(Objects.equals(array[i], search)) {
+        final int index = i;
+
+        throwWithMessageSupplier(() -> messageSupplier.apply(index), exceptionSupplier);
+      }
+    }
+
+    return array;
+  }
+
+  public static <T> T[] requireArrayContainsEquals(final T[] array, final Object search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsEquals(array, search, ignored -> message, exceptionSupplier);
+  }
+
+  public static <T> T[] requireArrayContainsEquals(final T[] array, final Object search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsEquals(array, search, (String)null, exceptionSupplier);
+  }
+
+  // requireArrayContainsSame
   //--------------------------------------------------
+
+  // boolean
+
+  public static boolean[] requireArrayContainsSame(final boolean[] array, final boolean search, final Supplier<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(final boolean element : array) {
+      if(element == search) {
+        return array;
+      }
+    }
+
+    throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    // Unreachable.
+    return null;
+  }
+
+  public static boolean[] requireArrayContainsSame(final boolean[] array, final boolean search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, () -> message, exceptionSupplier);
+  }
+
+  public static boolean[] requireArrayContainsSame(final boolean[] array, final boolean search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, (String)null, exceptionSupplier);
+  }
+
+  // byte
+
+  public static byte[] requireArrayContainsSame(final byte[] array, final byte search, final Supplier<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(final byte element : array) {
+      if(element == search) {
+        return array;
+      }
+    }
+
+    throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    // Unreachable.
+    return null;
+  }
+
+  public static byte[] requireArrayContainsSame(final byte[] array, final byte search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, () -> message, exceptionSupplier);
+  }
+
+  public static byte[] requireArrayContainsSame(final byte[] array, final byte search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, (String)null, exceptionSupplier);
+  }
+
+  // char
+
+  public static char[] requireArrayContainsSame(final char[] array, final char search, final Supplier<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(final char element : array) {
+      if(element == search) {
+        return array;
+      }
+    }
+
+    throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    // Unreachable.
+    return null;
+  }
+
+  public static char[] requireArrayContainsSame(final char[] array, final char search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, () -> message, exceptionSupplier);
+  }
+
+  public static char[] requireArrayContainsSame(final char[] array, final char search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, (String)null, exceptionSupplier);
+  }
+
+  // short
+
+  public static short[] requireArrayContainsSame(final short[] array, final short search, final Supplier<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(final short element : array) {
+      if(element == search) {
+        return array;
+      }
+    }
+
+    throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    // Unreachable.
+    return null;
+  }
+
+  public static short[] requireArrayContainsSame(final short[] array, final short search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, () -> message, exceptionSupplier);
+  }
+
+  public static short[] requireArrayContainsSame(final short[] array, final short search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, (String)null, exceptionSupplier);
+  }
+
+  // int
+
+  public static int[] requireArrayContainsSame(final int[] array, final int search, final Supplier<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(final int element : array) {
+      if(element == search) {
+        return array;
+      }
+    }
+
+    throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    // Unreachable.
+    return null;
+  }
+
+  public static int[] requireArrayContainsSame(final int[] array, final int search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, () -> message, exceptionSupplier);
+  }
+
+  public static int[] requireArrayContainsSame(final int[] array, final int search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, (String)null, exceptionSupplier);
+  }
+
+  // long
+
+  public static long[] requireArrayContainsSame(final long[] array, final long search, final Supplier<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(final long element : array) {
+      if(element == search) {
+        return array;
+      }
+    }
+
+    throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    // Unreachable.
+    return null;
+  }
+
+  public static long[] requireArrayContainsSame(final long[] array, final long search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, () -> message, exceptionSupplier);
+  }
+
+  public static long[] requireArrayContainsSame(final long[] array, final long search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, (String)null, exceptionSupplier);
+  }
+
+  // float
+
+  public static float[] requireArrayContainsSame(final float[] array, final float search, final Supplier<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(final float element : array) {
+      if(element == search) {
+        return array;
+      }
+    }
+
+    throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    // Unreachable.
+    return null;
+  }
+
+  public static float[] requireArrayContainsSame(final float[] array, final float search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, () -> message, exceptionSupplier);
+  }
+
+  public static float[] requireArrayContainsSame(final float[] array, final float search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, (String)null, exceptionSupplier);
+  }
+
+  // double
+
+  public static double[] requireArrayContainsSame(final double[] array, final double search, final Supplier<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(final double element : array) {
+      if(element == search) {
+        return array;
+      }
+    }
+
+    throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    // Unreachable.
+    return null;
+  }
+
+  public static double[] requireArrayContainsSame(final double[] array, final double search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, () -> message, exceptionSupplier);
+  }
+
+  public static double[] requireArrayContainsSame(final double[] array, final double search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, (String)null, exceptionSupplier);
+  }
+
+  // Generic
+
+  public static <T> T[] requireArrayContainsSame(final T[] array, final Object search, final Supplier<String> messageSupplier,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    for(final Object element : array) {
+      if(element == search) {
+        return array;
+      }
+    }
+
+    throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    // Unreachable.
+    return null;
+  }
+
+  public static <T> T[] requireArrayContainsSame(final T[] array, final Object search, final String message,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, () -> message, exceptionSupplier);
+  }
+
+  public static <T> T[] requireArrayContainsSame(final T[] array, final Object search,
+      final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArrayContainsSame(array, search, (String)null, exceptionSupplier);
+  }
 
   // TODO: requireArrayEquals
   //--------------------------------------------------
@@ -485,7 +745,7 @@ public final class Conditions {
 
   // Generic
 
-  public static <T> T[] requireArrayNotContainsSame(final T[] array, final T search, final IntFunction<String> messageSupplier,
+  public static <T> T[] requireArrayNotContainsSame(final T[] array, final Object search, final IntFunction<String> messageSupplier,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
     for(int i = 0; i < array.length; i++) {
       if(array[i] == search) {
