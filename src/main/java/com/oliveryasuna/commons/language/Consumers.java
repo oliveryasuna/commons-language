@@ -27,7 +27,7 @@ public final class Consumers {
 
   public static <T> Consumer<T> andThen(final Consumer<T> consumer, final Consumer<T>... others) {
     Arguments.requireNotNull(consumer, "consumer");
-    Arguments.requireArrayNotContainsSame(others, null, index -> "others[" + index + "]");
+    Arguments.requireNotContainsSame(others, null, "others");
 
     if(others == null) return consumer;
 
@@ -40,7 +40,7 @@ public final class Consumers {
 
   public static <T, U> BiConsumer<T, U> andThen(final BiConsumer<T, U> biConsumer, final BiConsumer<? super T, ? super U>... others) {
     Arguments.requireNotNull(biConsumer, "biConsumer");
-    Arguments.requireArrayNotContainsSame(others, null, index -> "others[" + index + "]");
+    Arguments.requireNotContainsSame(others, null, "others");
 
     if(others == null) return biConsumer;
 
@@ -53,7 +53,7 @@ public final class Consumers {
 
   public static <T, U> BiConsumer<T, U> andThenT(final BiConsumer<T, U> biConsumer, final Consumer<? super T>... consumers) {
     Arguments.requireNotNull(biConsumer, "biConsumer");
-    Arguments.requireArrayNotContainsSame(consumers, null, index -> "consumers[" + index + "]");
+    Arguments.requireNotContainsSame(consumers, null, "consumers");
 
     if(consumers == null) return biConsumer;
 
@@ -67,7 +67,7 @@ public final class Consumers {
 
   public static <T, U> BiConsumer<T, U> andThenU(final BiConsumer<T, U> biConsumer, final Consumer<? super U>... consumers) {
     Arguments.requireNotNull(biConsumer, "biConsumer");
-    Arguments.requireArrayNotContainsSame(consumers, null, index -> "consumers[" + index + "]");
+    Arguments.requireNotContainsSame(consumers, null, "consumers");
 
     if(consumers == null) return biConsumer;
 
