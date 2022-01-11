@@ -42,12 +42,21 @@ public final class Conditions {
   // TODO: requireArrayContainsSame
   //--------------------------------------------------
 
-  // requireArrayEquals
+  // TODO: requireArrayEquals
+  //--------------------------------------------------
+
+  // TODO: requireArrayNotContainsEquals
+  //--------------------------------------------------
+
+  // TODO: requireArrayNotEquals
+  //--------------------------------------------------
+
+  // requireArraySame
   //--------------------------------------------------
 
   // boolean
 
-  public static boolean[] requireArrayEquals(final boolean[] actual, final boolean[] expected, final IntFunction<String> messageSupplier,
+  public static boolean[] requireArraySame(final boolean[] actual, final boolean[] expected, final IntFunction<String> messageSupplier,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
     if(Arguments.requireNotNull(actual, "actual") == Arguments.requireNotNull(expected, "expected")) return actual;
 
@@ -68,19 +77,19 @@ public final class Conditions {
     return actual;
   }
 
-  public static boolean[] requireArrayEquals(final boolean[] actual, final boolean[] expected, final String message,
+  public static boolean[] requireArraySame(final boolean[] actual, final boolean[] expected, final String message,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, index -> message, exceptionSupplier);
+    return requireArraySame(actual, actual, index -> message, exceptionSupplier);
   }
 
-  public static boolean[] requireArrayEquals(final boolean[] actual, final boolean[] expected,
+  public static boolean[] requireArraySame(final boolean[] actual, final boolean[] expected,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, (String)null, exceptionSupplier);
+    return requireArraySame(actual, actual, (String)null, exceptionSupplier);
   }
 
   // char
 
-  public static char[] requireArrayEquals(final char[] actual, final char[] expected, final IntFunction<String> messageSupplier,
+  public static char[] requireArraySame(final char[] actual, final char[] expected, final IntFunction<String> messageSupplier,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
     if(Arguments.requireNotNull(actual, "actual") == Arguments.requireNotNull(expected, "expected")) return actual;
 
@@ -101,18 +110,18 @@ public final class Conditions {
     return actual;
   }
 
-  public static char[] requireArrayEquals(final char[] actual, final char[] expected, final String message,
+  public static char[] requireArraySame(final char[] actual, final char[] expected, final String message,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, index -> message, exceptionSupplier);
+    return requireArraySame(actual, actual, index -> message, exceptionSupplier);
   }
 
-  public static char[] requireArrayEquals(final char[] actual, final char[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, (String)null, exceptionSupplier);
+  public static char[] requireArraySame(final char[] actual, final char[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArraySame(actual, actual, (String)null, exceptionSupplier);
   }
 
   // short
 
-  public static short[] requireArrayEquals(final short[] actual, final short[] expected, final IntFunction<String> messageSupplier,
+  public static short[] requireArraySame(final short[] actual, final short[] expected, final IntFunction<String> messageSupplier,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
     if(Arguments.requireNotNull(actual, "actual") == Arguments.requireNotNull(expected, "expected")) return actual;
 
@@ -133,18 +142,18 @@ public final class Conditions {
     return actual;
   }
 
-  public static short[] requireArrayEquals(final short[] actual, final short[] expected, final String message,
+  public static short[] requireArraySame(final short[] actual, final short[] expected, final String message,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, index -> message, exceptionSupplier);
+    return requireArraySame(actual, actual, index -> message, exceptionSupplier);
   }
 
-  public static short[] requireArrayEquals(final short[] actual, final short[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, (String)null, exceptionSupplier);
+  public static short[] requireArraySame(final short[] actual, final short[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArraySame(actual, actual, (String)null, exceptionSupplier);
   }
 
   // int
 
-  public static int[] requireArrayEquals(final int[] actual, final int[] expected, final IntFunction<String> messageSupplier,
+  public static int[] requireArraySame(final int[] actual, final int[] expected, final IntFunction<String> messageSupplier,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
     if(Arguments.requireNotNull(actual, "actual") == Arguments.requireNotNull(expected, "expected")) return actual;
 
@@ -165,18 +174,18 @@ public final class Conditions {
     return actual;
   }
 
-  public static int[] requireArrayEquals(final int[] actual, final int[] expected, final String message,
+  public static int[] requireArraySame(final int[] actual, final int[] expected, final String message,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, index -> message, exceptionSupplier);
+    return requireArraySame(actual, actual, index -> message, exceptionSupplier);
   }
 
-  public static int[] requireArrayEquals(final int[] actual, final int[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, (String)null, exceptionSupplier);
+  public static int[] requireArraySame(final int[] actual, final int[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArraySame(actual, actual, (String)null, exceptionSupplier);
   }
 
   // float
 
-  public static float[] requireArrayEquals(final float[] actual, final float[] expected, final IntFunction<String> messageSupplier,
+  public static float[] requireArraySame(final float[] actual, final float[] expected, final IntFunction<String> messageSupplier,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
     if(Arguments.requireNotNull(actual, "actual") == Arguments.requireNotNull(expected, "expected")) return actual;
 
@@ -197,18 +206,18 @@ public final class Conditions {
     return actual;
   }
 
-  public static float[] requireArrayEquals(final float[] actual, final float[] expected, final String message,
+  public static float[] requireArraySame(final float[] actual, final float[] expected, final String message,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, index -> message, exceptionSupplier);
+    return requireArraySame(actual, actual, index -> message, exceptionSupplier);
   }
 
-  public static float[] requireArrayEquals(final float[] actual, final float[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, (String)null, exceptionSupplier);
+  public static float[] requireArraySame(final float[] actual, final float[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArraySame(actual, actual, (String)null, exceptionSupplier);
   }
 
   // double
 
-  public static double[] requireArrayEquals(final double[] actual, final double[] expected, final IntFunction<String> messageSupplier,
+  public static double[] requireArraySame(final double[] actual, final double[] expected, final IntFunction<String> messageSupplier,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
     if(Arguments.requireNotNull(actual, "actual") == Arguments.requireNotNull(expected, "expected")) return actual;
 
@@ -229,19 +238,19 @@ public final class Conditions {
     return actual;
   }
 
-  public static double[] requireArrayEquals(final double[] actual, final double[] expected, final String message,
+  public static double[] requireArraySame(final double[] actual, final double[] expected, final String message,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, index -> message, exceptionSupplier);
+    return requireArraySame(actual, actual, index -> message, exceptionSupplier);
   }
 
-  public static double[] requireArrayEquals(final double[] actual, final double[] expected,
+  public static double[] requireArraySame(final double[] actual, final double[] expected,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, (String)null, exceptionSupplier);
+    return requireArraySame(actual, actual, (String)null, exceptionSupplier);
   }
 
   // Generic
 
-  public static <T> T[] requireArrayEquals(final T[] actual, final Object[] expected, final IntFunction<String> messageSupplier,
+  public static <T> T[] requireArraySame(final T[] actual, final Object[] expected, final IntFunction<String> messageSupplier,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
     if(Arguments.requireNotNull(actual, "actual") == Arguments.requireNotNull(expected, "expected")) return actual;
 
@@ -262,17 +271,14 @@ public final class Conditions {
     return actual;
   }
 
-  public static <T> T[] requireArrayEquals(final T[] actual, final Object[] expected, final String message,
+  public static <T> T[] requireArraySame(final T[] actual, final Object[] expected, final String message,
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, index -> message, exceptionSupplier);
+    return requireArraySame(actual, actual, index -> message, exceptionSupplier);
   }
 
-  public static <T> T[] requireArrayEquals(final T[] actual, final Object[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
-    return requireArrayEquals(actual, actual, (String)null, exceptionSupplier);
+  public static <T> T[] requireArraySame(final T[] actual, final Object[] expected, final Function<String, ? extends RuntimeException> exceptionSupplier) {
+    return requireArraySame(actual, actual, (String)null, exceptionSupplier);
   }
-
-  // TODO: requireArrayNotContainsEquals
-  //--------------------------------------------------
 
   // requireArrayNotContainsSame
   //--------------------------------------------------
@@ -501,6 +507,9 @@ public final class Conditions {
       final Function<String, ? extends RuntimeException> exceptionSupplier) {
     return requireArrayNotContainsSame(array, search, (String)null, exceptionSupplier);
   }
+
+  // TODO: requireArrayNotSame
+  //--------------------------------------------------
 
   // requireEquals
   //--------------------------------------------------

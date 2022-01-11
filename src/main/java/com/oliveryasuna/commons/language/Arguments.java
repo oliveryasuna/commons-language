@@ -48,6 +48,15 @@ public final class Arguments {
   // TODO: requireArrayEquals
   //--------------------------------------------------
 
+  // TODO: requireArrayNotContainsEquals
+  //--------------------------------------------------
+
+  // TODO: requireArrayNotEquals
+  //--------------------------------------------------
+
+  // TODO: requireArraySame
+  //--------------------------------------------------
+
   // requireArrayNotContainsSame
   //--------------------------------------------------
 
@@ -176,6 +185,9 @@ public final class Arguments {
   public static <T> T[] requireArrayNotContainsSame(final T[] argument, final T search) {
     return Conditions.requireArrayNotContainsSame(argument, search, EXCEPTION_SUPPLIER);
   }
+
+  // TODO: requireArrayNotSame
+  //--------------------------------------------------
 
   // TODO: requireEquals
   //--------------------------------------------------
