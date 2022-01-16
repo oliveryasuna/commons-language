@@ -16,18 +16,18 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.marker;
 
 import java.lang.annotation.*;
 
 /**
- * An informative annotation type used to indicate that a class is intended to be immutable.
+ * An informative annotation type used to indicate that a class is intended to be a utility class.
  *
  * @author Oliver Yasuna
  */
 @Documented
 @Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.TYPE)
-public @interface Immutable {
+public @interface Utility {
 
 }
