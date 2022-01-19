@@ -18,44 +18,70 @@
 
 package com.oliveryasuna.commons.language;
 
-import com.oliveryasuna.commons.language.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
-import java.util.Collection;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
-/**
- * Various {@code static} utility methods for operating on collections.
- *
- * @author Oliver Yasuna
- */
-public final class Collections {
+public final class ConsumerUtls {
 
-  /**
-   * Gets whether a collection is empty.
-   *
-   * @param collection The collection.
-   *
-   * @return {@code true}, if the collection is empty; otherwise, {@code false}.
-   */
-  public static boolean isEmpty(final Collection<?> collection) {
-    return Arguments.requireNotNull(collection, "collection").isEmpty();
+  public static <T> Consumer<T> andThen(final Consumer<T> consumer, final Consumer<T>... others) {
+    Arguments.requireNotNull(consumer, "consumer");
+    Arguments.requireNotContainsSame(others, null, "others");
+
+    if(others == null) return consumer;
+
+    return (t -> {
+      consumer.accept(t);
+
+      ArrayUtils.forEach(others, other -> other.accept(t));
+    });
   }
 
-  /**
-   * Gets whether a collection is not empty.
-   *
-   * @param collection The collection.
-   *
-   * @return {@code true}, if the collection is not empty; otherwise, {@code false}.
-   */
-  public static boolean isNotEmpty(final Collection<?> collection) {
-    return !isEmpty(collection);
+  public static <T, U> BiConsumer<T, U> andThen(final BiConsumer<T, U> biConsumer, final BiConsumer<? super T, ? super U>... others) {
+    Arguments.requireNotNull(biConsumer, "biConsumer");
+    Arguments.requireNotContainsSame(others, null, "others");
+
+    if(others == null) return biConsumer;
+
+    return ((t, u) -> {
+      biConsumer.accept(t, u);
+
+      ArrayUtils.forEach(others, other -> other.accept(t, u));
+    });
+  }
+
+  public static <T, U> BiConsumer<T, U> andThenT(final BiConsumer<T, U> biConsumer, final Consumer<? super T>... consumers) {
+    Arguments.requireNotNull(biConsumer, "biConsumer");
+    Arguments.requireNotContainsSame(consumers, null, "consumers");
+
+    if(consumers == null) return biConsumer;
+
+    return ((t, u) -> {
+      biConsumer.accept(t, u);
+
+      ArrayUtils.forEach(consumers, consumer -> consumer.accept(t));
+    });
+  }
+
+
+  public static <T, U> BiConsumer<T, U> andThenU(final BiConsumer<T, U> biConsumer, final Consumer<? super U>... consumers) {
+    Arguments.requireNotNull(biConsumer, "biConsumer");
+    Arguments.requireNotContainsSame(consumers, null, "consumers");
+
+    if(consumers == null) return biConsumer;
+
+    return ((t, u) -> {
+      biConsumer.accept(t, u);
+
+      ArrayUtils.forEach(consumers, consumer -> consumer.accept(u));
+    });
   }
 
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  private Collections() {
+  private ConsumerUtls() {
     super();
 
     throw new UnsupportedInstantiationException();

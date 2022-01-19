@@ -28,7 +28,7 @@ import java.util.function.Predicate;
  *
  * @author Oliver Yasuna
  */
-public final class Predicates {
+public final class PredicateUtils {
 
   public static <T> Predicate<T> and(final Predicate<T> predicate, final Predicate<? super T>... others) {
     Arguments.requireNotNull(predicate, "predicate");
@@ -185,7 +185,7 @@ public final class Predicates {
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  private Predicates() {
+  private PredicateUtils() {
     super();
 
     throw new UnsupportedInstantiationException();
