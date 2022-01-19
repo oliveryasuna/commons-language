@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent;
 
-import com.oliveryasuna.commons.language.Arguments;
+import com.oliveryasuna.commons.language.condition.Arguments;
 
 public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentFactory<T, F> {
 

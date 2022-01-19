@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-import com.oliveryasuna.commons.language.Arguments;
+import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
 public abstract class Break<T, F extends IFluentFactory<T, F>> {

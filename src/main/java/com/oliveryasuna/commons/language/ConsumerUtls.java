@@ -18,6 +18,7 @@
 
 package com.oliveryasuna.commons.language;
 
+import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
 import java.util.function.BiConsumer;

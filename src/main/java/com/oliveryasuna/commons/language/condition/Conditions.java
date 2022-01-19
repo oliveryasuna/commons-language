@@ -16,7 +16,7 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language;
+package com.oliveryasuna.commons.language.condition;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
@@ -1382,6 +1382,22 @@ public final class Conditions {
     return requireEmpty(collection, () -> null, exceptionSupplier);
   }
 
+  // String
+
+  public static String requireEmpty(final String string, final Supplier<String> messageSupplier, final Function<String, RuntimeException> exceptionSupplier) {
+    if(!Arguments.requireNotNull(string, "string").isEmpty()) throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    return string;
+  }
+
+  public static String requireEmpty(final String string, final String message, final Function<String, RuntimeException> exceptionSupplier) {
+    return requireEmpty(string, () -> message, exceptionSupplier);
+  }
+
+  public static String requireEmpty(final String string, final Function<String, RuntimeException> exceptionSupplier) {
+    return requireEmpty(string, () -> null, exceptionSupplier);
+  }
+
   // requireNotEmpty
   //--------------------------------------------------
 
@@ -1571,6 +1587,22 @@ public final class Conditions {
 
   public static <T extends Collection<U>, U> T requireNotEmpty(final T collection, final Function<String, RuntimeException> exceptionSupplier) {
     return requireNotEmpty(collection, () -> null, exceptionSupplier);
+  }
+
+  // String
+
+  public static String requireNotEmpty(final String string, final Supplier<String> messageSupplier, final Function<String, RuntimeException> exceptionSupplier) {
+    if(Arguments.requireNotNull(string, "string").isEmpty()) throwWithMessageSupplier(messageSupplier, exceptionSupplier);
+
+    return string;
+  }
+
+  public static String requireNotEmpty(final String string, final String message, final Function<String, RuntimeException> exceptionSupplier) {
+    return requireNotEmpty(string, () -> message, exceptionSupplier);
+  }
+
+  public static String requireNotEmpty(final String string, final Function<String, RuntimeException> exceptionSupplier) {
+    return requireNotEmpty(string, () -> null, exceptionSupplier);
   }
 
   // requireContainsEquals

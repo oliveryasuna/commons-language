@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.function;
 
-import com.oliveryasuna.commons.language.Arguments;
+import com.oliveryasuna.commons.language.condition.Arguments;
 
 /**
  * Represents an operation that accepts a single {@code char} argument and returns no result.

@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.function;
 
-import com.oliveryasuna.commons.language.Arguments;
+import com.oliveryasuna.commons.language.condition.Arguments;
 
 /**
  * Represents an operation that accepts no arguments and returns no result.

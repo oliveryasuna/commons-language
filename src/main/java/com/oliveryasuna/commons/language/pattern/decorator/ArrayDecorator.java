@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.decorator;
 
-import com.oliveryasuna.commons.language.Arguments;
+import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.pattern.Cloneable;
 
 /**

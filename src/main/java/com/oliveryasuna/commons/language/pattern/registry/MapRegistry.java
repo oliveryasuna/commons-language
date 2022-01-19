@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.registry;
 
-import com.oliveryasuna.commons.language.Arguments;
+import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.pattern.Registration;
 
 import java.util.HashMap;

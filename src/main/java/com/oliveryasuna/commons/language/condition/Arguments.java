@@ -16,7 +16,7 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language;
+package com.oliveryasuna.commons.language.condition;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 import com.oliveryasuna.commons.language.function.*;
@@ -1401,6 +1401,24 @@ public final class Arguments {
     return Conditions.requireEmpty(argument, IllegalArgumentException::new);
   }
 
+  // String
+
+  public static String requireEmpty(final String argument, final Function<String, String> messageSupplier) {
+    return requireEmpty(argument, () -> messageSupplier.apply(argument));
+  }
+
+  public static String requireEmpty(final String argument, final Supplier<String> messageSupplier) {
+    return Conditions.requireEmpty(argument, messageSupplier, IllegalArgumentException::new);
+  }
+
+  public static String requireEmpty(final String argument, final String message) {
+    return Conditions.requireEmpty(argument, message, IllegalArgumentException::new);
+  }
+
+  public static String requireEmpty(final String argument) {
+    return Conditions.requireEmpty(argument, IllegalArgumentException::new);
+  }
+
   // requireNotEmpty
   //--------------------------------------------------
 
@@ -1581,6 +1599,24 @@ public final class Arguments {
   }
 
   public static <T extends Collection<U>, U> T requireNotEmpty(final T argument) {
+    return Conditions.requireNotEmpty(argument, IllegalArgumentException::new);
+  }
+
+  // String
+
+  public static String requireNotEmpty(final String argument, final Function<String, String> messageSupplier) {
+    return requireNotEmpty(argument, () -> messageSupplier.apply(argument));
+  }
+
+  public static String requireNotEmpty(final String argument, final Supplier<String> messageSupplier) {
+    return Conditions.requireNotEmpty(argument, messageSupplier, IllegalArgumentException::new);
+  }
+
+  public static String requireNotEmpty(final String argument, final String message) {
+    return Conditions.requireNotEmpty(argument, message, IllegalArgumentException::new);
+  }
+
+  public static String requireNotEmpty(final String argument) {
     return Conditions.requireNotEmpty(argument, IllegalArgumentException::new);
   }
 

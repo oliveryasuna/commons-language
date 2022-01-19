@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.function;
 
-import com.oliveryasuna.commons.language.Arguments;
+import com.oliveryasuna.commons.language.condition.Arguments;
 
 import java.util.function.BiFunction;
 
