@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2021 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,26 +16,25 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-/**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface Factory<T, P> {
+import com.oliveryasuna.commons.language.condition.Arguments;
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+public abstract class Break<T, F extends IFluentFactory<T, F>> {
+
+  private final F factory;
+
+  protected Break(final F factory) {
+    this.factory = Arguments.requireNotNull(factory);
+  }
+
+  public final F back() {
+    return factory;
+  }
+
+  protected final F getFactory() {
+    return factory;
+  }
 
 }

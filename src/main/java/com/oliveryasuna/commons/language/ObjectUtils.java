@@ -16,26 +16,53 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language;
+
+import com.oliveryasuna.commons.language.condition.Arguments;
+import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
 /**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
+ * Various {@code static} utility methods for operating on objects.
  *
  * @author Oliver Yasuna
  */
-@FunctionalInterface
-public interface Factory<T, P> {
+public class ObjectUtils {
+
+  public static boolean equals(final Object expected, final Object... candidates) {
+    Arguments.requireNotNull(expected, "expected");
+
+    if(candidates == null || candidates.length == 0) return false;
+
+    for(final Object candidate : candidates) {
+      if(expected == candidate) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public static boolean deepEquals(final Object expected, final Object... candidates) {
+    Arguments.requireNotNull(expected, "expected");
+
+    if(candidates == null || candidates.length == 0) return false;
+
+    for(final Object candidate : candidates) {
+      if(expected.equals(candidate)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 
   /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
+   * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  T create(final P parameter);
+  private ObjectUtils() {
+    super();
+
+    throw new UnsupportedInstantiationException();
+  }
 
 }

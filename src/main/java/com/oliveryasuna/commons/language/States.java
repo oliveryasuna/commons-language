@@ -16,26 +16,10 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language;
 
-/**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface Factory<T, P> {
+public class States {
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+  // TODO.
 
 }

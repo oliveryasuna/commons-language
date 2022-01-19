@@ -16,26 +16,18 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.marker;
+
+import java.lang.annotation.*;
 
 /**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
+ * An informative annotation type used to indicate that a class is intended to be immutable.
  *
  * @author Oliver Yasuna
  */
-@FunctionalInterface
-public interface Factory<T, P> {
-
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+@Documented
+@Retention(RetentionPolicy.SOURCE)
+@Target(ElementType.TYPE)
+public @interface Immutable {
 
 }

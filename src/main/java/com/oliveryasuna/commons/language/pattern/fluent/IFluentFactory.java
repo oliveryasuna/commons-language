@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2021 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,26 +16,43 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.fluent;
 
-/**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
- *
- * @author Oliver Yasuna
- */
+import com.oliveryasuna.commons.language.pattern.CastThis;
+
+import java.util.function.Consumer;
+
 @FunctionalInterface
-public interface Factory<T, P> {
+public interface IFluentFactory<T, F extends IFluentFactory<T, F>> extends CastThis<F> {
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+  T get();
+
+  default F condition(final boolean value, final Consumer<F> trueAction) {
+    final F this_ = uncheckedThis();
+
+    if(value && trueAction != null) trueAction.accept(this_);
+
+    return this_;
+  }
+
+  default F condition(final boolean value, final Consumer<F> trueAction, final Consumer<F> falseAction) {
+    final F this_ = uncheckedThis();
+
+    if(value) {
+      if(trueAction != null) trueAction.accept(this_);
+    } else {
+      if(falseAction != null) falseAction.accept(this_);
+    }
+
+    return this_;
+  }
+
+  default F complete(final Consumer<F> action) {
+    final F this_ = uncheckedThis();
+
+    if(action != null) action.accept(this_);
+
+    return this_;
+  }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2021 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,26 +16,28 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.fluent;
 
-/**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface Factory<T, P> {
+import com.oliveryasuna.commons.language.condition.Arguments;
+
+public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentFactory<T, F> {
+
+  private final T object;
 
   /**
-   * Constructs the object.
+   * Implementations will either pass an existing object or create a new instance.
    *
-   * @param parameter The parameter.
-   *
-   * @return The object.
+   * @param object The object.
    */
-  T create(final P parameter);
+  protected FluentFactory(final T object) {
+    super();
+
+    this.object = Arguments.requireNotNull(object);
+  }
+
+  @Override
+  public final T get() {
+    return object;
+  }
 
 }

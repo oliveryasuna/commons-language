@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2021 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,26 +16,31 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-/**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface Factory<T, P> {
+import com.oliveryasuna.commons.language.function.IntConsumer;
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+public final class IntValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+
+  private final int value;
+
+  public IntValueBreak(final F factory, final int value) {
+    super(factory);
+
+    this.value = value;
+  }
+
+  public final IntValueBreak<T, F> handle(final IntConsumer action) {
+    if(action != null) {
+      action.accept(value);
+    }
+
+    return this;
+  }
+
+  public final int get() {
+    return value;
+  }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2021 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,26 +16,32 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-/**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface Factory<T, P> {
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+import java.util.function.Consumer;
+
+public final class ValueBreak<T, F extends IFluentFactory<T, F>, V> extends Break<T, F> {
+
+  private final V value;
+
+  public ValueBreak(final F factory, final V value) {
+    super(factory);
+
+    this.value = value;
+  }
+
+  public final ValueBreak<T, F, V> handle(final Consumer<V> action) {
+    if(action != null) {
+      action.accept(value);
+    }
+
+    return this;
+  }
+
+  public final V get() {
+    return value;
+  }
 
 }

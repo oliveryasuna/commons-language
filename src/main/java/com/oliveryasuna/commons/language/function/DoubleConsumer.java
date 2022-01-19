@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2021 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,26 +16,41 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.function;
+
+import com.oliveryasuna.commons.language.condition.Arguments;
 
 /**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
+ * Represents an operation that accepts a single {@code double} argument and returns no result.
  *
  * @author Oliver Yasuna
  */
 @FunctionalInterface
-public interface Factory<T, P> {
+public interface DoubleConsumer extends java.util.function.DoubleConsumer {
 
   /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
+   * Performs the operation.
    */
-  T create(final P parameter);
+  @Override
+  void accept(double argument);
+
+  /**
+   * Creates a composed {@link DoubleConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @param after The operation to perform after this operation.
+   *
+   * @return A composed {@link DoubleConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
+   */
+  @Override
+  default DoubleConsumer andThen(final java.util.function.DoubleConsumer after) {
+    Arguments.requireNotNull(after, "after");
+
+    return (argument -> {
+      accept(argument);
+      after.accept(argument);
+    });
+  }
 
 }

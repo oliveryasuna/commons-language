@@ -16,26 +16,43 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.function;
 
-/**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
- *
- * @author Oliver Yasuna
- */
+import com.oliveryasuna.commons.language.condition.Arguments;
+
+import java.util.function.BiPredicate;
+
 @FunctionalInterface
-public interface Factory<T, P> {
+public interface IterationPredicate<T> {
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+  boolean test(T element, int index);
+
+  default IterationPredicate<T> and(final IterationPredicate<? super T> other) {
+    Arguments.requireNotNull(other, "other");
+
+    return ((element, index) -> test(element, index) && other.test(element, index));
+  }
+
+  default IterationPredicate<T> and(final BiPredicate<? super T, Integer> other) {
+    Arguments.requireNotNull(other, "other");
+
+    return ((element, index) -> test(element, index) && other.test(element, index));
+  }
+
+  default IterationPredicate<T> or(final IterationPredicate<? super T> other) {
+    Arguments.requireNotNull(other, "other");
+
+    return ((element, index) -> test(element, index) || other.test(element, index));
+  }
+
+  default IterationPredicate<T> or(final BiPredicate<? super T, Integer> other) {
+    Arguments.requireNotNull(other, "other");
+
+    return ((element, index) -> test(element, index) || other.test(element, index));
+  }
+
+  default IterationPredicate<T> negate() {
+    return ((element, index) -> !test(element, index));
+  }
 
 }

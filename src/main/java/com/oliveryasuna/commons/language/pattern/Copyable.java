@@ -19,23 +19,13 @@
 package com.oliveryasuna.commons.language.pattern;
 
 /**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
+ * Similar to {@link Cloneable} but uses the method {@link #copy()}.
  *
  * @author Oliver Yasuna
  */
 @FunctionalInterface
-public interface Factory<T, P> {
+public interface Copyable {
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+  Copyable copy() throws CloneNotSupportedException;
 
 }

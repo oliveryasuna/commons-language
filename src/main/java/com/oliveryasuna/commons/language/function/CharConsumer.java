@@ -18,10 +18,10 @@
 
 package com.oliveryasuna.commons.language.function;
 
-import java.util.Objects;
+import com.oliveryasuna.commons.language.condition.Arguments;
 
 /**
- * Represents an operation that accepts a single {@code char}-valued argument and returns no result.
+ * Represents an operation that accepts a single {@code char} argument and returns no result.
  *
  * @author Oliver Yasuna
  */
@@ -29,21 +29,25 @@ import java.util.Objects;
 public interface CharConsumer {
 
   /**
-   * Performs this operation on a given input.
-   *
-   * @param value The input.
+   * Performs the operation.
    */
-  void accept(final char value);
+  void accept(char argument);
 
   /**
-   * Composes a {@link CharConsumer} that performs, in sequence, this operation followed by the {@code after} operation.
+   * Creates a composed {@link CharConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @param after The operation to perform after this operation.
+   *
+   * @return A composed {@link CharConsumer} that performs this operation followed by the operation specified by the argument {@code after}.
+   *
+   * @throws IllegalArgumentException If the argument {@code after} is {@code null}.
    */
   default CharConsumer andThen(final CharConsumer after) {
-    Objects.requireNonNull(after);
+    Arguments.requireNotNull(after, "after");
 
-    return (t -> {
-      accept(t);
-      after.accept(t);
+    return (argument -> {
+      accept(argument);
+      after.accept(argument);
     });
   }
 

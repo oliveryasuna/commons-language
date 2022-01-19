@@ -16,26 +16,31 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.exception;
 
 /**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
+ * Thrown to indicate that a requested instantiation is not supported.
+ * <p>
+ * An example usage is on a utility class's constructor.
  *
  * @author Oliver Yasuna
  */
-@FunctionalInterface
-public interface Factory<T, P> {
+public class UnsupportedInstantiationException extends UnsupportedOperationException {
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+  public UnsupportedInstantiationException() {
+    super();
+  }
+
+  public UnsupportedInstantiationException(final String message) {
+    super(message);
+  }
+
+  public UnsupportedInstantiationException(final String message, final Throwable cause) {
+    super(message, cause);
+  }
+
+  public UnsupportedInstantiationException(final Throwable cause) {
+    super(cause);
+  }
 
 }

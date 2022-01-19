@@ -16,26 +16,27 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.function;
 
-/**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
- *
- * @author Oliver Yasuna
- */
+import com.oliveryasuna.commons.language.condition.Arguments;
+
+import java.util.function.BiFunction;
+
 @FunctionalInterface
-public interface Factory<T, P> {
+public interface IterationBiFunction<T, R> {
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+  R apply(T element, int index);
+
+  default <U> IterationBiFunction<T, U> andThen(final IterationBiFunction<? super R, ? extends U> after) {
+    Arguments.requireNotNull(after, "after");
+
+    return ((element, index) -> after.apply(apply(element, index), index));
+  }
+
+  default <U> IterationBiFunction<T, U> andThen(final BiFunction<? super R, Integer, ? extends U> after) {
+    Arguments.requireNotNull(after, "after");
+
+    return ((element, index) -> after.apply(apply(element, index), index));
+  }
 
 }

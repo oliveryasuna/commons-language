@@ -16,26 +16,29 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.exception;
 
 /**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
+ * Thrown to indicate that a requested clone is not supported.
  *
  * @author Oliver Yasuna
  */
-@FunctionalInterface
-public interface Factory<T, P> {
+public class UnsupportedCloneException extends UnsupportedOperationException {
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+  public UnsupportedCloneException() {
+    super();
+  }
+
+  public UnsupportedCloneException(final String message) {
+    super(message);
+  }
+
+  public UnsupportedCloneException(final String message, final Throwable cause) {
+    super(message, cause);
+  }
+
+  public UnsupportedCloneException(final Throwable cause) {
+    super(cause);
+  }
 
 }

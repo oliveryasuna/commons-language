@@ -16,26 +16,66 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.decorator;
+
+import com.oliveryasuna.commons.language.condition.Arguments;
+import com.oliveryasuna.commons.language.pattern.Cloneable;
 
 /**
- * Represents a factory.
+ * Wraps an array.
+ * <p>
+ * Definitely an anti-pattern.
  *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
+ * @param <T> The type of array elements
  *
  * @author Oliver Yasuna
  */
-@FunctionalInterface
-public interface Factory<T, P> {
+public class ArrayDecorator<T> extends ObjectDecorator<T[]> implements Cloneable<T[]> {
+
+  // Constructors
+  //--------------------------------------------------
 
   /**
-   * Constructs the object.
+   * Creates an instance.
    *
-   * @param parameter The parameter.
-   *
-   * @return The object.
+   * @param array The underlying array.
    */
-  T create(final P parameter);
+  public ArrayDecorator(final T[] array) {
+    super(Arguments.requireNotNull(array, "array"));
+  }
+
+  // Array methods
+  //--------------------------------------------------
+
+  public T[] get() {
+    return getUnderlyingObject();
+  }
+
+  public T get(final int index) {
+    return get()[index];
+  }
+
+  public void set(final int index, final T element) {
+    get()[index] = element;
+  }
+
+  public int length() {
+    return get().length;
+  }
+
+  // Object methods
+  //--------------------------------------------------
+
+  /**
+   * Returns {@link Object#clone()} on the underlying array.
+   * <p>
+   * Breaks the contract of {@link Object#clone()}.
+   *
+   * @return The result of {@link Object#clone()} of {@link #underlyingObject}.
+   */
+  @Override
+  public T[] clone() {
+    return underlyingObject.clone();
+  }
 
 }

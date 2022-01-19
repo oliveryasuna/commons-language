@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2021 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,26 +16,32 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-/**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface Factory<T, P> {
 
-  /**
-   * Constructs the object.
-   *
-   * @param parameter The parameter.
-   *
-   * @return The object.
-   */
-  T create(final P parameter);
+import com.oliveryasuna.commons.language.function.DoubleConsumer;
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
+
+public final class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+
+  private final double value;
+
+  public DoubleValueBreak(final F factory, final double value) {
+    super(factory);
+
+    this.value = value;
+  }
+
+  public final DoubleValueBreak<T, F> handle(final DoubleConsumer action) {
+    if(action != null) {
+      action.accept(value);
+    }
+
+    return this;
+  }
+
+  public final double get() {
+    return value;
+  }
 
 }

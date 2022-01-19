@@ -16,26 +16,46 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language;
+
+import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
 /**
- * Represents a factory.
- *
- * @param <T> The type of object the factory will construct.
- * @param <P> The type of argument passed to the {@link #create(Object)} method.
+ * Various {@code static} utility methods for operating on booleans.
  *
  * @author Oliver Yasuna
  */
-@FunctionalInterface
-public interface Factory<T, P> {
+public final class BooleanUtils {
 
   /**
-   * Constructs the object.
+   * Gets whether a {@code boolean} is {@code true}.
    *
-   * @param parameter The parameter.
+   * @param bool The {@code boolean}.
    *
-   * @return The object.
+   * @return {@code true}, if the {@code boolean} is {@code true}; otherwise, {@code false}.
    */
-  T create(final P parameter);
+  public static boolean isTrue(final boolean bool) {
+    return bool;
+  }
+
+  /**
+   * Gets whether a {@code boolean} is {@code false}.
+   *
+   * @param bool The {@code boolean}.
+   *
+   * @return {@code true}, if the {@code boolean} is {@code false}; otherwise, {@code true}.
+   */
+  public static boolean isFalse(final boolean bool) {
+    return !bool;
+  }
+
+  /**
+   * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
+   */
+  private BooleanUtils() {
+    super();
+
+    throw new UnsupportedInstantiationException();
+  }
 
 }
