@@ -18,6 +18,7 @@
 
 package com.oliveryasuna.commons.language;
 
+import com.oliveryasuna.commons.language.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
 import java.util.Comparator;
@@ -31,7 +32,7 @@ import java.util.function.Predicate;
  *
  * @author Oliver Yasuna
  */
-public final class ArrayUtils {
+public final class Arrays {
 
   public static <T> T[] map(final T[] array, final Function<? super T, ? extends T> mapper) {
     Arguments.requireNotNull(array, "array");
@@ -172,7 +173,7 @@ public final class ArrayUtils {
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  private ArrayUtils() {
+  private Arrays() {
     super();
 
     throw new UnsupportedInstantiationException();

@@ -20,45 +20,68 @@ package com.oliveryasuna.commons.language;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
-/**
- * Various {@code static} utility methods for operating on objects.
- *
- * @author Oliver Yasuna
- */
-public class ObjectUtils {
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
-  public static boolean equals(final Object expected, final Object... candidates) {
-    Arguments.requireNotNull(expected, "expected");
+public final class Consumers {
 
-    if(candidates == null || candidates.length == 0) return false;
+  public static <T> Consumer<T> andThen(final Consumer<T> consumer, final Consumer<T>... others) {
+    Arguments.requireNotNull(consumer, "consumer");
+    Arguments.requireNotContainsSame(others, null, "others");
 
-    for(final Object candidate : candidates) {
-      if(expected == candidate) {
-        return true;
-      }
-    }
+    if(others == null) return consumer;
 
-    return false;
+    return (t -> {
+      consumer.accept(t);
+
+      Arrays.forEach(others, other -> other.accept(t));
+    });
   }
 
-  public static boolean deepEquals(final Object expected, final Object... candidates) {
-    Arguments.requireNotNull(expected, "expected");
+  public static <T, U> BiConsumer<T, U> andThen(final BiConsumer<T, U> biConsumer, final BiConsumer<? super T, ? super U>... others) {
+    Arguments.requireNotNull(biConsumer, "biConsumer");
+    Arguments.requireNotContainsSame(others, null, "others");
 
-    if(candidates == null || candidates.length == 0) return false;
+    if(others == null) return biConsumer;
 
-    for(final Object candidate : candidates) {
-      if(expected.equals(candidate)) {
-        return true;
-      }
-    }
+    return ((t, u) -> {
+      biConsumer.accept(t, u);
 
-    return false;
+      Arrays.forEach(others, other -> other.accept(t, u));
+    });
+  }
+
+  public static <T, U> BiConsumer<T, U> andThenT(final BiConsumer<T, U> biConsumer, final Consumer<? super T>... consumers) {
+    Arguments.requireNotNull(biConsumer, "biConsumer");
+    Arguments.requireNotContainsSame(consumers, null, "consumers");
+
+    if(consumers == null) return biConsumer;
+
+    return ((t, u) -> {
+      biConsumer.accept(t, u);
+
+      Arrays.forEach(consumers, consumer -> consumer.accept(t));
+    });
+  }
+
+
+  public static <T, U> BiConsumer<T, U> andThenU(final BiConsumer<T, U> biConsumer, final Consumer<? super U>... consumers) {
+    Arguments.requireNotNull(biConsumer, "biConsumer");
+    Arguments.requireNotContainsSame(consumers, null, "consumers");
+
+    if(consumers == null) return biConsumer;
+
+    return ((t, u) -> {
+      biConsumer.accept(t, u);
+
+      Arrays.forEach(consumers, consumer -> consumer.accept(u));
+    });
   }
 
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  private ObjectUtils() {
+  private Consumers() {
     super();
 
     throw new UnsupportedInstantiationException();

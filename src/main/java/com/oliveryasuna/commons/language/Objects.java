@@ -18,43 +18,48 @@
 
 package com.oliveryasuna.commons.language;
 
+import com.oliveryasuna.commons.language.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
-import java.util.Collection;
-
 /**
- * Various {@code static} utility methods for operating on collections.
+ * Various {@code static} utility methods for operating on objects.
  *
  * @author Oliver Yasuna
  */
-public final class CollectionUtils {
+public class Objects {
 
-  /**
-   * Gets whether a collection is empty.
-   *
-   * @param collection The collection.
-   *
-   * @return {@code true}, if the collection is empty; otherwise, {@code false}.
-   */
-  public static boolean isEmpty(final Collection<?> collection) {
-    return Arguments.requireNotNull(collection, "collection").isEmpty();
+  public static boolean equals(final Object expected, final Object... candidates) {
+    Arguments.requireNotNull(expected, "expected");
+
+    if(candidates == null || candidates.length == 0) return false;
+
+    for(final Object candidate : candidates) {
+      if(expected == candidate) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
-  /**
-   * Gets whether a collection is not empty.
-   *
-   * @param collection The collection.
-   *
-   * @return {@code true}, if the collection is not empty; otherwise, {@code false}.
-   */
-  public static boolean isNotEmpty(final Collection<?> collection) {
-    return !isEmpty(collection);
+  public static boolean deepEquals(final Object expected, final Object... candidates) {
+    Arguments.requireNotNull(expected, "expected");
+
+    if(candidates == null || candidates.length == 0) return false;
+
+    for(final Object candidate : candidates) {
+      if(expected.equals(candidate)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  private CollectionUtils() {
+  private Objects() {
     super();
 
     throw new UnsupportedInstantiationException();

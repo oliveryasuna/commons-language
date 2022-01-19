@@ -20,86 +20,39 @@ package com.oliveryasuna.commons.language;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 
-import java.util.Collections;
-import java.util.Deque;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.stream.Collector;
-import java.util.stream.Stream;
-
 /**
- * Various {@code static} utility methods for operating on streams.
+ * Various {@code static} utility methods for operating on booleans.
  *
  * @author Oliver Yasuna
  */
-public final class StreamUtils {
+public final class Booleans {
 
-  public static <T> Stream<T> reverse(final Stream<T> stream) {
-    final Deque<T> stack = new LinkedList<>();
-
-    stream.forEach(stack::push);
-
-    return stack.stream();
+  /**
+   * Gets whether a {@code boolean} is {@code true}.
+   *
+   * @param bool The {@code boolean}.
+   *
+   * @return {@code true}, if the {@code boolean} is {@code true}; otherwise, {@code false}.
+   */
+  public static boolean isTrue(final boolean bool) {
+    return bool;
   }
 
   /**
-   * Various {@code static} utility methods for operating on streams that relate to collectors.
+   * Gets whether a {@code boolean} is {@code false}.
    *
-   * @author Oliver Yasuna
-   */
-  public static final class Collectors {
-
-    /**
-     * TODO: Documentation.
-     */
-    public static <T> Collector<T, ?, Stream<T>> reverse() {
-      return java.util.stream.Collectors.collectingAndThen(java.util.stream.Collectors.toList(), list -> {
-        Collections.reverse(list);
-
-        return list.stream();
-      });
-    }
-
-    /**
-     * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
-     */
-    private Collectors() {
-      super();
-
-      throw new UnsupportedInstantiationException();
-    }
-
-  }
-
-  /**
-   * Various {@code static} utility methods for operating on streams that relate to iterators.
+   * @param bool The {@code boolean}.
    *
-   * @author Oliver Yasuna
+   * @return {@code true}, if the {@code boolean} is {@code false}; otherwise, {@code true}.
    */
-  public static final class Iterators {
-
-    /**
-     * TODO: Documentation.
-     */
-    public static <T> Iterator<T> reverseIterator(final Stream<T> stream) {
-      return stream.collect(java.util.stream.Collectors.toCollection(LinkedList::new)).descendingIterator();
-    }
-
-    /**
-     * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
-     */
-    private Iterators() {
-      super();
-
-      throw new UnsupportedInstantiationException();
-    }
-
+  public static boolean isFalse(final boolean bool) {
+    return !bool;
   }
 
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  private StreamUtils() {
+  private Booleans() {
     super();
 
     throw new UnsupportedInstantiationException();
