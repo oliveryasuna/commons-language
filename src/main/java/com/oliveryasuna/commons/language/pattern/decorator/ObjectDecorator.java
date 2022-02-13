@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.commons.language.pattern.decorator;
 
-import com.oliveryasuna.commons.language.ObjectUtils;
+import java.util.Objects;
 
 public class ObjectDecorator<T> implements Decorator {
 
@@ -80,7 +80,7 @@ public class ObjectDecorator<T> implements Decorator {
    */
   @Override
   public boolean equals(final Object other) {
-    return ObjectUtils.equals(other, this, underlyingObject);
+    return (Objects.equals(this, other) || Objects.equals(this, underlyingObject));
   }
 
   /**
