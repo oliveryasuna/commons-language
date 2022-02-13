@@ -2,6 +2,8 @@
  
 Java language commons.
 
+I tried to avoid overlap with Apache Commons, Guava, and Spring.
+
 ## License
 
 This code is under the [BSD 3-Clause](LICENSE.txt).
