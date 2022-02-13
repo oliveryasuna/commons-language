@@ -18,14 +18,14 @@
 
 package com.oliveryasuna.commons.language;
 
+import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
+import com.oliveryasuna.commons.language.marker.Nullable;
 
-import java.util.Collections;
-import java.util.Deque;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * Various {@code static} utility methods for operating on streams.
@@ -33,6 +33,16 @@ import java.util.stream.Stream;
  * @author Oliver Yasuna
  */
 public final class StreamUtils {
+
+  public static <T> Stream<T> ofIterator(final Iterator<T> iterator) {
+    Arguments.requireNotNull(iterator, "iterator");
+
+    return StreamSupport.stream(Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED), false);
+  }
+
+  public static <T> Stream<T> ofNullable(@Nullable final T value) {
+    return (value != null ? Stream.of(value) : Stream.empty());
+  }
 
   public static <T> Stream<T> reverse(final Stream<T> stream) {
     final Deque<T> stack = new LinkedList<>();
