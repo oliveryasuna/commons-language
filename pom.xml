@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2021 Oliver Yasuna
+  ~ Copyright 2022 Oliver Yasuna
   ~
   ~ Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
   ~
@@ -21,100 +21,96 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <!--==================================================
-    ==== Core
-    ==================================================-->
+  <!--==================================================
+  ==== Core
+  ==================================================-->
 
-    <parent>
-        <groupId>com.oliveryasuna.commons</groupId>
-        <artifactId>commons-parent</artifactId>
-        <version>3</version>
-    </parent>
+  <parent>
+    <groupId>com.oliveryasuna.commons</groupId>
+    <artifactId>commons-parent</artifactId>
+    <version>1.0.0</version>
+  </parent>
 
-    <artifactId>commons-language</artifactId>
-    <version>4.0.0</version>
-    <packaging>jar</packaging>
+  <artifactId>commons-language</artifactId>
+  <version>5.0.0</version>
+  <packaging>jar</packaging>
 
-    <modules/>
+  <modules/>
 
-    <properties>
-        <!--=========================
-        ==== Java version
-        =========================-->
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
 
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
+  <dependencyManagement/>
 
-    <dependencyManagement/>
+  <dependencies/>
 
-    <dependencies/>
+  <!--==================================================
+  ==== Build
+  ==================================================-->
 
-    <!--==================================================
-    ==== Build
-    ==================================================-->
+  <build/>
 
-    <build/>
+  <reporting/>
 
-    <reporting/>
+  <!--==================================================
+  ==== Details
+  ==================================================-->
 
-    <!--==================================================
-    ==== Details
-    ==================================================-->
+  <name>Commons Language</name>
+  <description>Java language commons.</description>
+  <url>https://github.com/oliveryasuna/commons-language</url>
+  <inceptionYear>2021</inceptionYear>
+  <licenses>
+    <license>
+      <name>BSD 3-Clause</name>
+      <url>https://opensource.org/licenses/BSD-3-Clause</url>
+      <comments>Copyright 2021 Oliver Yasuna</comments>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <organization>
+    <name>Oliver Yasuna</name>
+    <url>https://oliveryasuna.github.io/</url>
+  </organization>
+  <developers>
+    <developer>
+      <id>oliver-yasuna</id>
 
-    <name>Commons Language</name>
-    <description/> <!-- TODO. -->
+      <name>Oliver Yasuna</name>
+      <url>https://oliveryasuna.github.io/</url>
+
+      <timezone>America/New_York</timezone>
+    </developer>
+  </developers>
+  <contributors/>
+
+  <!--==================================================
+  ==== Environment
+  ==================================================-->
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/oliveryasuna/commons-language/issues</url>
+  </issueManagement>
+  <ciManagement/>
+
+  <mailingLists/>
+
+  <scm>
     <url>https://github.com/oliveryasuna/commons-language</url>
-    <inceptionYear>2021</inceptionYear>
-    <licenses>
-        <license>
-            <name>BSD 3-Clause</name>
-            <url>https://opensource.org/licenses/BSD-3-Clause</url>
-            <comments>Copyright 2021 Oliver Yasuna</comments>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <organization>
-        <name>Oliver Yasuna</name>
-        <url>https://oliveryasuna.github.io/</url>
-    </organization>
-    <developers>
-        <developer>
-            <id>oliver-yasuna</id>
+    <connection>scm:git:git://github.com/oliveryasuna/commons-language.git</connection>
+    <developerConnection>scm:git:git://github.com/oliveryasuna/commons-language.git</developerConnection>
+  </scm>
 
-            <name>Oliver Yasuna</name>
-            <url>https://oliveryasuna.github.io/</url>
+  <repositories/>
+  <pluginRepositories/>
 
-            <timezone>America/New_York</timezone>
-        </developer>
-    </developers>
-    <contributors/>
+  <distributionManagement/>
 
-    <!--==================================================
-    ==== Environment
-    ==================================================-->
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/oliveryasuna/commons-language/issues</url>
-    </issueManagement>
-    <ciManagement/>
-
-    <mailingLists/>
-
-    <scm>
-        <url>https://github.com/oliveryasuna/commons-language</url>
-        <connection>scm:git:git://github.com/oliveryasuna/commons-language.git</connection>
-        <developerConnection>scm:git:git://github.com/oliveryasuna/commons-language.git</developerConnection>
-    </scm>
-
-    <repositories/>
-    <pluginRepositories/>
-
-    <distributionManagement/>
-
-    <profiles/>
+  <profiles/>
 
 </project>
