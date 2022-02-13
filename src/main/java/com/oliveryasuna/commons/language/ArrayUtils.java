@@ -20,92 +20,46 @@ package com.oliveryasuna.commons.language;
 
 import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
+import com.oliveryasuna.commons.language.marker.Utility;
 
-import java.util.Comparator;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
- * Various {@code static} utility methods for operating on arrays.
+ * Various array utilities.
  *
  * @author Oliver Yasuna
  */
+@Utility
 public final class ArrayUtils {
 
-  public static <T> T[] map(final T[] array, final Function<? super T, ? extends T> mapper) {
+  /**
+   * Checks if all elements of an array are equal.
+   * <p>
+   * Best case time complexity is \(\mathop{O}\left(n\right)\).
+   * Worst case is theoretically \(\mathop{O}\left(n^{\frac{1}{0}}\right)\) (or undefined), dependent upon {@link Object#equals(Object)}.
+   *
+   * @param array The array.
+   *
+   * @return {@code true}, if all elements are equal;
+   *     {@code false}, if not all elements are equal or the array is empty.
+   */
+  public static boolean allEquals(final Object... array) {
     Arguments.requireNotNull(array, "array");
 
-    for(int i = 0; i < array.length; i++) {
-      array[i] = mapper.apply(array[i]);
-    }
+    if(array.length == 0) return false;
+    if(array.length == 1) return true;
+    if(array.length == 2) return Objects.equals(array[0], array[1]);
 
-    return array;
-  }
+    final Object element0 = array[0];
 
-  @SuppressWarnings("unchecked")
-  public static <T, R> R[] mapTo(final T[] array, final Function<? super T, ? extends R> mapper) {
-    Arguments.requireNotNull(array, "array");
-    Arguments.requireNotNull(mapper, "mapper");
-
-    final Object[] result = new Object[array.length];
-
-    for(int i = 0; i < array.length; i++) {
-      result[i] = mapper.apply(array[i]);
-    }
-
-    return (R[])result;
-  }
-
-  public static <T> Optional<T> max(final T[] array, final Comparator<? super T> comparator) {
-    Arguments.requireNotNull(array, "array");
-
-    if(array.length == 0) return Optional.empty();
-    if(array.length == 1) return Optional.of(array[0]);
-
-    Arguments.requireNotNull(comparator, "comparator");
-
-    T max = array[0];
-
+    // O(n).
     for(int i = 1; i < array.length; i++) {
-      max = comparator.compare(array[i], max) > 0 ? array[i] : max;
-    }
+      final Object elementI = array[i];
 
-    return Optional.of(max);
-  }
-
-  public static <T extends Comparable<T>> Optional<T> max(final T[] array) {
-    return max(array, T::compareTo);
-  }
-
-  public static <T> Optional<T> min(final T[] array, final Comparator<? super T> comparator) {
-    Arguments.requireNotNull(array, "array");
-
-    if(array.length == 0) return Optional.empty();
-    if(array.length == 1) return Optional.of(array[0]);
-
-    Arguments.requireNotNull(comparator, "comparator");
-
-    T min = array[0];
-
-    for(int i = 1; i < array.length; i++) {
-      min = comparator.compare(array[i], min) < 0 ? array[i] : min;
-    }
-
-    return Optional.of(min);
-  }
-
-  public static <T extends Comparable<T>> Optional<T> min(final T[] array) {
-    return min(array, T::compareTo);
-  }
-
-  public static <T> boolean allMatch(final T[] array, final Predicate<? super T> predicate) {
-    Arguments.requireNotNull(array, "array");
-    Arguments.requireNotNull(predicate, "predicate");
-
-    for(final T element : array) {
-      if(!predicate.test(element)) {
+      if(!Objects.equals(element0, elementI)) {
         return false;
       }
     }
@@ -113,66 +67,80 @@ public final class ArrayUtils {
     return true;
   }
 
-  public static <T> boolean anyMatch(final T[] array, final Predicate<? super T> predicate) {
+  /**
+   * Checks if any elements of an array are equal.
+   * <p>
+   * Best case time complexity is \(\mathop{O}\left(n^2\right)\).
+   * Worst case is theoretically \(\mathop{O}\left(n^{\frac{1}{0}}\right)\) (or undefined), dependent upon {@link Object#equals(Object)}.
+   *
+   * @param array The array.
+   *
+   * @return {@code true}, if any elements are equal;
+   *     {@code false}, if no elements are equal or the array is empty.
+   */
+  public static boolean anyEquals(final Object... array) {
     Arguments.requireNotNull(array, "array");
-    Arguments.requireNotNull(predicate, "predicate");
 
-    for(final T element : array) {
-      if(predicate.test(element)) {
-        return true;
+    if(array.length == 0 || array.length == 1) return false;
+    if(array.length == 2) return Objects.equals(array[0], array[1]);
+
+    // O(n).
+    for(int i = 0; i < array.length - 1; i++) {
+      final Object elementI = array[i];
+
+      // O(n).
+      for(int j = i + 1; j < array.length; j++) {
+        final Object elementJ = array[j];
+
+        if(Objects.equals(elementI, elementJ)) {
+          return true;
+        }
       }
     }
 
     return false;
   }
 
-  public static <T> boolean noneMatch(final T[] array, final Predicate<? super T> predicate) {
+  /**
+   * Counts element occurrences.
+   * <p>
+   * Best case time complexity is \(\mathop{O}\left(n^2\right)\).
+   * Worst case is theoretically \(\mathop{O}\left(n^{\frac{1}{0}}\right)\) (or undefined), dependent upon {@link Object#equals(Object)}.
+   *
+   * @param array The array.
+   * @param <T>   The type of element.
+   *
+   * @return Element occurrences.
+   */
+  @SafeVarargs
+  public static <T> Map<T, Integer> countOccurrences(final T... array) {
     Arguments.requireNotNull(array, "array");
-    Arguments.requireNotNull(predicate, "predicate");
 
-    for(final T element : array) {
-      if(predicate.test(element)) {
-        return false;
+    if(array.length == 0) return Collections.emptyMap();
+    if(array.length == 1) return Collections.singletonMap(array[0], 1);
+
+    final Map<T, Integer> occurrences = new HashMap<>();
+
+    // O(n).
+    for(int i = 0; i < array.length - 1; i++) {
+      final T elementI = array[i];
+
+      // O(1).
+      if(occurrences.containsKey(elementI)) continue;
+
+      // O(n).
+      for(int j = i + 1; j < array.length; j++) {
+        final T elementJ = array[j];
+
+        if(Objects.equals(elementI, elementJ)) {
+          occurrences.put(elementI, occurrences.getOrDefault(elementI, 0) + 1);
+        }
       }
     }
 
-    return true;
+    return Collections.unmodifiableMap(occurrences);
   }
 
-  public static <T> void forEach(final T[] array, final Consumer<T> consumer) {
-    Arguments.requireNotNull(array, "array");
-    Arguments.requireNotNull(consumer, "consumer");
-
-    for(final T element : array) {
-      consumer.accept(element);
-    }
-  }
-
-  /**
-   * Gets whether an array is empty.
-   *
-   * @param array The array.
-   *
-   * @return {@code true}, if the array is empty; otherwise, {@code false}.
-   */
-  public static boolean isEmpty(final Object[] array) {
-    return (Arguments.requireNotNull(array, "array").length == 0);
-  }
-
-  /**
-   * Gets whether an array is not empty.
-   *
-   * @param array The array.
-   *
-   * @return {@code true}, if the array is not empty; otherwise, {@code false}.
-   */
-  public static boolean isNotEmpty(final Object[] array) {
-    return !isEmpty(array);
-  }
-
-  /**
-   * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
-   */
   private ArrayUtils() {
     super();
 

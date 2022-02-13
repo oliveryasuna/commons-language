@@ -19,12 +19,14 @@
 package com.oliveryasuna.commons.language;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
+import com.oliveryasuna.commons.language.marker.Utility;
 
 /**
- * Various {@code static} utility methods for operating on booleans.
+ * Various utilities for operating on {@code boolean}s.
  *
  * @author Oliver Yasuna
  */
+@Utility
 public final class BooleanUtils {
 
   /**
@@ -49,9 +51,6 @@ public final class BooleanUtils {
     return !bool;
   }
 
-  /**
-   * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
-   */
   private BooleanUtils() {
     super();
 
