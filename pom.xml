@@ -28,8 +28,8 @@
   ==================================================-->
 
   <parent>
-    <groupId>com.oliveryasuna.commons</groupId>
-    <artifactId>commons-parent</artifactId>
+    <groupId>com.oliveryasuna</groupId>
+    <artifactId>root-pom</artifactId>
     <version>1.0.0</version>
   </parent>
 
@@ -40,6 +40,9 @@
   <modules/>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
