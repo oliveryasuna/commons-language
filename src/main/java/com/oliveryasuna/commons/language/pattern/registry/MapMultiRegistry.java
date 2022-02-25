@@ -58,9 +58,6 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
    */
   protected final Supplier<V> valuesSupplier;
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public Registration register(final K key, final Object value) {
     registrations.putIfAbsent(key, valuesSupplier.get());
@@ -70,9 +67,6 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
     return (() -> unregister(key, value));
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public Iterator<Object> unregister(final K key) {
     final Iterator<Object> values = forKey(key);
@@ -82,9 +76,6 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
     return values;
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public void unregister(final K key, final Object value) {
     if(!registrations.containsKey(key)) return;
@@ -98,9 +89,6 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
     }
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public int unregisterAll(final K key, final Object value) {
     if(!registrations.containsKey(key)) return 0;
@@ -118,25 +106,16 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
     return count;
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public Iterator<Object> forKey(final K key) {
     return registrations.getOrDefault(key, valuesSupplier.get()).iterator();
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public boolean contains(final K key) {
     return registrations.containsKey(key);
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public int count(final K key) {
     if(registrations.containsKey(key)) {

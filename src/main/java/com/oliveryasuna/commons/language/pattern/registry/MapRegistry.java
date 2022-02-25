@@ -60,9 +60,6 @@ public class MapRegistry<K> implements Registry<K> {
    */
   protected final Map<K, Object> registrations;
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public Registration register(final K key, final Object value) {
     if(registrations.containsKey(key)) throw new IllegalArgumentException("Already registered.");
@@ -72,17 +69,11 @@ public class MapRegistry<K> implements Registry<K> {
     return (() -> unregister(key));
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public <V> V unregister(final K key, final Class<V> type) {
     return type.cast(unregister(key));
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public Object unregister(final K key) {
     if(!registrations.containsKey(key)) throw new IllegalArgumentException("Not registered.");
@@ -90,18 +81,12 @@ public class MapRegistry<K> implements Registry<K> {
     return registrations.remove(key);
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public <V> Optional<V> forKey(final K key, final Class<V> type) {
     return forKey(key)
         .map(type::cast);
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public Optional<Object> forKey(final K key) {
     if(registrations.containsKey(key)) {
@@ -111,9 +96,6 @@ public class MapRegistry<K> implements Registry<K> {
     }
   }
 
-  /**
-   * @inheritDocs
-   */
   @Override
   public boolean contains(final K key) {
     return registrations.containsKey(key);
