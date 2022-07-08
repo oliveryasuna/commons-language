@@ -31,6 +31,14 @@ import java.util.function.Predicate;
  */
 public final class PredicateUtils {
 
+  public static boolean alwaysTrue(final Object ignored) {
+    return true;
+  }
+
+  public static boolean alwaysFalse(final Object ignored) {
+    return false;
+  }
+
   public static <T> Predicate<T> and(final Predicate<T> predicate, final Predicate<? super T>... others) {
     Arguments.requireNotNull(predicate, "predicate");
     Arguments.requireNotContainsSame(others, null, "others");

@@ -70,6 +70,25 @@ public final class StreamUtils {
       });
     }
 
+    public static Collector<? super Character, StringBuilder, String> joining() {
+      return Collector.of(StringBuilder::new, StringBuilder::append, StringBuilder::append, StringBuilder::toString);
+    }
+
+    public static <K, V> Collector<Map.Entry<? extends K, ? extends V>, ?, Map<K, V>> toMap() {
+      return Collector.of(
+          HashMap::new,
+          (map, entry) -> map.put(entry.getKey(), entry.getValue()),
+          (map1, map2) -> {
+            map1.putAll(map2);
+
+            return map1;
+          });
+    }
+
+    public static <K, V> Collector<Map.Entry<? extends K, ? extends V>, ?, Map<K, V>> toUnmodifiableMap() {
+      return java.util.stream.Collectors.collectingAndThen(toMap(), Collections::unmodifiableMap);
+    }
+
     /**
      * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
      */

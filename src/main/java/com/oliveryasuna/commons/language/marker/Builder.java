@@ -16,33 +16,18 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.marker;
 
-import com.oliveryasuna.commons.language.condition.Arguments;
-
-import java.util.Arrays;
+import java.lang.annotation.*;
 
 /**
- * Represents a registration that can be removed.
- * <p>
- * Usually for listeners.
+ * An informative annotation type used to indicate that a class is intended to be a builder.
  *
  * @author Oliver Yasuna
  */
-@FunctionalInterface
-public interface Registration {
-
-  /**
-   * Unregister whatever is registered.
-   */
-  void remove();
-
-  static Registration union(final Registration... registrations) {
-    Arguments.requireNotNull(registrations);
-    Arguments.requireNotContainsSame(registrations, null);
-
-    return (() -> Arrays.asList(registrations)
-        .forEach(Registration::remove));
-  }
+@Documented
+@Retention(RetentionPolicy.SOURCE)
+@Target(ElementType.TYPE)
+public @interface Builder {
 
 }

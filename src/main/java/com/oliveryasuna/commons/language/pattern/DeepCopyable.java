@@ -18,31 +18,15 @@
 
 package com.oliveryasuna.commons.language.pattern;
 
-import com.oliveryasuna.commons.language.condition.Arguments;
-
-import java.util.Arrays;
-
 /**
- * Represents a registration that can be removed.
- * <p>
- * Usually for listeners.
+ * Deep copy.
  *
  * @author Oliver Yasuna
+ * @since 5.4.0
  */
 @FunctionalInterface
-public interface Registration {
+public interface DeepCopyable {
 
-  /**
-   * Unregister whatever is registered.
-   */
-  void remove();
-
-  static Registration union(final Registration... registrations) {
-    Arguments.requireNotNull(registrations);
-    Arguments.requireNotContainsSame(registrations, null);
-
-    return (() -> Arrays.asList(registrations)
-        .forEach(Registration::remove));
-  }
+  DeepCopyable deepCopy() throws CloneNotSupportedException;
 
 }
