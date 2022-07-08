@@ -277,6 +277,22 @@ public final class ArrayUtils {
     return !isEmpty(array);
   }
 
+  public static <T> T[][] deepClone(final T[][] matrix) {
+    if(matrix == null) return null;
+
+    return Arrays.stream(matrix)
+        .map(element -> element != null ? element.clone() : null)
+        .toArray($ -> matrix.clone());
+  }
+
+  public static int[][] deepClone(final int[][] matrix) {
+    if(matrix == null) return null;
+
+    return Arrays.stream(matrix)
+        .map(element -> element != null ? element.clone() : null)
+        .toArray($ -> matrix.clone());
+  }
+
   private ArrayUtils() {
     super();
 

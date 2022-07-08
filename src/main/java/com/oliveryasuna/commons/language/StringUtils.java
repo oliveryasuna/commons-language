@@ -16,33 +16,33 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language;
 
-import com.oliveryasuna.commons.language.condition.Arguments;
+import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
+import com.oliveryasuna.commons.language.marker.Utility;
 
-import java.util.Arrays;
+import java.util.stream.IntStream;
 
-/**
- * Represents a registration that can be removed.
- * <p>
- * Usually for listeners.
- *
- * @author Oliver Yasuna
- */
-@FunctionalInterface
-public interface Registration {
+@Utility
+public final class StringUtils {
 
-  /**
-   * Unregister whatever is registered.
-   */
-  void remove();
+  // Static utility methods
+  //--------------------------------------------------
 
-  static Registration union(final Registration... registrations) {
-    Arguments.requireNotNull(registrations);
-    Arguments.requireNotContainsSame(registrations, null);
+  public static String[] divide(final String string, final int length) {
+    return IntStream.iterate(0, i -> i + length)
+        .limit((int)Math.ceil(string.length() / (double)length))
+        .mapToObj(i -> string.substring(i, Math.min(i + length, string.length())))
+        .toArray(String[]::new);
+  }
 
-    return (() -> Arrays.asList(registrations)
-        .forEach(Registration::remove));
+  // Constructors
+  //--------------------------------------------------
+
+  private StringUtils() {
+    super();
+
+    throw new UnsupportedInstantiationException();
   }
 
 }

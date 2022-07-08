@@ -18,31 +18,11 @@
 
 package com.oliveryasuna.commons.language.pattern;
 
-import com.oliveryasuna.commons.language.condition.Arguments;
+import java.util.stream.Stream;
 
-import java.util.Arrays;
-
-/**
- * Represents a registration that can be removed.
- * <p>
- * Usually for listeners.
- *
- * @author Oliver Yasuna
- */
 @FunctionalInterface
-public interface Registration {
+public interface Streamable<T> {
 
-  /**
-   * Unregister whatever is registered.
-   */
-  void remove();
-
-  static Registration union(final Registration... registrations) {
-    Arguments.requireNotNull(registrations);
-    Arguments.requireNotContainsSame(registrations, null);
-
-    return (() -> Arrays.asList(registrations)
-        .forEach(Registration::remove));
-  }
+  Stream<T> stream() throws IllegalStateException;
 
 }
