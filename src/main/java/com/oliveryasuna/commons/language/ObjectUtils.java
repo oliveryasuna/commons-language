@@ -22,8 +22,19 @@ import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationExcep
 import com.oliveryasuna.commons.language.marker.Nullable;
 import com.oliveryasuna.commons.language.marker.Utility;
 
+import java.util.function.Function;
+
 @Utility
 public final class ObjectUtils {
+
+  // Static utility methods
+  //--------------------------------------------------
+
+  public static <T> T safeMap(final T object, final Function<T, ? extends T> mapper) {
+    if(object == null) return null;
+
+    return mapper.apply(object);
+  }
 
   public static boolean isInterface(@Nullable final Object object) {
     return (object != null && object.getClass().isInterface());
@@ -44,6 +55,9 @@ public final class ObjectUtils {
   public static boolean isSynthetic(@Nullable final Object object) {
     return (object != null && object.getClass().isSynthetic());
   }
+
+  // Constructors
+  //--------------------------------------------------
 
   private ObjectUtils() {
     super();
