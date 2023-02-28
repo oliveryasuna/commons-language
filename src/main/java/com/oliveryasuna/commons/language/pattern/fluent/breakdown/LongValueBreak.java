@@ -39,6 +39,10 @@ public final class LongValueBreak<T, F extends IFluentFactory<T, F>> extends Bre
     return this;
   }
 
+  public final F handleOnce(final LongConsumer action) {
+    return handle(action).back();
+  }
+
   public final long get() {
     return value;
   }

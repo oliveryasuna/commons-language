@@ -40,6 +40,10 @@ public final class ValueBreak<T, F extends IFluentFactory<T, F>, V> extends Brea
     return this;
   }
 
+  public final F handleOnce(final Consumer<V> action) {
+    return handle(action).back();
+  }
+
   public final V get() {
     return value;
   }

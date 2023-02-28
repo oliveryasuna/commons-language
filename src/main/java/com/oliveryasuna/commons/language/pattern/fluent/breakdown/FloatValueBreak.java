@@ -39,6 +39,10 @@ public final class FloatValueBreak<T, F extends IFluentFactory<T, F>> extends Br
     return this;
   }
 
+  public final F handleOnce(final FloatConsumer action) {
+    return handle(action).back();
+  }
+
   public final float get() {
     return value;
   }

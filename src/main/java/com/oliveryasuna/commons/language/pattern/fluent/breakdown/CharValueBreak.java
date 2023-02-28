@@ -39,6 +39,10 @@ public final class CharValueBreak<T, F extends IFluentFactory<T, F>> extends Bre
     return this;
   }
 
+  public final F handleOnce(final CharConsumer action) {
+    return handle(action).back();
+  }
+
   public final char get() {
     return value;
   }

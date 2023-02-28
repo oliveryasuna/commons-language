@@ -39,6 +39,10 @@ public final class ByteValueBreak<T, F extends IFluentFactory<T, F>> extends Bre
     return this;
   }
 
+  public final F handleOnce(final ByteConsumer action) {
+    return handle(action).back();
+  }
+
   public final byte get() {
     return value;
   }

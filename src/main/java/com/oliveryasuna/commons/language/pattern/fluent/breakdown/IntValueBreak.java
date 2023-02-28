@@ -39,6 +39,10 @@ public final class IntValueBreak<T, F extends IFluentFactory<T, F>> extends Brea
     return this;
   }
 
+  public final F handleOnce(final IntConsumer action) {
+    return handle(action).back();
+  }
+
   public final int get() {
     return value;
   }

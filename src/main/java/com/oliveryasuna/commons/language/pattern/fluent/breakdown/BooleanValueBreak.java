@@ -39,6 +39,10 @@ public final class BooleanValueBreak<T, F extends IFluentFactory<T, F>> extends 
     return this;
   }
 
+  public final F handleOnce(final BooleanConsumer action) {
+    return handle(action).back();
+  }
+
   public final boolean get() {
     return value;
   }

@@ -40,6 +40,10 @@ public final class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends B
     return this;
   }
 
+  public final F handleOnce(final DoubleConsumer action) {
+    return handle(action).back();
+  }
+
   public final double get() {
     return value;
   }

@@ -39,6 +39,10 @@ public final class ShortValueBreak<T, F extends IFluentFactory<T, F>> extends Br
     return this;
   }
 
+  public final F handleOnce(final ShortConsumer action) {
+    return handle(action).back();
+  }
+
   public final short get() {
     return value;
   }
