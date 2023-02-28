@@ -22,6 +22,7 @@ import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationExcep
 import com.oliveryasuna.commons.language.marker.Nullable;
 import com.oliveryasuna.commons.language.marker.Utility;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 @Utility
@@ -29,6 +30,12 @@ public final class ObjectUtils {
 
   // Static utility methods
   //--------------------------------------------------
+
+  public static <T> void ifNonNull(final T value, final Consumer<T> function) {
+    if(function == null) return;
+
+    if(value != null) function.accept(value);
+  }
 
   public static <T> T safeMap(final T object, final Function<T, ? extends T> mapper) {
     if(object == null) return null;
