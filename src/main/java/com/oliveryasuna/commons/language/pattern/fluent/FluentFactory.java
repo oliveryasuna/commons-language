@@ -20,7 +20,7 @@ package com.oliveryasuna.commons.language.pattern.fluent;
 
 import com.oliveryasuna.commons.language.condition.Arguments;
 
-public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentFactory<T, F> {
+public class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentFactory<T, F> {
 
   private final T object;
 
@@ -29,7 +29,7 @@ public abstract class FluentFactory<T, F extends FluentFactory<T, F>> implements
    *
    * @param object The object.
    */
-  protected FluentFactory(final T object) {
+  public FluentFactory(final T object) {
     super();
 
     this.object = Arguments.requireNotNull(object);
