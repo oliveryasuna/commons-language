@@ -55,4 +55,12 @@ public interface IFluentFactory<T, F extends IFluentFactory<T, F>> extends CastT
     return this_;
   }
 
+  default F completeGet(final Consumer<T> action) {
+    final F this_ = uncheckedThis();
+
+    if(action != null) action.accept(get());
+
+    return this_;
+  }
+
 }
