@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2023 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,53 +16,14 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.pattern;
+package com.oliveryasuna.commons.language.pattern.configurable;
 
-import com.oliveryasuna.commons.language.condition.Arguments;
-import com.oliveryasuna.commons.language.function.Action;
-
-import java.util.Arrays;
-
-/**
- * Represents a registration that can be removed.
- * <p>
- * Usually for listeners.
- *
- * @author Oliver Yasuna
- */
 @FunctionalInterface
-public interface Registration {
+public interface Configurable<CONFIG extends Configuration> {
 
-  /**
-   * Unregister whatever is registered.
-   */
-  void remove();
+  // Methods
+  //--------------------------------------------------
 
-  static Registration once(final Action action) {
-    Arguments.requireNotNull(action);
-
-    return (new Registration() {
-      private boolean removed = false;
-
-      @Override
-      public void remove() {
-        if(removed) {
-          return;
-        }
-
-        removed = true;
-
-        action.perform();
-      }
-    });
-  }
-
-  static Registration union(final Registration... registrations) {
-    Arguments.requireNotNull(registrations);
-    Arguments.requireNotContainsSame(registrations, null);
-
-    return (() -> Arrays.asList(registrations)
-        .forEach(Registration::remove));
-  }
+  boolean config(CONFIG config);
 
 }
