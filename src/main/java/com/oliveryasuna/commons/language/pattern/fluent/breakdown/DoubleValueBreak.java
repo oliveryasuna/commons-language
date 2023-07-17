@@ -22,9 +22,10 @@ package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 import com.oliveryasuna.commons.language.function.DoubleConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-public final class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+public class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-  private final double value;
+  // Constructors
+  //--------------------------------------------------
 
   public DoubleValueBreak(final F factory, final double value) {
     super(factory);
@@ -32,7 +33,12 @@ public final class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends B
     this.value = value;
   }
 
-  public final DoubleValueBreak<T, F> handle(final DoubleConsumer action) {
+  private final double value;
+
+  // Methods
+  //--------------------------------------------------
+
+  public DoubleValueBreak<T, F> handle(final DoubleConsumer action) {
     if(action != null) {
       action.accept(value);
     }
@@ -40,11 +46,18 @@ public final class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends B
     return this;
   }
 
-  public final F handleOnce(final DoubleConsumer action) {
+  public F handleOnce(final DoubleConsumer action) {
     return handle(action).back();
   }
 
-  public final double get() {
+  public double get() {
+    return getValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  public double getValue() {
     return value;
   }
 

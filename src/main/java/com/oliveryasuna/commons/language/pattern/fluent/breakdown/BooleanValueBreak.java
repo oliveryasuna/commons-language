@@ -21,9 +21,10 @@ package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 import com.oliveryasuna.commons.language.function.BooleanConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-public final class BooleanValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+public class BooleanValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-  private final boolean value;
+  // Constructors
+  //--------------------------------------------------
 
   public BooleanValueBreak(final F factory, final boolean value) {
     super(factory);
@@ -31,7 +32,15 @@ public final class BooleanValueBreak<T, F extends IFluentFactory<T, F>> extends 
     this.value = value;
   }
 
-  public final BooleanValueBreak<T, F> handle(final BooleanConsumer action) {
+  // Fields
+  //--------------------------------------------------
+
+  private final boolean value;
+
+  // Methods
+  //--------------------------------------------------
+
+  public BooleanValueBreak<T, F> handle(final BooleanConsumer action) {
     if(action != null) {
       action.accept(value);
     }
@@ -39,11 +48,18 @@ public final class BooleanValueBreak<T, F extends IFluentFactory<T, F>> extends 
     return this;
   }
 
-  public final F handleOnce(final BooleanConsumer action) {
+  public F handleOnce(final BooleanConsumer action) {
     return handle(action).back();
   }
 
-  public final boolean get() {
+  public boolean get() {
+    return isValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  public boolean isValue() {
     return value;
   }
 

@@ -22,9 +22,10 @@ import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
 import java.util.function.Consumer;
 
-public final class ValueBreak<T, F extends IFluentFactory<T, F>, V> extends Break<T, F> {
+public class ValueBreak<T, F extends IFluentFactory<T, F>, V> extends Break<T, F> {
 
-  private final V value;
+  // Constructors
+  //--------------------------------------------------
 
   public ValueBreak(final F factory, final V value) {
     super(factory);
@@ -32,7 +33,15 @@ public final class ValueBreak<T, F extends IFluentFactory<T, F>, V> extends Brea
     this.value = value;
   }
 
-  public final ValueBreak<T, F, V> handle(final Consumer<V> action) {
+  // Fields
+  //--------------------------------------------------
+
+  private final V value;
+
+  // Methods
+  //--------------------------------------------------
+
+  public ValueBreak<T, F, V> handle(final Consumer<V> action) {
     if(action != null) {
       action.accept(value);
     }
@@ -40,11 +49,18 @@ public final class ValueBreak<T, F extends IFluentFactory<T, F>, V> extends Brea
     return this;
   }
 
-  public final F handleOnce(final Consumer<V> action) {
+  public F handleOnce(final Consumer<V> action) {
     return handle(action).back();
   }
 
-  public final V get() {
+  public V get() {
+    return getValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  public V getValue() {
     return value;
   }
 

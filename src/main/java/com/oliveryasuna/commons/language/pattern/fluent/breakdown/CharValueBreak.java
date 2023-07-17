@@ -21,9 +21,10 @@ package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 import com.oliveryasuna.commons.language.function.CharConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-public final class CharValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+public class CharValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-  private final char value;
+  // Constructors
+  //--------------------------------------------------
 
   public CharValueBreak(final F factory, final char value) {
     super(factory);
@@ -31,7 +32,12 @@ public final class CharValueBreak<T, F extends IFluentFactory<T, F>> extends Bre
     this.value = value;
   }
 
-  public final CharValueBreak<T, F> handle(final CharConsumer action) {
+  // Fields
+  //--------------------------------------------------
+
+  private final char value;
+
+  public CharValueBreak<T, F> handle(final CharConsumer action) {
     if(action != null) {
       action.accept(value);
     }
@@ -39,11 +45,18 @@ public final class CharValueBreak<T, F extends IFluentFactory<T, F>> extends Bre
     return this;
   }
 
-  public final F handleOnce(final CharConsumer action) {
+  public F handleOnce(final CharConsumer action) {
     return handle(action).back();
   }
 
-  public final char get() {
+  public char get() {
+    return getValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  public char getValue() {
     return value;
   }
 

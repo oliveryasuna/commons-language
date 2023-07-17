@@ -21,9 +21,10 @@ package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 import com.oliveryasuna.commons.language.function.LongConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-public final class LongValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+public class LongValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-  private final long value;
+  // Constructors
+  //--------------------------------------------------
 
   public LongValueBreak(final F factory, final long value) {
     super(factory);
@@ -31,7 +32,15 @@ public final class LongValueBreak<T, F extends IFluentFactory<T, F>> extends Bre
     this.value = value;
   }
 
-  public final LongValueBreak<T, F> handle(final LongConsumer action) {
+  // Fields
+  //--------------------------------------------------
+
+  private final long value;
+
+  // Methods
+  //--------------------------------------------------
+
+  public LongValueBreak<T, F> handle(final LongConsumer action) {
     if(action != null) {
       action.accept(value);
     }
@@ -39,11 +48,18 @@ public final class LongValueBreak<T, F extends IFluentFactory<T, F>> extends Bre
     return this;
   }
 
-  public final F handleOnce(final LongConsumer action) {
+  public F handleOnce(final LongConsumer action) {
     return handle(action).back();
   }
 
-  public final long get() {
+  public long get() {
+    return getValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  public long getValue() {
     return value;
   }
 

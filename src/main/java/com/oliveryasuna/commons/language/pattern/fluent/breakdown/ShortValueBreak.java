@@ -21,9 +21,10 @@ package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 import com.oliveryasuna.commons.language.function.ShortConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-public final class ShortValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+public class ShortValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-  private final short value;
+  // Constructors
+  //--------------------------------------------------
 
   public ShortValueBreak(final F factory, final short value) {
     super(factory);
@@ -31,7 +32,15 @@ public final class ShortValueBreak<T, F extends IFluentFactory<T, F>> extends Br
     this.value = value;
   }
 
-  public final ShortValueBreak<T, F> handle(final ShortConsumer action) {
+  // Fields
+  //--------------------------------------------------
+
+  private final short value;
+
+  // Methods
+  //--------------------------------------------------
+
+  public ShortValueBreak<T, F> handle(final ShortConsumer action) {
     if(action != null) {
       action.accept(value);
     }
@@ -39,11 +48,18 @@ public final class ShortValueBreak<T, F extends IFluentFactory<T, F>> extends Br
     return this;
   }
 
-  public final F handleOnce(final ShortConsumer action) {
+  public F handleOnce(final ShortConsumer action) {
     return handle(action).back();
   }
 
-  public final short get() {
+  public short get() {
+    return getValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  public short getValue() {
     return value;
   }
 

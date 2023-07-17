@@ -21,9 +21,10 @@ package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 import com.oliveryasuna.commons.language.function.IntConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-public final class IntValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+public class IntValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-  private final int value;
+  // Constructors
+  //--------------------------------------------------
 
   public IntValueBreak(final F factory, final int value) {
     super(factory);
@@ -31,7 +32,15 @@ public final class IntValueBreak<T, F extends IFluentFactory<T, F>> extends Brea
     this.value = value;
   }
 
-  public final IntValueBreak<T, F> handle(final IntConsumer action) {
+  // Fields
+  //--------------------------------------------------
+
+  private final int value;
+
+  // Methods
+  //--------------------------------------------------
+
+  public IntValueBreak<T, F> handle(final IntConsumer action) {
     if(action != null) {
       action.accept(value);
     }
@@ -39,11 +48,18 @@ public final class IntValueBreak<T, F extends IFluentFactory<T, F>> extends Brea
     return this;
   }
 
-  public final F handleOnce(final IntConsumer action) {
+  public F handleOnce(final IntConsumer action) {
     return handle(action).back();
   }
 
-  public final int get() {
+  public int get() {
+    return getValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  public int getValue() {
     return value;
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2023 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -18,49 +18,46 @@
 
 package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-import com.oliveryasuna.commons.language.function.ByteConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-public class ByteValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+import java.util.function.Consumer;
+
+public class ArrayValueBreak<T, F extends IFluentFactory<T, F>, E> extends ValueBreak<T, F, E[]> {
 
   // Constructors
   //--------------------------------------------------
 
-  public ByteValueBreak(final F factory, final byte value) {
-    super(factory);
-
-    this.value = value;
+  public ArrayValueBreak(final F factory, final E[] value) {
+    super(factory, value);
   }
-
-  // Fields
-  //--------------------------------------------------
-
-  private final byte value;
 
   // Methods
   //--------------------------------------------------
 
-  public ByteValueBreak<T, F> handle(final ByteConsumer action) {
+  public ArrayValueBreak<T, F, E> handle(final int index, final Consumer<E> action) {
     if(action != null) {
-      action.accept(value);
+      action.accept(getValue()[index]);
     }
 
     return this;
   }
 
-  public F handleOnce(final ByteConsumer action) {
-    return handle(action).back();
+  public F handleOnce(final int index, final Consumer<E> action) {
+    return handle(index, action).back();
   }
 
-  public byte get() {
-    return getValue();
+  public E get(final int index) {
+    return getValue()[index];
   }
 
-  // Getters/setters
-  //--------------------------------------------------
+  public ArrayValueBreak<T, F, E> set(final int index, final E value) {
+    getValue()[index] = value;
 
-  public byte getValue() {
-    return value;
+    return this;
+  }
+
+  public F setOnce(final int index, final E value) {
+    return set(index, value).back();
   }
 
 }
