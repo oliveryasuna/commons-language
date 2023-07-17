@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface ThrowableSupplier<T> {
 
+  // Methods
+  //--------------------------------------------------
+
   T get() throws Exception;
 
 }

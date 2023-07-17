@@ -24,7 +24,10 @@ import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationExcep
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public final class ConsumerUtls {
+public final class ConsumerUtils {
+
+  // Static methods
+  //--------------------------------------------------
 
   public static <T> Consumer<T> andThen(final Consumer<T> consumer, final Consumer<T>... others) {
     Arguments.requireNotNull(consumer, "consumer");
@@ -79,10 +82,13 @@ public final class ConsumerUtls {
     });
   }
 
+  // Constructors
+  //--------------------------------------------------
+
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.
    */
-  private ConsumerUtls() {
+  private ConsumerUtils() {
     super();
 
     throw new UnsupportedInstantiationException();

@@ -19,6 +19,7 @@
 package com.oliveryasuna.commons.language.pattern;
 
 import com.oliveryasuna.commons.language.condition.Arguments;
+import com.oliveryasuna.commons.language.function.Action;
 
 import java.util.Arrays;
 
@@ -32,10 +33,27 @@ import java.util.Arrays;
 @FunctionalInterface
 public interface Registration {
 
-  /**
-   * Unregister whatever is registered.
-   */
-  void remove();
+  // Static methods
+  //--------------------------------------------------
+
+  static Registration once(final Action action) {
+    Arguments.requireNotNull(action);
+
+    return (new Registration() {
+      private boolean removed = false;
+
+      @Override
+      public void remove() {
+        if(removed) {
+          return;
+        }
+
+        removed = true;
+
+        action.perform();
+      }
+    });
+  }
 
   static Registration union(final Registration... registrations) {
     Arguments.requireNotNull(registrations);
@@ -44,5 +62,13 @@ public interface Registration {
     return (() -> Arrays.asList(registrations)
         .forEach(Registration::remove));
   }
+
+  // Methods
+  //--------------------------------------------------
+
+  /**
+   * Unregister whatever is registered.
+   */
+  void remove();
 
 }

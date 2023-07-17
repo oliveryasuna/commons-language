@@ -20,6 +20,9 @@ package com.oliveryasuna.commons.language.pattern.decorator;
 
 public interface Decorator {
 
+  // Methods
+  //--------------------------------------------------
+
   @Override
   boolean equals(Object other);
 

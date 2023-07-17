@@ -31,6 +31,9 @@ import java.util.Optional;
  */
 public interface Registry<K> {
 
+  // Methods
+  //--------------------------------------------------
+
   /**
    * Registers a new entry.
    *

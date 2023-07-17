@@ -28,6 +28,9 @@ import com.oliveryasuna.commons.language.condition.Arguments;
 @FunctionalInterface
 public interface ByteConsumer {
 
+  // Methods
+  //--------------------------------------------------
+
   /**
    * Performs the operation.
    */

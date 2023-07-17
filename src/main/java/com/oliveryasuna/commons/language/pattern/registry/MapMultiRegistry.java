@@ -34,6 +34,9 @@ import java.util.function.Supplier;
  */
 public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiRegistry<K> {
 
+  // Constructors
+  //--------------------------------------------------
+
   /**
    * Creates a new instance with a specific {@link Map} type and base {@link Collection} for values.
    *
@@ -48,18 +51,24 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
     this.valuesSupplier = Arguments.requireNotNull(valuesSupplier, "valuesSupplier");
   }
 
+  // Fields
+  //--------------------------------------------------
+
   /**
    * The underlying structure that stores the registrations.
    */
-  protected final Map<K, V> registrations;
+  private final Map<K, V> registrations;
 
   /**
    * Supplies an empty {@link Collection}.
    */
-  protected final Supplier<V> valuesSupplier;
+  private final Supplier<V> valuesSupplier;
 
   @Override
   public Registration register(final K key, final Object value) {
+    final Map<K, V> registrations = getRegistrations();
+    final Supplier<V> valuesSupplier = getValuesSupplier();
+
     registrations.putIfAbsent(key, valuesSupplier.get());
 
     registrations.get(key).add(value);
@@ -78,7 +87,11 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
 
   @Override
   public void unregister(final K key, final Object value) {
-    if(!registrations.containsKey(key)) return;
+    final Map<K, V> registrations = getRegistrations();
+
+    if(!registrations.containsKey(key)) {
+      return;
+    }
 
     for(final Iterator<Object> iter = registrations.get(key).iterator(); iter.hasNext(); ) {
       if(value.equals(iter.next())) {
@@ -91,7 +104,11 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
 
   @Override
   public int unregisterAll(final K key, final Object value) {
-    if(!registrations.containsKey(key)) return 0;
+    final Map<K, V> registrations = getRegistrations();
+
+    if(!registrations.containsKey(key)) {
+      return 0;
+    }
 
     int count = 0;
 
@@ -108,21 +125,34 @@ public class MapMultiRegistry<K, V extends Collection<Object>> implements MultiR
 
   @Override
   public Iterator<Object> forKey(final K key) {
-    return registrations.getOrDefault(key, valuesSupplier.get()).iterator();
+    return getRegistrations().getOrDefault(key, getValuesSupplier().get()).iterator();
   }
 
   @Override
   public boolean contains(final K key) {
-    return registrations.containsKey(key);
+    return getRegistrations().containsKey(key);
   }
 
   @Override
   public int count(final K key) {
+    final Map<K, V> registrations = getRegistrations();
+
     if(registrations.containsKey(key)) {
       return registrations.get(key).size();
     } else {
       return 0;
     }
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected Map<K, V> getRegistrations() {
+    return registrations;
+  }
+
+  protected Supplier<V> getValuesSupplier() {
+    return valuesSupplier;
   }
 
 }

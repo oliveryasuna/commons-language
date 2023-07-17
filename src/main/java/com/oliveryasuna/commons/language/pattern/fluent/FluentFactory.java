@@ -22,7 +22,8 @@ import com.oliveryasuna.commons.language.condition.Arguments;
 
 public class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentFactory<T, F> {
 
-  private final T object;
+  // Constructors
+  //--------------------------------------------------
 
   /**
    * Implementations will either pass an existing object or create a new instance.
@@ -35,8 +36,20 @@ public class FluentFactory<T, F extends FluentFactory<T, F>> implements IFluentF
     this.object = Arguments.requireNotNull(object);
   }
 
+  // Fields
+  //--------------------------------------------------
+
+  private final T object;
+
   @Override
-  public final T get() {
+  public T get() {
+    return getObject();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected T getObject() {
     return object;
   }
 

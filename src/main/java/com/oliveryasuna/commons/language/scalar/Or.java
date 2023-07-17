@@ -46,18 +46,25 @@ public class Or implements Scalar<Boolean> {
 
   private final Scalar<Boolean>[] scalars;
 
-  // Scalar methods
+  // Methods
   //--------------------------------------------------
 
   @Override
   public Boolean value() throws Exception {
-    for(final Scalar<Boolean> scalar : scalars) {
+    for(final Scalar<Boolean> scalar : getScalars()) {
       if(scalar.value()) {
         return true;
       }
     }
 
     return false;
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected Scalar<Boolean>[] getScalars() {
+    return scalars;
   }
 
 }

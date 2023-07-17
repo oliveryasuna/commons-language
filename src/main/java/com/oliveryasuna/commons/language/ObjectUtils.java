@@ -24,11 +24,12 @@ import com.oliveryasuna.commons.language.marker.Utility;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 @Utility
 public final class ObjectUtils {
 
-  // Static utility methods
+  // Static methods
   //--------------------------------------------------
 
   public static <T> void ifNonNull(final T value, final Consumer<T> function) {
@@ -41,6 +42,14 @@ public final class ObjectUtils {
     if(object == null) return null;
 
     return mapper.apply(object);
+  }
+
+  public static <T> T defaultIfThrow(final Supplier<T> valueSupplier, final T defaultValue) {
+    try {
+      return valueSupplier.get();
+    } catch(final Exception ignored) {
+      return defaultValue;
+    }
   }
 
   public static boolean isInterface(@Nullable final Object object) {

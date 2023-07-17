@@ -28,6 +28,9 @@ import com.oliveryasuna.commons.language.condition.Arguments;
 @FunctionalInterface
 public interface IntConsumer extends java.util.function.IntConsumer {
 
+  // Methods
+  //--------------------------------------------------
+
   /**
    * Performs the operation.
    */

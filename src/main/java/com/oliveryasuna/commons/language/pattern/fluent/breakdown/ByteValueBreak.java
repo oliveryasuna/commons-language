@@ -21,9 +21,10 @@ package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 import com.oliveryasuna.commons.language.function.ByteConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-public final class ByteValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+public class ByteValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-  private final byte value;
+  // Constructors
+  //--------------------------------------------------
 
   public ByteValueBreak(final F factory, final byte value) {
     super(factory);
@@ -31,7 +32,15 @@ public final class ByteValueBreak<T, F extends IFluentFactory<T, F>> extends Bre
     this.value = value;
   }
 
-  public final ByteValueBreak<T, F> handle(final ByteConsumer action) {
+  // Fields
+  //--------------------------------------------------
+
+  private final byte value;
+
+  // Methods
+  //--------------------------------------------------
+
+  public ByteValueBreak<T, F> handle(final ByteConsumer action) {
     if(action != null) {
       action.accept(value);
     }
@@ -39,7 +48,18 @@ public final class ByteValueBreak<T, F extends IFluentFactory<T, F>> extends Bre
     return this;
   }
 
-  public final byte get() {
+  public F handleOnce(final ByteConsumer action) {
+    return handle(action).back();
+  }
+
+  public byte get() {
+    return getValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected byte getValue() {
     return value;
   }
 

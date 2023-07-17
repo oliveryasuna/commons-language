@@ -25,6 +25,9 @@ package com.oliveryasuna.commons.language.pattern;
  */
 public interface CastThis<T extends CastThis<T>> {
 
+  // Methods
+  //--------------------------------------------------
+
   /**
    * Casts {@code this} to {@code T}.
    *

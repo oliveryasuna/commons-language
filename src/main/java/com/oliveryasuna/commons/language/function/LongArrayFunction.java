@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface LongArrayFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(long[] argument);
 
   // TODO.

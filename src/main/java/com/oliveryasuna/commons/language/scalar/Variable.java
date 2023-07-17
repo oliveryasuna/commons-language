@@ -31,11 +31,12 @@ public class Variable<T> extends AbstractScalar<T> {
     this(null);
   }
 
-  // Getters/setters
+  // Methods
   //--------------------------------------------------
 
+  @Override
   public void setValue(final T value) {
-    this.value = value;
+    super.setValue(value);
   }
 
 }

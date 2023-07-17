@@ -25,10 +25,13 @@ import com.oliveryasuna.commons.language.marker.Singleton;
 @Immutable
 public class False implements Scalar<Boolean> {
 
-  // Singleton pattern
+  // Static fields
   //--------------------------------------------------
 
   private static False INSTANCE;
+
+  // Static methods
+  //--------------------------------------------------
 
   public static False getInstance() {
     if(INSTANCE == null) {
@@ -45,7 +48,7 @@ public class False implements Scalar<Boolean> {
     super();
   }
 
-  // Scalar methods
+  // Methods
   //--------------------------------------------------
 
   @Override

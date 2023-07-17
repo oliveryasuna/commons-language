@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface ByteArrayFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(byte[] argument);
 
   // TODO.

@@ -35,6 +35,9 @@ import java.util.function.Supplier;
  */
 public class MapRegistry<K> implements Registry<K> {
 
+  // Constructors
+  //--------------------------------------------------
+
   /**
    * Creates a new instance with a specific {@link Map} type.
    *
@@ -55,14 +58,24 @@ public class MapRegistry<K> implements Registry<K> {
     this(HashMap::new);
   }
 
+  // Fields
+  //--------------------------------------------------
+
   /**
    * The underlying structure that stores the registrations.
    */
-  protected final Map<K, Object> registrations;
+  private final Map<K, Object> registrations;
+
+  // Methods
+  //--------------------------------------------------
 
   @Override
   public Registration register(final K key, final Object value) {
-    if(registrations.containsKey(key)) throw new IllegalArgumentException("Already registered.");
+    final Map<K, Object> registrations = getRegistrations();
+
+    if(registrations.containsKey(key)) {
+      throw new IllegalArgumentException("Already registered.");
+    }
 
     registrations.put(key, value);
 
@@ -76,7 +89,11 @@ public class MapRegistry<K> implements Registry<K> {
 
   @Override
   public Object unregister(final K key) {
-    if(!registrations.containsKey(key)) throw new IllegalArgumentException("Not registered.");
+    final Map<K, Object> registrations = getRegistrations();
+
+    if(!registrations.containsKey(key)) {
+      throw new IllegalArgumentException("Not registered.");
+    }
 
     return registrations.remove(key);
   }
@@ -89,6 +106,8 @@ public class MapRegistry<K> implements Registry<K> {
 
   @Override
   public Optional<Object> forKey(final K key) {
+    final Map<K, Object> registrations = getRegistrations();
+
     if(registrations.containsKey(key)) {
       return Optional.of(registrations.get(key));
     } else {
@@ -98,7 +117,14 @@ public class MapRegistry<K> implements Registry<K> {
 
   @Override
   public boolean contains(final K key) {
-    return registrations.containsKey(key);
+    return getRegistrations().containsKey(key);
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected Map<K, Object> getRegistrations() {
+    return registrations;
   }
 
 }

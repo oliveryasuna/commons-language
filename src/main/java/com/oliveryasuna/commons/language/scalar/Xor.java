@@ -46,11 +46,13 @@ public class Xor implements Scalar<Boolean> {
 
   private final Scalar<Boolean>[] scalars;
 
-  // Scalar methods
+  // Methods
   //--------------------------------------------------
 
   @Override
   public Boolean value() throws Exception {
+    final Scalar<Boolean>[] scalars = getScalars();
+
     boolean result = scalars[0].value();
 
     for(int i = 1; i < scalars.length; i++) {
@@ -60,6 +62,13 @@ public class Xor implements Scalar<Boolean> {
     }
 
     return result;
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected Scalar<Boolean>[] getScalars() {
+    return scalars;
   }
 
 }

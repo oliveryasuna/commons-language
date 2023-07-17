@@ -32,14 +32,25 @@ public abstract class AbstractScalar<T> implements Scalar<T> {
   // Fields
   //--------------------------------------------------
 
-  protected T value;
+  private T value;
 
-  // Scalar methods
+  // Methods
   //--------------------------------------------------
 
   @Override
   public T value() throws Exception {
+    return getValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected T getValue() {
     return value;
+  }
+
+  protected void setValue(final T value) {
+    this.value = value;
   }
 
 }

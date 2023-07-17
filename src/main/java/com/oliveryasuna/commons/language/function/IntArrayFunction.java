@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface IntArrayFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(int[] argument);
 
   // TODO.

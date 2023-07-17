@@ -23,6 +23,9 @@ import java.util.stream.Stream;
 @FunctionalInterface
 public interface Streamable<T> {
 
+  // Methods
+  //--------------------------------------------------
+
   Stream<T> stream() throws IllegalStateException;
 
 }

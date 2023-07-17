@@ -25,6 +25,9 @@ import java.util.function.BiFunction;
 @FunctionalInterface
 public interface IterationBiFunction<T, R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(T element, int index);
 
   default <U> IterationBiFunction<T, U> andThen(final IterationBiFunction<? super R, ? extends U> after) {

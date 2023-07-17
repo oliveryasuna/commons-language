@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface ShortArrayFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(short[] argument);
 
   // TODO.

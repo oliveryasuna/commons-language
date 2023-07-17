@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.scalar;
 @FunctionalInterface
 public interface Scalar<T> {
 
+  // Methods
+  //--------------------------------------------------
+
   T value() throws Exception;
 
 }

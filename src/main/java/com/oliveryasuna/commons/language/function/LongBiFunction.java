@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface LongBiFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(long argument1, long argument2);
 
   // TODO.

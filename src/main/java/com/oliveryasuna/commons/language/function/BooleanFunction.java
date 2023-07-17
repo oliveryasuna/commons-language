@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface BooleanFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(boolean argument);
 
   // TODO.

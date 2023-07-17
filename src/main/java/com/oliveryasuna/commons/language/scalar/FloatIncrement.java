@@ -27,7 +27,7 @@ public class FloatIncrement extends AbstractScalar<Float> {
     super(value);
   }
 
-  // Scalar methods
+  // Methods
   //--------------------------------------------------
 
   @Override

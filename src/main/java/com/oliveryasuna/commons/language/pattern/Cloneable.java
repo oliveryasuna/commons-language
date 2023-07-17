@@ -26,6 +26,9 @@ package com.oliveryasuna.commons.language.pattern;
 @FunctionalInterface
 public interface Cloneable<T> extends java.lang.Cloneable {
 
+  // Methods
+  //--------------------------------------------------
+
   /**
    * As specified by {@link Object#clone()}.
    */

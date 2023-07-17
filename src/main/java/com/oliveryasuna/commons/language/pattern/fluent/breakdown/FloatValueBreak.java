@@ -21,9 +21,10 @@ package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 import com.oliveryasuna.commons.language.function.FloatConsumer;
 import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
 
-public final class FloatValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
+public class FloatValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F> {
 
-  private final float value;
+  // Constructors
+  //--------------------------------------------------
 
   public FloatValueBreak(final F factory, final float value) {
     super(factory);
@@ -31,7 +32,15 @@ public final class FloatValueBreak<T, F extends IFluentFactory<T, F>> extends Br
     this.value = value;
   }
 
-  public final FloatValueBreak<T, F> handle(final FloatConsumer action) {
+  // Fields
+  //--------------------------------------------------
+
+  private final float value;
+
+  // Methods
+  //--------------------------------------------------
+
+  public FloatValueBreak<T, F> handle(final FloatConsumer action) {
     if(action != null) {
       action.accept(value);
     }
@@ -39,7 +48,18 @@ public final class FloatValueBreak<T, F extends IFluentFactory<T, F>> extends Br
     return this;
   }
 
-  public final float get() {
+  public F handleOnce(final FloatConsumer action) {
+    return handle(action).back();
+  }
+
+  public float get() {
+    return getValue();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected float getValue() {
     return value;
   }
 

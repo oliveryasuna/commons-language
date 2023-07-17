@@ -27,7 +27,7 @@ public class DoubleIncrement extends AbstractScalar<Double> {
     super(value);
   }
 
-  // Scalar methods
+  // Methods
   //--------------------------------------------------
 
   @Override

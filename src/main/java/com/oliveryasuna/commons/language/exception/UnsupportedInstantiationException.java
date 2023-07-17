@@ -27,6 +27,9 @@ package com.oliveryasuna.commons.language.exception;
  */
 public class UnsupportedInstantiationException extends UnsupportedOperationException {
 
+  // Constructors
+  //--------------------------------------------------
+
   public UnsupportedInstantiationException() {
     super();
   }

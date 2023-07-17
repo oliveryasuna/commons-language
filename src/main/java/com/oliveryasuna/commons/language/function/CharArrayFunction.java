@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface CharArrayFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(char[] argument);
 
   // TODO.

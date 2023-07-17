@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface FloatArrayFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(float[] argument);
 
   // TODO.

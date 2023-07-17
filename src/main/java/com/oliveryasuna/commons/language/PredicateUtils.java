@@ -20,6 +20,7 @@ package com.oliveryasuna.commons.language;
 
 import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
+import com.oliveryasuna.commons.language.marker.Utility;
 
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
@@ -29,7 +30,11 @@ import java.util.function.Predicate;
  *
  * @author Oliver Yasuna
  */
+@Utility
 public final class PredicateUtils {
+
+  // Static methods
+  //--------------------------------------------------
 
   public static boolean alwaysTrue(final Object ignored) {
     return true;
@@ -190,6 +195,9 @@ public final class PredicateUtils {
       return false;
     });
   }
+
+  // Constructors
+  //--------------------------------------------------
 
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.

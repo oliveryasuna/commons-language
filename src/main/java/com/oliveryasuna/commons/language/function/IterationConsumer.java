@@ -25,6 +25,9 @@ import java.util.function.BiConsumer;
 @FunctionalInterface
 public interface IterationConsumer<T> {
 
+  // Methods
+  //--------------------------------------------------
+
   void accept(T element, int index);
 
   default IterationConsumer<T> andThen(final IterationConsumer<? super T> after) {

@@ -35,6 +35,9 @@ import java.util.function.Predicate;
 @Utility
 public final class ArrayUtils {
 
+  // Static methods
+  //--------------------------------------------------
+
   /**
    * Checks if all elements of an array are equal.
    * <p>
@@ -292,6 +295,9 @@ public final class ArrayUtils {
         .map(element -> element != null ? element.clone() : null)
         .toArray($ -> matrix.clone());
   }
+
+  // Constructors
+  //--------------------------------------------------
 
   private ArrayUtils() {
     super();

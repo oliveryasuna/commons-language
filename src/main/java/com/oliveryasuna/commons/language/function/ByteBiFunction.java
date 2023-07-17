@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface ByteBiFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(byte argument1, byte argument2);
 
   // TODO.

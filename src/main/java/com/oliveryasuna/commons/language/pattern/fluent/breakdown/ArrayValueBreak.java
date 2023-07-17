@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2023 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,16 +16,48 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.commons.language.function;
+package com.oliveryasuna.commons.language.pattern.fluent.breakdown;
 
-@FunctionalInterface
-public interface DoubleArrayFunction<R> {
+import com.oliveryasuna.commons.language.pattern.fluent.IFluentFactory;
+
+import java.util.function.Consumer;
+
+public class ArrayValueBreak<T, F extends IFluentFactory<T, F>, E> extends ValueBreak<T, F, E[]> {
+
+  // Constructors
+  //--------------------------------------------------
+
+  public ArrayValueBreak(final F factory, final E[] value) {
+    super(factory, value);
+  }
 
   // Methods
   //--------------------------------------------------
 
-  R apply(double[] argument);
+  public ArrayValueBreak<T, F, E> handle(final int index, final Consumer<E> action) {
+    if(action != null) {
+      action.accept(getValue()[index]);
+    }
 
-  // TODO.
+    return this;
+  }
+
+  public F handleOnce(final int index, final Consumer<E> action) {
+    return handle(index, action).back();
+  }
+
+  public E get(final int index) {
+    return getValue()[index];
+  }
+
+  public ArrayValueBreak<T, F, E> set(final int index, final E value) {
+    getValue()[index] = value;
+
+    return this;
+  }
+
+  public F setOnce(final int index, final E value) {
+    return set(index, value).back();
+  }
 
 }

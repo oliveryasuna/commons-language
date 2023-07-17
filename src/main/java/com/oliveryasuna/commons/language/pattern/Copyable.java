@@ -26,6 +26,9 @@ package com.oliveryasuna.commons.language.pattern;
 @FunctionalInterface
 public interface Copyable {
 
+  // Methods
+  //--------------------------------------------------
+
   Copyable copy() throws CloneNotSupportedException;
 
 }

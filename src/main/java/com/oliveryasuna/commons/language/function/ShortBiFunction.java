@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface ShortBiFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(short argument1, short argument2);
 
   // TODO.
