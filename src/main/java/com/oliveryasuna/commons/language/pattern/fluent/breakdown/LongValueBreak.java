@@ -59,7 +59,7 @@ public class LongValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, 
   // Getters/setters
   //--------------------------------------------------
 
-  public long getValue() {
+  protected long getValue() {
     return value;
   }
 

@@ -56,7 +56,7 @@ public class CharValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, 
   // Getters/setters
   //--------------------------------------------------
 
-  public char getValue() {
+  protected char getValue() {
     return value;
   }
 

@@ -27,7 +27,7 @@ public class IntIncrement extends AbstractScalar<Integer> {
     super(value);
   }
 
-  // Scalar methods
+  // Methods
   //--------------------------------------------------
 
   @Override

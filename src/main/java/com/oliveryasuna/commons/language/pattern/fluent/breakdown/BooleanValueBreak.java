@@ -59,7 +59,7 @@ public class BooleanValueBreak<T, F extends IFluentFactory<T, F>> extends Break<
   // Getters/setters
   //--------------------------------------------------
 
-  public boolean isValue() {
+  protected boolean isValue() {
     return value;
   }
 

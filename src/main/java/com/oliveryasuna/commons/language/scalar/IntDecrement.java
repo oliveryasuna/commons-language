@@ -27,7 +27,7 @@ public class IntDecrement extends AbstractScalar<Integer> {
     super(value);
   }
 
-  // Scalar methods
+  // Methods
   //--------------------------------------------------
 
   @Override

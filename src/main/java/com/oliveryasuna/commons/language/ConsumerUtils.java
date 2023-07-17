@@ -26,6 +26,9 @@ import java.util.function.Consumer;
 
 public final class ConsumerUtils {
 
+  // Static methods
+  //--------------------------------------------------
+
   public static <T> Consumer<T> andThen(final Consumer<T> consumer, final Consumer<T>... others) {
     Arguments.requireNotNull(consumer, "consumer");
     Arguments.requireNotContainsSame(others, null, "others");
@@ -78,6 +81,9 @@ public final class ConsumerUtils {
       ArrayUtils.forEach(consumers, consumer -> consumer.accept(u));
     });
   }
+
+  // Constructors
+  //--------------------------------------------------
 
   /**
    * Default {@code private} constructor that throws a {@link UnsupportedInstantiationException} in case of reflection.

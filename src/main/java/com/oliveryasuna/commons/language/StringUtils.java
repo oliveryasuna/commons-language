@@ -26,7 +26,7 @@ import java.util.stream.IntStream;
 @Utility
 public final class StringUtils {
 
-  // Static utility methods
+  // Static methods
   //--------------------------------------------------
 
   public static String[] divide(final String string, final int length) {

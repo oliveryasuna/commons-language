@@ -33,10 +33,8 @@ import java.util.Arrays;
 @FunctionalInterface
 public interface Registration {
 
-  /**
-   * Unregister whatever is registered.
-   */
-  void remove();
+  // Static methods
+  //--------------------------------------------------
 
   static Registration once(final Action action) {
     Arguments.requireNotNull(action);
@@ -64,5 +62,13 @@ public interface Registration {
     return (() -> Arrays.asList(registrations)
         .forEach(Registration::remove));
   }
+
+  // Methods
+  //--------------------------------------------------
+
+  /**
+   * Unregister whatever is registered.
+   */
+  void remove();
 
 }

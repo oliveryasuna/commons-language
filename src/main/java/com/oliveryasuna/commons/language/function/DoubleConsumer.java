@@ -28,6 +28,9 @@ import com.oliveryasuna.commons.language.condition.Arguments;
 @FunctionalInterface
 public interface DoubleConsumer extends java.util.function.DoubleConsumer {
 
+  // Methods
+  //--------------------------------------------------
+
   /**
    * Performs the operation.
    */

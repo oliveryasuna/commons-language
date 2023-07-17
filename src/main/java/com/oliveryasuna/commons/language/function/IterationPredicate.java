@@ -25,6 +25,9 @@ import java.util.function.BiPredicate;
 @FunctionalInterface
 public interface IterationPredicate<T> {
 
+  // Methods
+  //--------------------------------------------------
+
   boolean test(T element, int index);
 
   default IterationPredicate<T> and(final IterationPredicate<? super T> other) {

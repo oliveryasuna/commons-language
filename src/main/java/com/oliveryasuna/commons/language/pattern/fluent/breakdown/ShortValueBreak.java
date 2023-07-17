@@ -59,7 +59,7 @@ public class ShortValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T,
   // Getters/setters
   //--------------------------------------------------
 
-  public short getValue() {
+  protected short getValue() {
     return value;
   }
 

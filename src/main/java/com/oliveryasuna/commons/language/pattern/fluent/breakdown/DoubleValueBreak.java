@@ -57,7 +57,7 @@ public class DoubleValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T
   // Getters/setters
   //--------------------------------------------------
 
-  public double getValue() {
+  protected double getValue() {
     return value;
   }
 

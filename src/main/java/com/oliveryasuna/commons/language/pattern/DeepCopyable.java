@@ -27,6 +27,9 @@ package com.oliveryasuna.commons.language.pattern;
 @FunctionalInterface
 public interface DeepCopyable {
 
+  // Methods
+  //--------------------------------------------------
+
   DeepCopyable deepCopy() throws CloneNotSupportedException;
 
 }

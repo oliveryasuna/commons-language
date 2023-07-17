@@ -29,6 +29,9 @@ import com.oliveryasuna.commons.language.marker.Utility;
 @Utility
 public final class BooleanUtils {
 
+  // Static methods
+  //--------------------------------------------------
+
   /**
    * Gets whether a {@code boolean} is {@code true}.
    *
@@ -50,6 +53,9 @@ public final class BooleanUtils {
   public static boolean isFalse(final boolean bool) {
     return !bool;
   }
+
+  // Constructors
+  //--------------------------------------------------
 
   private BooleanUtils() {
     super();

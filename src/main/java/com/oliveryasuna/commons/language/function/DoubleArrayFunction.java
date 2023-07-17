@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface DoubleArrayFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(double[] argument);
 
   // TODO.

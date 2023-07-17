@@ -44,7 +44,7 @@ public abstract class Break<T, F extends IFluentFactory<T, F>> {
   // Getters/setters
   //--------------------------------------------------
 
-  public F getFactory() {
+  protected F getFactory() {
     return factory;
   }
 

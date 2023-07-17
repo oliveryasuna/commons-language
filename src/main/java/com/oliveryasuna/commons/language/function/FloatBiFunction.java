@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface FloatBiFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(float argument1, float argument2);
 
   // TODO.

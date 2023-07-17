@@ -29,7 +29,7 @@ import java.util.function.Supplier;
 @Utility
 public final class ObjectUtils {
 
-  // Static utility methods
+  // Static methods
   //--------------------------------------------------
 
   public static <T> void ifNonNull(final T value, final Consumer<T> function) {

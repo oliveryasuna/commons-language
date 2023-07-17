@@ -25,6 +25,9 @@ import java.util.function.Consumer;
 @FunctionalInterface
 public interface IFluentFactory<T, F extends IFluentFactory<T, F>> extends CastThis<F> {
 
+  // Methods
+  //--------------------------------------------------
+
   T get();
 
   default F condition(final boolean value, final Consumer<F> trueAction) {

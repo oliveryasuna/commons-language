@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface DoubleBiFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(double argument1, double argument2);
 
   // TODO.

@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.function;
 @FunctionalInterface
 public interface CharBiFunction<R> {
 
+  // Methods
+  //--------------------------------------------------
+
   R apply(char argument1, char argument2);
 
   // TODO.

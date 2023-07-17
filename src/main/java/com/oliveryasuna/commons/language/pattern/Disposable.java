@@ -21,6 +21,9 @@ package com.oliveryasuna.commons.language.pattern;
 @FunctionalInterface
 public interface Disposable {
 
+  // Methods
+  //--------------------------------------------------
+
   void dispose();
 
 }

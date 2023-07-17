@@ -31,6 +31,9 @@ import java.util.Iterator;
  */
 public interface MultiRegistry<K> {
 
+  // Methods
+  //--------------------------------------------------
+
   /**
    * Registers a new entry.
    *

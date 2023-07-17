@@ -59,7 +59,7 @@ public class FloatValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T,
   // Getters/setters
   //--------------------------------------------------
 
-  public float getValue() {
+  protected float getValue() {
     return value;
   }
 

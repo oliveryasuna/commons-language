@@ -25,6 +25,9 @@ package com.oliveryasuna.commons.language.exception;
  */
 public class IllegalCloneException extends IllegalStateException {
 
+  // Constructors
+  //--------------------------------------------------
+
   public IllegalCloneException() {
     super();
   }

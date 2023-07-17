@@ -21,6 +21,7 @@ package com.oliveryasuna.commons.language;
 import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 import com.oliveryasuna.commons.language.marker.Nullable;
+import com.oliveryasuna.commons.language.marker.Utility;
 
 import java.util.*;
 import java.util.stream.Collector;
@@ -32,7 +33,11 @@ import java.util.stream.StreamSupport;
  *
  * @author Oliver Yasuna
  */
+@Utility
 public final class StreamUtils {
+
+  // Static methods
+  //--------------------------------------------------
 
   public static <T> Stream<T> ofIterator(final Iterator<T> iterator) {
     Arguments.requireNotNull(iterator, "iterator");

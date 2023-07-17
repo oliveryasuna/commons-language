@@ -40,12 +40,19 @@ public class Not implements Scalar<Boolean> {
 
   protected final Scalar<Boolean> scalar;
 
-  // Scalar methods
+  // Methods
   //--------------------------------------------------
 
   @Override
   public Boolean value() throws Exception {
-    return !scalar.value();
+    return !getScalar().value();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected Scalar<Boolean> getScalar() {
+    return scalar;
   }
 
 }

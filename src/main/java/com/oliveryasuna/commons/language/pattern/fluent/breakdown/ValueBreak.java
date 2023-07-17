@@ -60,7 +60,7 @@ public class ValueBreak<T, F extends IFluentFactory<T, F>, V> extends Break<T, F
   // Getters/setters
   //--------------------------------------------------
 
-  public V getValue() {
+  protected V getValue() {
     return value;
   }
 

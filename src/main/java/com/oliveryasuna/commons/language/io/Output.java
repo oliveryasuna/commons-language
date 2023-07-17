@@ -23,6 +23,9 @@ import java.io.OutputStream;
 @FunctionalInterface
 public interface Output {
 
+  // Methods
+  //--------------------------------------------------
+
   OutputStream out() throws Exception;
 
 }

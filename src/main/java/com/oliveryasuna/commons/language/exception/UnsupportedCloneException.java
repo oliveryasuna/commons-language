@@ -25,6 +25,9 @@ package com.oliveryasuna.commons.language.exception;
  */
 public class UnsupportedCloneException extends UnsupportedOperationException {
 
+  // Constructors
+  //--------------------------------------------------
+
   public UnsupportedCloneException() {
     super();
   }

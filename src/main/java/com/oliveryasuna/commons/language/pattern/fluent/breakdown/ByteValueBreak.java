@@ -59,7 +59,7 @@ public class ByteValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, 
   // Getters/setters
   //--------------------------------------------------
 
-  public byte getValue() {
+  protected byte getValue() {
     return value;
   }
 

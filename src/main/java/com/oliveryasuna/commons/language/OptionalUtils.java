@@ -27,7 +27,7 @@ import java.util.Optional;
 @Utility
 public final class OptionalUtils {
 
-  // Static utility methods
+  // Static methods
   //--------------------------------------------------
 
   public static <T> Optional<T> ofThrowable(final ThrowableSupplier<T> supplier) {

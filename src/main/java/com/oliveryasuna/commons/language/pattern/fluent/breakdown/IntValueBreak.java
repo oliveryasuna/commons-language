@@ -59,7 +59,7 @@ public class IntValueBreak<T, F extends IFluentFactory<T, F>> extends Break<T, F
   // Getters/setters
   //--------------------------------------------------
 
-  public int getValue() {
+  protected int getValue() {
     return value;
   }
 

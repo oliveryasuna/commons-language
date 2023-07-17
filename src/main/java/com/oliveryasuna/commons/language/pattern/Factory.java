@@ -29,6 +29,9 @@ package com.oliveryasuna.commons.language.pattern;
 @FunctionalInterface
 public interface Factory<T, P> {
 
+  // Methods
+  //--------------------------------------------------
+
   /**
    * Constructs the object.
    *

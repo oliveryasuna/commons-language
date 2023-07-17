@@ -30,8 +30,11 @@ import java.util.function.Supplier;
 
 public final class Arguments {
 
-  // requireTrue
+  // Static methods
   //--------------------------------------------------
+
+  // requireTrue
+  //
 
   public static boolean requireTrue(final boolean condition, final BooleanFunction<String> messageSupplier) {
     return requireTrue(condition, () -> messageSupplier.apply(condition));
@@ -50,7 +53,7 @@ public final class Arguments {
   }
 
   // requireFalse
-  //--------------------------------------------------
+  //
 
   public static boolean requireFalse(final boolean condition, final BooleanFunction<String> messageSupplier) {
     return requireFalse(condition, () -> messageSupplier.apply(condition));
@@ -69,7 +72,7 @@ public final class Arguments {
   }
 
   // requireSame
-  //--------------------------------------------------
+  //
 
   // boolean
 
@@ -234,7 +237,7 @@ public final class Arguments {
   }
 
   // requireNotSame
-  //--------------------------------------------------
+  //
 
   // boolean
 
@@ -399,7 +402,7 @@ public final class Arguments {
   }
 
   // requireEquals
-  //--------------------------------------------------
+  //
 
   public static <T> T requireEquals(final T argument, final Object expected, final BiFunction<T, Object, String> messageSupplier) {
     return requireEquals(argument, expected, () -> messageSupplier.apply(argument, expected));
@@ -418,7 +421,7 @@ public final class Arguments {
   }
 
   // requireNotEquals
-  //--------------------------------------------------
+  //
 
   public static <T> T requireNotEquals(final T argument, final Object expected, final BiFunction<T, Object, String> messageSupplier) {
     return requireNotEquals(argument, expected, () -> messageSupplier.apply(argument, expected));
@@ -437,7 +440,7 @@ public final class Arguments {
   }
 
   // requireNull
-  //--------------------------------------------------
+  //
 
   public static <T> T requireNull(final T argument, final Function<T, String> messageSupplier) {
     return requireNull(argument, () -> messageSupplier.apply(argument));
@@ -456,7 +459,7 @@ public final class Arguments {
   }
 
   // requireNotNull
-  //--------------------------------------------------
+  //
 
   public static <T> T requireNotNull(final T argument, final Function<T, String> messageSupplier) {
     return requireNotNull(argument, () -> messageSupplier.apply(argument));
@@ -475,7 +478,7 @@ public final class Arguments {
   }
 
   // requireGreater
-  //--------------------------------------------------
+  //
 
   // byte
 
@@ -624,12 +627,12 @@ public final class Arguments {
   // Comparator
 
   public static <T extends Comparable<T>, U extends T> T requireGreater(final T actual, final U less, final Comparator<T> comparator,
-      final BiFunction<T, U, String> messageSupplier) {
+                                                                        final BiFunction<T, U, String> messageSupplier) {
     return requireGreater(actual, less, comparator, () -> messageSupplier.apply(actual, less));
   }
 
   public static <T extends Comparable<T>, U extends T> T requireGreater(final T actual, final U less, final Comparator<T> comparator,
-      final Supplier<String> messageSupplier) {
+                                                                        final Supplier<String> messageSupplier) {
     return Conditions.requireGreater(actual, less, comparator, messageSupplier, IllegalArgumentException::new);
   }
 
@@ -660,7 +663,7 @@ public final class Arguments {
   }
 
   // requireLess
-  //--------------------------------------------------
+  //
 
   // byte
 
@@ -809,12 +812,12 @@ public final class Arguments {
   // Comparator
 
   public static <T extends Comparable<T>, U extends T> T requireLess(final T actual, final U greater, final Comparator<T> comparator,
-      final BiFunction<T, U, String> messageSupplier) {
+                                                                     final BiFunction<T, U, String> messageSupplier) {
     return requireLess(actual, greater, comparator, () -> messageSupplier.apply(actual, greater));
   }
 
   public static <T extends Comparable<T>, U extends T> T requireLess(final T actual, final U greater, final Comparator<T> comparator,
-      final Supplier<String> messageSupplier) {
+                                                                     final Supplier<String> messageSupplier) {
     return Conditions.requireLess(actual, greater, comparator, messageSupplier, IllegalArgumentException::new);
   }
 
@@ -845,7 +848,7 @@ public final class Arguments {
   }
 
   // requireGreaterOrSame
-  //--------------------------------------------------
+  //
 
   // byte
 
@@ -976,7 +979,7 @@ public final class Arguments {
   // Comparable
 
   public static <T extends Comparable<T>, U extends T> T requireGreaterOrSame(final T actual, final U lessOrSame,
-      final BiFunction<T, U, String> messageSupplier) {
+                                                                              final BiFunction<T, U, String> messageSupplier) {
     return requireGreaterOrSame(actual, lessOrSame, () -> messageSupplier.apply(actual, lessOrSame));
   }
 
@@ -995,17 +998,17 @@ public final class Arguments {
   // Comparator
 
   public static <T extends Comparable<T>, U extends T> T requireGreaterOrSame(final T actual, final U lessOrSame, final Comparator<T> comparator,
-      final BiFunction<T, U, String> messageSupplier) {
+                                                                              final BiFunction<T, U, String> messageSupplier) {
     return requireGreaterOrSame(actual, lessOrSame, comparator, () -> messageSupplier.apply(actual, lessOrSame));
   }
 
   public static <T extends Comparable<T>, U extends T> T requireGreaterOrSame(final T actual, final U lessOrSame, final Comparator<T> comparator,
-      final Supplier<String> messageSupplier) {
+                                                                              final Supplier<String> messageSupplier) {
     return Conditions.requireGreaterOrSame(actual, lessOrSame, comparator, messageSupplier, IllegalArgumentException::new);
   }
 
   public static <T extends Comparable<T>, U extends T> T requireGreaterOrSame(final T actual, final U lessOrSame,
-      final Comparator<T> comparator, final String message) {
+                                                                              final Comparator<T> comparator, final String message) {
     return Conditions.requireGreaterOrSame(actual, lessOrSame, comparator, message, IllegalArgumentException::new);
   }
 
@@ -1032,7 +1035,7 @@ public final class Arguments {
   }
 
   // requireLessOrSame
-  //--------------------------------------------------
+  //
 
   // byte
 
@@ -1163,7 +1166,7 @@ public final class Arguments {
   // Comparable
 
   public static <T extends Comparable<T>, U extends T> T requireLessOrSame(final T actual, final U greaterOrSame,
-      final BiFunction<T, U, String> messageSupplier) {
+                                                                           final BiFunction<T, U, String> messageSupplier) {
     return requireLessOrSame(actual, greaterOrSame, () -> messageSupplier.apply(actual, greaterOrSame));
   }
 
@@ -1182,17 +1185,17 @@ public final class Arguments {
   // Comparator
 
   public static <T extends Comparable<T>, U extends T> T requireLessOrSame(final T actual, final U greaterOrSame, final Comparator<T> comparator,
-      final BiFunction<T, U, String> messageSupplier) {
+                                                                           final BiFunction<T, U, String> messageSupplier) {
     return requireLessOrSame(actual, greaterOrSame, comparator, () -> messageSupplier.apply(actual, greaterOrSame));
   }
 
   public static <T extends Comparable<T>, U extends T> T requireLessOrSame(final T actual, final U greaterOrSame, final Comparator<T> comparator,
-      final Supplier<String> messageSupplier) {
+                                                                           final Supplier<String> messageSupplier) {
     return Conditions.requireLessOrSame(actual, greaterOrSame, comparator, messageSupplier, IllegalArgumentException::new);
   }
 
   public static <T extends Comparable<T>, U extends T> T requireLessOrSame(final T actual, final U greaterOrSame,
-      final Comparator<T> comparator, final String message) {
+                                                                           final Comparator<T> comparator, final String message) {
     return Conditions.requireLessOrSame(actual, greaterOrSame, comparator, message, IllegalArgumentException::new);
   }
 
@@ -1219,7 +1222,7 @@ public final class Arguments {
   }
 
   // requireEmpty
-  //--------------------------------------------------
+  //
 
   // boolean
 
@@ -1420,7 +1423,7 @@ public final class Arguments {
   }
 
   // requireNotEmpty
-  //--------------------------------------------------
+  //
 
   // boolean
 
@@ -1621,7 +1624,7 @@ public final class Arguments {
   }
 
   // requireContainsEquals
-  //--------------------------------------------------
+  //
 
   // Array
 
@@ -1678,7 +1681,7 @@ public final class Arguments {
   }
 
   // requireNotContainsEquals
-  //--------------------------------------------------
+  //
 
   // Array
 
@@ -1719,7 +1722,7 @@ public final class Arguments {
   // Collection
 
   public static <T extends Collection<U>, U> T requireNotContainsEquals(final T argument, final U unexpected,
-      final BiFunction<T, U, String> messageSupplier) {
+                                                                        final BiFunction<T, U, String> messageSupplier) {
     return requireNotContainsEquals(argument, unexpected, () -> messageSupplier.apply(argument, unexpected));
   }
 
@@ -1736,12 +1739,12 @@ public final class Arguments {
   }
 
   // requireContainsSame
-  //--------------------------------------------------
+  //
 
   // boolean
 
   public static boolean[] requireContainsSame(final boolean[] argument, final boolean expected,
-      final BooleanArrayAndBooleanBiFunction<String> messageSupplier) {
+                                              final BooleanArrayAndBooleanBiFunction<String> messageSupplier) {
     return requireContainsSame(argument, expected, () -> messageSupplier.apply(argument, expected));
   }
 
@@ -1938,12 +1941,12 @@ public final class Arguments {
   }
 
   // requireNotContainsSame
-  //--------------------------------------------------
+  //
 
   // boolean
 
   public static boolean[] requireNotContainsSame(final boolean[] argument, final boolean expected,
-      final BooleanArrayAndBooleanBiFunction<String> messageSupplier) {
+                                                 final BooleanArrayAndBooleanBiFunction<String> messageSupplier) {
     return requireNotContainsSame(argument, expected, () -> messageSupplier.apply(argument, expected));
   }
 
@@ -2140,10 +2143,10 @@ public final class Arguments {
   }
 
   // TODO: requireSize
-  //--------------------------------------------------
+  //
 
   // TODO: requireNotSize
-  //--------------------------------------------------
+  //
 
   // Constructors
   //--------------------------------------------------
@@ -2154,7 +2157,7 @@ public final class Arguments {
     throw new UnsupportedInstantiationException();
   }
 
-  // Helper classes
+  // Nested
   //--------------------------------------------------
 
   @FunctionalInterface

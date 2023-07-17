@@ -44,7 +44,7 @@ public class ArrayDecorator<T> extends ObjectDecorator<T[]> implements Cloneable
     super(Arguments.requireNotNull(array, "array"));
   }
 
-  // Array methods
+  // Methods
   //--------------------------------------------------
 
   public T[] get() {
